@@ -1,0 +1,223 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Cloud Sync API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Cloud Sync
+  description: Sync data across devices via cloud
+paths:
+  /sync/init:
+    post:
+      description: Initialize sync at runtime with credentials.
+      operationId: sync_api_sync_init
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncInitRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncInitResponse'
+      tags:
+      - Cloud Sync
+      summary: Initialize cloud sync
+  /sync/status:
+    get:
+      description: Get current sync status.
+      operationId: sync_api_sync_status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncStatusResponse'
+      tags:
+      - Cloud Sync
+      summary: Get sync status
+  /sync/trigger:
+    post:
+      description: Trigger an immediate sync.
+      operationId: sync_api_sync_trigger
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Cloud Sync
+      summary: Trigger sync
+  /sync/lock:
+    post:
+      description: Lock sync (stop service and clear state).
+      operationId: sync_api_sync_lock
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Cloud Sync
+      summary: Lock sync
+  /sync/download:
+    post:
+      description: Download and import data from other devices.
+      operationId: sync_api_sync_download
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncDownloadRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncDownloadResponse'
+      tags:
+      - Cloud Sync
+      summary: Download synced data
+  /sync/pipes/push:
+    post:
+      description: Push local pipe manifest to cloud (merge with remote first).
+      operationId: sync_api_sync_pipes_push
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipeSyncResponse'
+      tags:
+      - Cloud Sync
+      summary: Push pipe configs to cloud
+  /sync/pipes/pull:
+    post:
+      description: Pull pipe manifest from cloud, merge with local, apply to disk.
+      operationId: sync_api_sync_pipes_pull
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipeSyncResponse'
+      tags:
+      - Cloud Sync
+      summary: Pull pipe configs from cloud
+components:
+  schemas:
+    SyncDownloadRequest:
+      description: Request to download data from other devices.
+      type: object
+      properties:
+        hours:
+          type: integer
+      required:
+      - hours
+    SyncDownloadResponse:
+      description: Response from download operation.
+      type: object
+      properties:
+        success:
+          type: boolean
+        blobs_downloaded:
+          type: integer
+        records_imported:
+          type: integer
+      required:
+      - success
+      - blobs_downloaded
+      - records_imported
+    SyncInitResponse:
+      description: Response from sync initialization.
+      type: object
+      properties:
+        success:
+          type: boolean
+        is_new_user:
+          type: boolean
+        machine_id:
+          type: string
+      required:
+      - success
+      - is_new_user
+      - machine_id
+    SyncStatusResponse:
+      description: Response for sync status.
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        is_syncing:
+          type: boolean
+        last_sync:
+          nullable: true
+          type: string
+        last_error:
+          nullable: true
+          type: string
+        machine_id:
+          nullable: true
+          type: string
+        last_download_at:
+          nullable: true
+          type: string
+      required:
+      - enabled
+      - is_syncing
+      - last_sync
+      - last_error
+      - machine_id
+      - last_download_at
+    SyncInitRequest:
+      description: Request to initialize sync at runtime.
+      type: object
+      properties:
+        token:
+          type: string
+        password:
+          type: string
+        machine_id:
+          nullable: true
+          type: string
+        sync_interval_secs:
+          nullable: true
+          type: integer
+      required:
+      - token
+      - password
+      - machine_id
+      - sync_interval_secs
+    PipeSyncResponse:
+      description: Response from pipe sync operations.
+      type: object
+      properties:
+        success:
+          type: boolean
+        actions:
+          type: array
+          items:
+            type: string
+        errors:
+          type: array
+          items:
+            type: string
+      required:
+      - success
+      - actions

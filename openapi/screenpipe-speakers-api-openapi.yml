@@ -1,0 +1,326 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Speakers API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Speakers
+  description: Speaker identification and management
+paths:
+  /speakers/unnamed:
+    get:
+      operationId: routes_speakers_get_unnamed_speakers_handler
+      parameters:
+      - name: limit
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: offset
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: speaker_ids
+        schema:
+          nullable: true
+          type: array
+          items:
+            type: integer
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Speaker'
+      tags:
+      - Speakers
+      summary: List unnamed speakers
+      description: Returns speakers that haven't been identified/named yet.
+  /speakers/update:
+    post:
+      operationId: routes_speakers_update_speaker_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSpeakerRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speaker'
+      tags:
+      - Speakers
+      summary: Update speaker name
+  /speakers/search:
+    get:
+      operationId: routes_speakers_search_speakers_handler
+      parameters:
+      - name: name
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Speaker'
+      tags:
+      - Speakers
+      summary: Search speakers
+  /speakers/delete:
+    post:
+      operationId: routes_speakers_delete_speaker_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteSpeakerRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Speakers
+      summary: Delete speaker
+  /speakers/hallucination:
+    post:
+      operationId: routes_speakers_mark_as_hallucination_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkAsHallucinationRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Speakers
+      summary: Mark speaker as hallucination
+      description: Flag a detected speaker as a false positive / hallucination.
+  /speakers/merge:
+    post:
+      operationId: routes_speakers_merge_speakers_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MergeSpeakersRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Speakers
+      summary: Merge speakers
+      description: Merge two speaker identities into one.
+  /speakers/similar:
+    get:
+      operationId: routes_speakers_get_similar_speakers_handler
+      parameters:
+      - name: speaker_id
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: limit
+        schema:
+          type: integer
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Speaker'
+      tags:
+      - Speakers
+      summary: Find similar speakers
+  /speakers/reassign:
+    post:
+      operationId: routes_speakers_reassign_speaker_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReassignSpeakerRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReassignSpeakerResponse'
+      tags:
+      - Speakers
+      summary: Reassign speaker
+      description: Reassign audio segments from one speaker to another.
+  /speakers/undo-reassign:
+    post:
+      operationId: routes_speakers_undo_speaker_reassign_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UndoSpeakerReassignRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UndoSpeakerReassignResponse'
+      tags:
+      - Speakers
+      summary: Undo speaker reassignment
+components:
+  schemas:
+    UndoSpeakerReassignResponse:
+      type: object
+      properties:
+        restored:
+          type: integer
+      required:
+      - restored
+    Speaker:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        metadata:
+          type: string
+      required:
+      - id
+      - name
+      - metadata
+    ReassignSpeakerResponse:
+      type: object
+      properties:
+        new_speaker_id:
+          type: integer
+        new_speaker_name:
+          type: string
+        transcriptions_updated:
+          type: integer
+        embeddings_moved:
+          type: integer
+        old_assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeakerOldAssignment'
+      required:
+      - new_speaker_id
+      - new_speaker_name
+      - transcriptions_updated
+      - embeddings_moved
+      - old_assignments
+    UndoSpeakerReassignRequest:
+      type: object
+      properties:
+        old_assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeakerOldAssignment'
+      required:
+      - old_assignments
+    MarkAsHallucinationRequest:
+      type: object
+      properties:
+        speaker_id:
+          type: integer
+      required:
+      - speaker_id
+    SpeakerOldAssignment:
+      type: object
+      properties:
+        transcription_id:
+          type: integer
+        old_speaker_id:
+          type: integer
+      required:
+      - transcription_id
+      - old_speaker_id
+    DeleteSpeakerRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+      required:
+      - id
+    ReassignSpeakerRequest:
+      type: object
+      properties:
+        audio_chunk_id:
+          type: integer
+        new_speaker_name:
+          type: string
+        propagate_similar:
+          type: boolean
+      required:
+      - audio_chunk_id
+      - new_speaker_name
+      - propagate_similar
+    MergeSpeakersRequest:
+      type: object
+      properties:
+        speaker_to_keep_id:
+          type: integer
+        speaker_to_merge_id:
+          type: integer
+      required:
+      - speaker_to_keep_id
+      - speaker_to_merge_id
+    UpdateSpeakerRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          nullable: true
+          type: string
+        metadata:
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+      - metadata

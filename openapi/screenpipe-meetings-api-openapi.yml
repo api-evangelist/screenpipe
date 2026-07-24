@@ -1,0 +1,297 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Meetings API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Meetings
+  description: Detected and manual meeting transcriptions
+paths:
+  /meetings:
+    get:
+      operationId: routes_meetings_list_meetings_handler
+      parameters:
+      - name: start_time
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: end_time
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: limit
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: offset
+        schema:
+          type: integer
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MeetingRecord'
+      tags:
+      - Meetings
+      summary: List meetings
+      description: Returns detected and manually started meetings with transcriptions.
+  /meetings/status:
+    get:
+      operationId: routes_meetings_meeting_status_handler
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Meetings
+      summary: Get meeting detection status
+  /meetings/merge:
+    post:
+      operationId: routes_meetings_merge_meetings_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MergeMeetingsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeetingRecord'
+      tags:
+      - Meetings
+      summary: Merge meetings
+  /meetings/bulk-delete:
+    post:
+      operationId: routes_meetings_bulk_delete_meetings_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkDeleteMeetingsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Meetings
+      summary: Bulk delete meetings
+  /meetings/start:
+    post:
+      operationId: routes_meetings_start_meeting_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartMeetingRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeetingRecord'
+      tags:
+      - Meetings
+      summary: Start a manual meeting
+  /meetings/stop:
+    post:
+      operationId: routes_meetings_stop_meeting_handler
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeetingRecord'
+      tags:
+      - Meetings
+      summary: Stop a manual meeting
+  /meetings/{id}:
+    get:
+      operationId: routes_meetings_get_meeting_handler
+      parameters:
+      - name: id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeetingRecord'
+      tags:
+      - Meetings
+      summary: Get meeting by ID
+    put:
+      operationId: routes_meetings_update_meeting_handler
+      parameters:
+      - name: id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMeetingRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeetingRecord'
+      tags:
+      - Meetings
+      summary: Update meeting
+    delete:
+      operationId: routes_meetings_delete_meeting_handler
+      parameters:
+      - name: id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Meetings
+      summary: Delete meeting
+components:
+  schemas:
+    MeetingRecord:
+      type: object
+      properties:
+        id:
+          type: integer
+        meeting_start:
+          type: string
+        meeting_end:
+          nullable: true
+          type: string
+        meeting_app:
+          type: string
+        title:
+          nullable: true
+          type: string
+        attendees:
+          nullable: true
+          type: string
+        note:
+          nullable: true
+          type: string
+        detection_source:
+          type: string
+        created_at:
+          type: string
+      required:
+      - id
+      - meeting_start
+      - meeting_end
+      - meeting_app
+      - title
+      - attendees
+      - note
+      - detection_source
+      - created_at
+    BulkDeleteMeetingsRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+      required:
+      - ids
+    MergeMeetingsRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+      required:
+      - ids
+    StartMeetingRequest:
+      type: object
+      properties:
+        app:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        attendees:
+          nullable: true
+          type: string
+      required:
+      - app
+      - title
+      - attendees
+    UpdateMeetingRequest:
+      type: object
+      properties:
+        meeting_start:
+          nullable: true
+          type: string
+        meeting_end:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        attendees:
+          nullable: true
+          type: string
+        note:
+          nullable: true
+          type: string
+        meeting_app:
+          nullable: true
+          type: string
+      required:
+      - meeting_start
+      - meeting_end
+      - title
+      - attendees
+      - note
+      - meeting_app

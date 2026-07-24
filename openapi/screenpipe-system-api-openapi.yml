@@ -1,0 +1,284 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity System API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: System
+  description: Health checks and system status
+paths:
+  /health:
+    get:
+      operationId: routes_health_health_check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+      tags:
+      - System
+      summary: Health check
+      description: Returns system health status including audio/video pipeline state, device info, and version.
+components:
+  schemas:
+    AudioPipelineHealthInfo:
+      type: object
+      properties:
+        uptime_secs:
+          type: number
+        chunks_sent:
+          type: integer
+        chunks_channel_full:
+          type: integer
+        stream_timeouts:
+          type: integer
+        vad_passed:
+          type: integer
+        vad_rejected:
+          type: integer
+        vad_passthrough_rate:
+          type: number
+        avg_speech_ratio:
+          type: number
+        transcriptions_completed:
+          type: integer
+        transcriptions_empty:
+          type: integer
+        transcription_errors:
+          type: integer
+        db_inserted:
+          type: integer
+        total_words:
+          type: integer
+        words_per_minute:
+          type: number
+        chunks_received:
+          nullable: true
+          type: integer
+        process_errors:
+          nullable: true
+          type: integer
+        audio_level_rms:
+          nullable: true
+          type: number
+        audio_devices:
+          nullable: true
+          type: array
+          items:
+            type: string
+        transcription_mode:
+          nullable: true
+          type: string
+        transcription_paused:
+          nullable: true
+          type: boolean
+        segments_deferred:
+          nullable: true
+          type: integer
+        segments_batch_processed:
+          nullable: true
+          type: integer
+        batch_paused_reason:
+          nullable: true
+          type: string
+        meeting_detected:
+          nullable: true
+          type: boolean
+        meeting_app:
+          nullable: true
+          type: string
+      required:
+      - uptime_secs
+      - chunks_sent
+      - chunks_channel_full
+      - stream_timeouts
+      - vad_passed
+      - vad_rejected
+      - vad_passthrough_rate
+      - avg_speech_ratio
+      - transcriptions_completed
+      - transcriptions_empty
+      - transcription_errors
+      - db_inserted
+      - total_words
+      - words_per_minute
+    PoolHealthInfo:
+      type: object
+      properties:
+        read_pool_size:
+          type: integer
+        read_pool_idle:
+          type: integer
+        write_pool_size:
+          type: integer
+        write_pool_idle:
+          type: integer
+      required:
+      - read_pool_size
+      - read_pool_idle
+      - write_pool_size
+      - write_pool_idle
+    TreeWalkerSnapshot:
+      description: Point-in-time snapshot of tree walker health metrics (no private data).
+      type: object
+      properties:
+        walks_total:
+          type: integer
+        walks_stored:
+          type: integer
+        walks_deduped:
+          type: integer
+        walks_empty:
+          type: integer
+        walks_error:
+          type: integer
+        walks_truncated:
+          type: integer
+        walks_truncated_timeout:
+          type: integer
+        walks_truncated_max_nodes:
+          type: integer
+        truncation_rate:
+          type: number
+        avg_walk_duration_ms:
+          type: integer
+        max_walk_duration_ms:
+          type: integer
+        avg_nodes_per_walk:
+          type: integer
+        max_depth_reached:
+          type: integer
+        total_text_chars:
+          type: integer
+      required:
+      - walks_total
+      - walks_stored
+      - walks_deduped
+      - walks_empty
+      - walks_error
+      - walks_truncated
+      - walks_truncated_timeout
+      - walks_truncated_max_nodes
+      - truncation_rate
+      - avg_walk_duration_ms
+      - max_walk_duration_ms
+      - avg_nodes_per_walk
+      - max_depth_reached
+      - total_text_chars
+    HealthCheckResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        status_code:
+          type: integer
+        last_frame_timestamp:
+          nullable: true
+          type: string
+          format: date-time
+        last_audio_timestamp:
+          nullable: true
+          type: string
+          format: date-time
+        frame_status:
+          type: string
+        audio_status:
+          type: string
+        message:
+          type: string
+        verbose_instructions:
+          nullable: true
+          type: string
+        device_status_details:
+          nullable: true
+          type: string
+        monitors:
+          nullable: true
+          type: array
+          items:
+            type: string
+        pipeline:
+          $ref: '#/components/schemas/PipelineHealthInfo'
+        audio_pipeline:
+          $ref: '#/components/schemas/AudioPipelineHealthInfo'
+        accessibility:
+          $ref: '#/components/schemas/TreeWalkerSnapshot'
+        pool_stats:
+          $ref: '#/components/schemas/PoolHealthInfo'
+        vision_db_write_stalled:
+          type: boolean
+        audio_db_write_stalled:
+          type: boolean
+        drm_content_paused:
+          type: boolean
+        schedule_paused:
+          type: boolean
+        hostname:
+          nullable: true
+          type: string
+        version:
+          nullable: true
+          type: string
+      required:
+      - status
+      - status_code
+      - last_frame_timestamp
+      - last_audio_timestamp
+      - frame_status
+      - audio_status
+      - message
+      - verbose_instructions
+      - device_status_details
+      - vision_db_write_stalled
+      - audio_db_write_stalled
+      - drm_content_paused
+      - schedule_paused
+    PipelineHealthInfo:
+      type: object
+      properties:
+        uptime_secs:
+          type: number
+        frames_captured:
+          type: integer
+        frames_db_written:
+          type: integer
+        frames_dropped:
+          type: integer
+        frame_drop_rate:
+          type: number
+        capture_fps_actual:
+          type: number
+        avg_ocr_latency_ms:
+          type: number
+        avg_db_latency_ms:
+          type: number
+        ocr_queue_depth:
+          type: integer
+        video_queue_depth:
+          type: integer
+        time_to_first_frame_ms:
+          nullable: true
+          type: number
+        pipeline_stall_count:
+          type: integer
+        ocr_cache_hit_rate:
+          type: number
+      required:
+      - uptime_secs
+      - frames_captured
+      - frames_db_written
+      - frames_dropped
+      - frame_drop_rate
+      - capture_fps_actual
+      - avg_ocr_latency_ms
+      - avg_db_latency_ms
+      - ocr_queue_depth
+      - video_queue_depth
+      - time_to_first_frame_ms
+      - pipeline_stall_count
+      - ocr_cache_hit_rate

@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Tags API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Tags
+  description: Tag content items for organization
+paths:
+  /tags/vision/batch:
+    post:
+      description: 'Batch fetch tags for multiple vision frame IDs.
+
+        POST /tags/vision/batch  { "frame_ids": [1, 2, 3] }'
+      operationId: routes_content_get_tags_batch
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTagsBatchRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTagsBatchResponse'
+      tags:
+      - Tags
+      summary: Get tags in batch
+  /tags/{content_type}/{id}:
+    post:
+      operationId: routes_content_add_tags
+      parameters:
+      - name: content_type
+        schema:
+          type: string
+        in: path
+        required: true
+        style: simple
+      - name: id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTagsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddTagsResponse'
+      tags:
+      - Tags
+      summary: Add tags
+      description: Add tags to a specific content item (frame or audio chunk).
+    delete:
+      operationId: routes_content_remove_tags
+      parameters:
+      - name: content_type
+        schema:
+          type: string
+        in: path
+        required: true
+        style: simple
+      - name: id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveTagsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemoveTagsResponse'
+      tags:
+      - Tags
+      summary: Remove tags
+      description: Remove tags from a specific content item.
+components:
+  schemas:
+    AddTagsRequest:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+      required:
+      - tags
+    GetTagsBatchRequest:
+      type: object
+      properties:
+        frame_ids:
+          type: array
+          items:
+            type: integer
+      required:
+      - frame_ids
+    RemoveTagsRequest:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+      required:
+      - tags
+    GetTagsBatchResponse:
+      type: object
+      properties:
+        tags:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      required:
+      - tags
+    AddTagsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+      - success
+    RemoveTagsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+      - success

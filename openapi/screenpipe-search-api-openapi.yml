@@ -1,0 +1,563 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Search API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Search
+  description: Search through captured screen and audio content
+paths:
+  /search:
+    get:
+      operationId: routes_search_search
+      parameters:
+      - name: q
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: limit
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: offset
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: content_type
+        schema:
+          $ref: '#/components/schemas/ContentType'
+        in: query
+        style: form
+      - name: start_time
+        schema:
+          nullable: true
+          type: string
+          format: date-time
+        in: query
+        style: form
+      - name: end_time
+        schema:
+          nullable: true
+          type: string
+          format: date-time
+        in: query
+        style: form
+      - name: app_name
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: window_name
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: frame_name
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: include_frames
+        schema:
+          type: boolean
+        in: query
+        style: form
+      - name: min_length
+        schema:
+          nullable: true
+          type: integer
+        in: query
+        style: form
+      - name: max_length
+        schema:
+          nullable: true
+          type: integer
+        in: query
+        style: form
+      - name: speaker_ids
+        schema:
+          nullable: true
+          type: array
+          items:
+            type: integer
+        in: query
+        style: form
+      - name: focused
+        schema:
+          nullable: true
+          type: boolean
+        in: query
+        style: form
+      - name: browser_url
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: speaker_name
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: include_cloud
+        schema:
+          type: boolean
+        in: query
+        style: form
+      - name: max_content_length
+        schema:
+          nullable: true
+          type: integer
+        in: query
+        style: form
+      - name: device_name
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: machine_id
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+      tags:
+      - Search
+      summary: Search screen and audio content
+      description: Query captured screen text (accessibility-first with OCR fallback), audio transcriptions, and UI elements with filters for time range, app, window, content type, and more.
+  /search/keyword:
+    get:
+      operationId: routes_search_keyword_search_handler
+      parameters:
+      - name: query
+        schema:
+          type: string
+        in: query
+        style: form
+      - name: limit
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: offset
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: start_time
+        schema:
+          nullable: true
+          type: string
+          format: date-time
+        in: query
+        style: form
+      - name: end_time
+        schema:
+          nullable: true
+          type: string
+          format: date-time
+        in: query
+        style: form
+      - name: fuzzy_match
+        schema:
+          type: boolean
+        in: query
+        style: form
+      - name: order
+        schema:
+          $ref: '#/components/schemas/Order'
+        in: query
+        style: form
+      - name: app_names
+        schema:
+          nullable: true
+          type: array
+          items:
+            type: string
+        in: query
+        style: form
+      - name: group
+        schema:
+          type: boolean
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Search
+      summary: Keyword search
+      description: Fast keyword-based search across all content types.
+components:
+  schemas:
+    SearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItem'
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+        cloud:
+          $ref: '#/components/schemas/CloudSearchMetadata'
+      required:
+      - data
+      - pagination
+    Speaker:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        metadata:
+          type: string
+      required:
+      - id
+      - name
+      - metadata
+    CloudStatus:
+      type: string
+      enum:
+      - available
+      - disabled
+      - not_initialized
+      - error
+    ContentType:
+      type: string
+      enum:
+      - all
+      - ocr
+      - audio
+      - input
+      - accessibility
+      - memory
+    ContentItem:
+      oneOf:
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - OCR
+          content:
+            type: object
+            properties:
+              frame_id:
+                type: integer
+              text:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              file_path:
+                type: string
+              offset_index:
+                type: integer
+              app_name:
+                type: string
+              window_name:
+                type: string
+              tags:
+                type: array
+                items:
+                  type: string
+              frame:
+                nullable: true
+                type: string
+              frame_name:
+                nullable: true
+                type: string
+              browser_url:
+                nullable: true
+                type: string
+              focused:
+                nullable: true
+                type: boolean
+              device_name:
+                type: string
+            required:
+            - frame_id
+            - text
+            - timestamp
+            - file_path
+            - offset_index
+            - app_name
+            - window_name
+            - tags
+            - frame
+            - frame_name
+            - browser_url
+            - focused
+            - device_name
+        required:
+        - type
+        - content
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - Audio
+          content:
+            type: object
+            properties:
+              chunk_id:
+                type: integer
+              transcription:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              file_path:
+                type: string
+              offset_index:
+                type: integer
+              tags:
+                type: array
+                items:
+                  type: string
+              device_name:
+                type: string
+              device_type:
+                $ref: '#/components/schemas/DeviceType'
+              speaker:
+                $ref: '#/components/schemas/Speaker'
+              start_time:
+                nullable: true
+                type: number
+              end_time:
+                nullable: true
+                type: number
+            required:
+            - chunk_id
+            - transcription
+            - timestamp
+            - file_path
+            - offset_index
+            - tags
+            - device_name
+            - device_type
+            - speaker
+            - start_time
+            - end_time
+        required:
+        - type
+        - content
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - UI
+          content:
+            type: object
+            properties:
+              id:
+                type: integer
+              text:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              app_name:
+                type: string
+              window_name:
+                type: string
+              initial_traversal_at:
+                nullable: true
+                type: string
+                format: date-time
+              file_path:
+                type: string
+              offset_index:
+                type: integer
+              frame_name:
+                nullable: true
+                type: string
+              browser_url:
+                nullable: true
+                type: string
+            required:
+            - id
+            - text
+            - timestamp
+            - app_name
+            - window_name
+            - initial_traversal_at
+            - file_path
+            - offset_index
+            - frame_name
+            - browser_url
+        required:
+        - type
+        - content
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - Input
+          content:
+            description: User input event content (clicks, keystrokes, clipboard, etc.)
+            type: object
+            properties:
+              id:
+                type: integer
+              timestamp:
+                type: string
+                format: date-time
+              event_type:
+                type: string
+              app_name:
+                nullable: true
+                type: string
+              window_title:
+                nullable: true
+                type: string
+              browser_url:
+                nullable: true
+                type: string
+              text_content:
+                nullable: true
+                type: string
+              x:
+                nullable: true
+                type: integer
+              y:
+                nullable: true
+                type: integer
+              key_code:
+                nullable: true
+                type: integer
+              modifiers:
+                nullable: true
+                type: integer
+              element_role:
+                nullable: true
+                type: string
+              element_name:
+                nullable: true
+                type: string
+            required:
+            - id
+            - timestamp
+            - event_type
+            - app_name
+            - window_title
+            - browser_url
+            - text_content
+            - x
+            - y
+            - key_code
+            - modifiers
+            - element_role
+            - element_name
+        required:
+        - type
+        - content
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - Memory
+          content:
+            type: object
+            properties:
+              id:
+                type: integer
+              content:
+                type: string
+              source:
+                type: string
+              source_context:
+                nullable: true
+                type: object
+              tags:
+                type: array
+                items:
+                  type: string
+              importance:
+                type: number
+              created_at:
+                type: string
+              updated_at:
+                type: string
+            required:
+            - id
+            - content
+            - source
+            - source_context
+            - tags
+            - importance
+            - created_at
+            - updated_at
+        required:
+        - type
+        - content
+    Order:
+      type: string
+      enum:
+      - ascending
+      - descending
+    CloudSearchMetadata:
+      description: Metadata about cloud search to include in responses.
+      type: object
+      properties:
+        cloudSearchAvailable:
+          type: boolean
+        cloudHasRelevantData:
+          type: boolean
+        cloudQueryHint:
+          nullable: true
+          type: string
+        status:
+          $ref: '#/components/schemas/CloudStatus'
+      required:
+      - cloudSearchAvailable
+      - cloudHasRelevantData
+      - cloudQueryHint
+      - status
+    DeviceType:
+      type: string
+      enum:
+      - Input
+      - Output
+    PaginationInfo:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      - offset
+      - total

@@ -1,0 +1,155 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Database API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Database
+  description: Direct database access
+paths:
+  /raw_sql:
+    post:
+      operationId: routes_content_execute_raw_sql
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RawSqlQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Database
+      summary: Execute raw SQL
+      description: Execute a raw SQL query against the screenpipe database. Use with caution.
+  /add:
+    post:
+      operationId: routes_content_add_to_database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddContentRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddContentResponse'
+      tags:
+      - Database
+      summary: Add content to database
+      description: Manually insert screen or audio content into the database.
+components:
+  schemas:
+    AddContentRequest:
+      type: object
+      properties:
+        device_name:
+          type: string
+        content:
+          $ref: '#/components/schemas/AddContentData'
+      required:
+      - device_name
+      - content
+    AddContentResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          nullable: true
+          type: string
+      required:
+      - success
+      - message
+    ContentData:
+      oneOf:
+      - type: array
+        items:
+          type: object
+          properties:
+            file_path:
+              type: string
+            timestamp:
+              nullable: true
+              type: string
+              format: date-time
+            app_name:
+              nullable: true
+              type: string
+            window_name:
+              nullable: true
+              type: string
+            ocr_results:
+              nullable: true
+              type: array
+              items:
+                $ref: '#/components/schemas/OCRResult'
+            tags:
+              nullable: true
+              type: array
+              items:
+                type: string
+          required:
+          - file_path
+          - timestamp
+          - app_name
+          - window_name
+          - ocr_results
+          - tags
+      - type: object
+        properties:
+          transcription:
+            type: string
+          transcription_engine:
+            type: string
+        required:
+        - transcription
+        - transcription_engine
+    OCRResult:
+      type: object
+      properties:
+        text:
+          type: string
+        text_json:
+          nullable: true
+          type: string
+        ocr_engine:
+          nullable: true
+          type: string
+        focused:
+          nullable: true
+          type: boolean
+      required:
+      - text
+      - text_json
+      - ocr_engine
+      - focused
+    RawSqlQuery:
+      type: object
+      properties:
+        query:
+          type: string
+      required:
+      - query
+    AddContentData:
+      type: object
+      properties:
+        content_type:
+          type: string
+        data:
+          $ref: '#/components/schemas/ContentData'
+      required:
+      - content_type
+      - data

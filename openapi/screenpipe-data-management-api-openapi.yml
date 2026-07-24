@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Data Management API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Data Management
+  description: Manual data deletion and storage info
+paths:
+  /data/delete-range:
+    post:
+      operationId: routes_data_delete_time_range_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteTimeRangeRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTimeRangeResponse'
+      tags:
+      - Data Management
+      summary: Delete data in time range
+      description: Permanently delete all captured data (frames, accessibility text, OCR fallback text, audio, etc.) within a time range.
+  /data/delete-device:
+    post:
+      description: Delete all locally-stored data that was synced from a specific remote device.
+      operationId: routes_data_delete_device_data_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteDeviceDataRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTimeRangeResponse'
+      tags:
+      - Data Management
+      summary: Delete device data
+  /data/device-storage:
+    get:
+      description: Get record counts per synced device.
+      operationId: routes_data_device_storage_handler
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DeviceStorageEntry'
+      tags:
+      - Data Management
+      summary: Get device storage usage
+components:
+  schemas:
+    DeleteTimeRangeRequest:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+      required:
+      - start
+      - end
+    DeviceStorageEntry:
+      type: object
+      properties:
+        machine_id:
+          type: string
+        frames:
+          type: integer
+        audio_chunks:
+          type: integer
+      required:
+      - machine_id
+      - frames
+      - audio_chunks
+    DeleteDeviceDataRequest:
+      type: object
+      properties:
+        machine_id:
+          type: string
+      required:
+      - machine_id
+    DeleteTimeRangeResponse:
+      type: object
+      properties:
+        frames_deleted:
+          type: integer
+        ocr_deleted:
+          type: integer
+        audio_transcriptions_deleted:
+          type: integer
+        audio_chunks_deleted:
+          type: integer
+        video_chunks_deleted:
+          type: integer
+        accessibility_deleted:
+          type: integer
+        ui_events_deleted:
+          type: integer
+        video_files_deleted:
+          type: integer
+        audio_files_deleted:
+          type: integer
+      required:
+      - frames_deleted
+      - ocr_deleted
+      - audio_transcriptions_deleted
+      - audio_chunks_deleted
+      - video_chunks_deleted
+      - accessibility_deleted
+      - ui_events_deleted
+      - video_files_deleted
+      - audio_files_deleted

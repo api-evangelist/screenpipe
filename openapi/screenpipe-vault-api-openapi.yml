@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Vault API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Vault
+  description: Encrypt/decrypt all data at rest
+paths:
+  /vault/status:
+    get:
+      description: GET /vault/status
+      operationId: routes_vault_vault_status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Vault
+      summary: Get vault status
+  /vault/lock:
+    post:
+      description: POST /vault/lock
+      operationId: routes_vault_vault_lock
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Vault
+      summary: Lock vault
+  /vault/unlock:
+    post:
+      description: POST /vault/unlock
+      operationId: routes_vault_vault_unlock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnlockRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Vault
+      summary: Unlock vault
+  /vault/setup:
+    post:
+      description: POST /vault/setup
+      operationId: routes_vault_vault_setup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetupRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Vault
+      summary: Set up vault
+components:
+  schemas:
+    UnlockRequest:
+      type: object
+      properties:
+        password:
+          type: string
+      required:
+      - password
+    SetupRequest:
+      type: object
+      properties:
+        password:
+          type: string
+      required:
+      - password

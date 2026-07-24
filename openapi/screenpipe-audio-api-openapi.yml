@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Audio API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Audio
+  description: Manage audio recording devices
+paths:
+  /audio/list:
+    get:
+      operationId: routes_audio_api_list_audio_devices
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ListDeviceResponse'
+      tags:
+      - Audio
+      summary: List audio devices
+      description: Returns all available audio input and output devices.
+  /audio/start:
+    post:
+      operationId: routes_audio_start_audio
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Audio
+      summary: Start audio recording
+  /audio/stop:
+    post:
+      operationId: routes_audio_stop_audio
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Audio
+      summary: Stop audio recording
+  /audio/device/start:
+    post:
+      operationId: routes_audio_start_audio_device
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudioDeviceControlRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioDeviceControlResponse'
+      tags:
+      - Audio
+      summary: Start recording a specific audio device
+  /audio/device/stop:
+    post:
+      operationId: routes_audio_stop_audio_device
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AudioDeviceControlRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudioDeviceControlResponse'
+      tags:
+      - Audio
+      summary: Stop recording a specific audio device
+components:
+  schemas:
+    AudioDeviceControlResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+      - success
+      - message
+    AudioDeviceControlRequest:
+      type: object
+      properties:
+        device_name:
+          type: string
+      required:
+      - device_name
+    ListDeviceResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        is_default:
+          type: boolean
+      required:
+      - name
+      - is_default

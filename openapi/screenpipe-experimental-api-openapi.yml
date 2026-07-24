@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Experimental API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Experimental
+  description: Experimental/unstable endpoints
+paths:
+  /experimental/frames/merge:
+    post:
+      operationId: routes_content_merge_frames_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MergeVideosRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MergeVideosResponse'
+      tags:
+      - Experimental
+      summary: Merge video frames
+  /experimental/validate/media:
+    get:
+      operationId: routes_content_validate_media_handler
+      parameters:
+      - name: file_path
+        schema:
+          type: string
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Experimental
+      summary: Validate media files
+components:
+  schemas:
+    MergeVideosResponse:
+      type: object
+      properties:
+        video_path:
+          type: string
+      required:
+      - video_path
+    MergeVideosRequest:
+      type: object
+      properties:
+        video_paths:
+          type: array
+          items:
+            type: string
+      required:
+      - video_paths

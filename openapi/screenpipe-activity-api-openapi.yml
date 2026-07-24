@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Activity
+  description: Activity summaries and analytics
+paths:
+  /activity-summary:
+    get:
+      description: 'Lightweight compressed activity overview for a time range.
+
+        Returns app usage, recent accessibility texts, and audio summary (~200-500 tokens).'
+      operationId: routes_activity_summary_get_activity_summary
+      parameters:
+      - name: start_time
+        schema:
+          type: string
+          format: date-time
+        in: query
+        style: form
+      - name: end_time
+        schema:
+          type: string
+          format: date-time
+        in: query
+        style: form
+      - name: app_name
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivitySummaryResponse'
+      tags:
+      - Activity
+      summary: Get activity summary
+components:
+  schemas:
+    SpeakerSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        segment_count:
+          type: integer
+      required:
+      - name
+      - segment_count
+    RecentText:
+      type: object
+      properties:
+        text:
+          type: string
+        app_name:
+          type: string
+        timestamp:
+          type: string
+      required:
+      - text
+      - app_name
+      - timestamp
+    ActivitySummaryResponse:
+      type: object
+      properties:
+        apps:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppUsage'
+        recent_texts:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecentText'
+        audio_summary:
+          $ref: '#/components/schemas/AudioSummary'
+        total_frames:
+          type: integer
+        time_range:
+          $ref: '#/components/schemas/TimeRange'
+      required:
+      - apps
+      - recent_texts
+      - audio_summary
+      - total_frames
+      - time_range
+    AudioSummary:
+      type: object
+      properties:
+        segment_count:
+          type: integer
+        speakers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeakerSummary'
+      required:
+      - segment_count
+      - speakers
+    AppUsage:
+      type: object
+      properties:
+        name:
+          type: string
+        frame_count:
+          type: integer
+        minutes:
+          type: number
+        first_seen:
+          type: string
+        last_seen:
+          type: string
+      required:
+      - name
+      - frame_count
+      - minutes
+      - first_seen
+      - last_seen
+    TimeRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+      required:
+      - start
+      - end

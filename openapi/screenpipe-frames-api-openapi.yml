@@ -1,0 +1,465 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Frames API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Frames
+  description: Access captured screenshots and their extracted text
+paths:
+  /frames/{frame_id}:
+    get:
+      operationId: routes_frames_get_frame_data
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Frames
+      summary: Get frame by ID
+      description: Returns a captured screenshot frame with optional base64 image data.
+  /frames/{frame_id}/text:
+    get:
+      description: 'Get frame text positions with bounding boxes for a specific frame.
+
+        Uses accessibility tree node bounds when available, and OCR fallback positions for visual-only or legacy frames.
+
+        Both OCR and accessibility bounds are normalized to 0-1 relative to the
+
+        monitor (full-screen capture), so they align correctly with the screenshot.'
+      operationId: routes_frames_get_frame_text_data
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      - name: query
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrameTextResponse'
+      tags:
+      - Frames
+      summary: Get frame text and bounds
+    post:
+      description: 'Run on-demand OCR on a frame that has no stored bounding boxes.
+
+        Loads the snapshot JPEG, runs Apple Vision OCR, stores the result,
+
+        and returns the text positions. Subsequent GET requests will hit the
+
+        cached DB row. If OCR data already exists, returns it without re-running.'
+      operationId: routes_frames_run_frame_ocr
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrameTextResponse'
+      tags:
+      - Frames
+      summary: Run OCR on frame
+  /frames/{frame_id}/ocr:
+    get:
+      description: 'Get frame text positions with bounding boxes for a specific frame.
+
+        Uses accessibility tree node bounds when available, and OCR fallback positions for visual-only or legacy frames.
+
+        Both OCR and accessibility bounds are normalized to 0-1 relative to the
+
+        monitor (full-screen capture), so they align correctly with the screenshot.'
+      operationId: routes_frames_get_frame_text_data
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      - name: query
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrameTextResponse'
+      tags:
+      - Frames
+      summary: Get frame OCR (deprecated)
+    post:
+      description: 'Run on-demand OCR on a frame that has no stored bounding boxes.
+
+        Loads the snapshot JPEG, runs Apple Vision OCR, stores the result,
+
+        and returns the text positions. Subsequent GET requests will hit the
+
+        cached DB row. If OCR data already exists, returns it without re-running.'
+      operationId: routes_frames_run_frame_ocr
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrameTextResponse'
+      tags:
+      - Frames
+      summary: Run frame OCR (deprecated)
+  /frames/{frame_id}/context:
+    get:
+      description: 'Get frame context: accessibility text, tree nodes, and extracted URLs.
+
+        Falls back to OCR data for legacy frames without accessibility data.'
+      operationId: routes_frames_get_frame_context
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrameContextResponse'
+      tags:
+      - Frames
+      summary: Get frame context
+  /frames/{frame_id}/metadata:
+    get:
+      description: Get frame metadata (timestamp) for deep link navigation. screenpipe://frame/123 → resolve to timestamp.
+      operationId: routes_frames_get_frame_metadata
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrameMetadataResponse'
+      tags:
+      - Frames
+      summary: Get frame metadata
+  /frames/next-valid:
+    get:
+      description: 'Find the next frame that has a valid video file on disk.
+
+        This allows the frontend to skip directly to a valid frame instead of
+
+        trying each frame one-by-one when frames fail to load.'
+      operationId: routes_frames_get_next_valid_frame
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: direction
+        schema:
+          type: string
+        in: query
+        style: form
+      - name: limit
+        schema:
+          type: integer
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NextValidFrameResponse'
+      tags:
+      - Frames
+      summary: Get next valid frame
+  /frames/{frame_id}/elements:
+    get:
+      description: Get all elements for a specific frame (full element tree).
+      operationId: routes_elements_get_frame_elements
+      parameters:
+      - name: frame_id
+        schema:
+          type: integer
+        in: path
+        required: true
+        style: simple
+      - name: source
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ElementsListResponse'
+      tags:
+      - Frames
+      summary: Get frame UI elements
+components:
+  schemas:
+    FrameTextResponse:
+      description: Response type for frame OCR data endpoint
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        text_positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextPosition'
+      required:
+      - frame_id
+      - text_positions
+    TextBounds:
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height
+    ElementsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElementResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - data
+      - pagination
+    FrameContextResponse:
+      description: Response type for frame context endpoint (accessibility-first, OCR fallback)
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        text:
+          nullable: true
+          type: string
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessibilityNode'
+        urls:
+          type: array
+          items:
+            type: string
+        text_source:
+          type: string
+      required:
+      - frame_id
+      - text
+      - nodes
+      - urls
+      - text_source
+    BoundsResponse:
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height
+    PaginationResponse:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      - offset
+      - total
+    AccessibilityNode:
+      description: A node from the accessibility tree
+      type: object
+      properties:
+        role:
+          type: string
+        text:
+          type: string
+        depth:
+          type: integer
+        bounds:
+          $ref: '#/components/schemas/AccessibilityNodeBounds'
+        properties:
+          nullable: true
+          type: object
+      required:
+      - role
+      - text
+      - depth
+    TextPosition:
+      type: object
+      properties:
+        text:
+          type: string
+        confidence:
+          type: number
+        bounds:
+          $ref: '#/components/schemas/TextBounds'
+      required:
+      - text
+      - confidence
+      - bounds
+    FrameMetadataResponse:
+      description: Response type for frame metadata (used by deep link navigation)
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+      required:
+      - frame_id
+      - timestamp
+    ElementResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        frame_id:
+          type: integer
+        source:
+          type: string
+        role:
+          type: string
+        text:
+          nullable: true
+          type: string
+        parent_id:
+          nullable: true
+          type: integer
+        depth:
+          type: integer
+        bounds:
+          $ref: '#/components/schemas/BoundsResponse'
+        confidence:
+          nullable: true
+          type: number
+        sort_order:
+          type: integer
+      required:
+      - id
+      - frame_id
+      - source
+      - role
+      - text
+      - parent_id
+      - depth
+      - bounds
+      - confidence
+      - sort_order
+    AccessibilityNodeBounds:
+      description: Bounding box for an accessibility node (0-1 normalized to monitor)
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height
+    NextValidFrameResponse:
+      description: Response for next valid frame endpoint
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+        skipped_count:
+          type: integer
+      required:
+      - frame_id
+      - timestamp
+      - skipped_count

@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Cloud Archive API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Cloud Archive
+  description: Archive old data to cloud storage
+paths:
+  /archive/init:
+    post:
+      description: POST /archive/init — initialize the archive system.
+      operationId: archive_archive_init
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArchiveInitRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveInitResponse'
+      tags:
+      - Cloud Archive
+      summary: Initialize cloud archive
+  /archive/configure:
+    post:
+      description: POST /archive/configure — update retention or disable.
+      operationId: archive_archive_configure
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArchiveConfigureRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Cloud Archive
+      summary: Configure archive settings
+  /archive/status:
+    get:
+      description: GET /archive/status — return current state.
+      operationId: archive_archive_status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveStatusResponse'
+      tags:
+      - Cloud Archive
+      summary: Get archive status
+  /archive/run:
+    post:
+      description: POST /archive/run — trigger an immediate archive run.
+      operationId: archive_archive_run
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Cloud Archive
+      summary: Run archive now
+components:
+  schemas:
+    ArchiveInitRequest:
+      type: object
+      properties:
+        token:
+          type: string
+        retention_days:
+          nullable: true
+          type: integer
+      required:
+      - token
+      - retention_days
+    ArchiveStatusResponse:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        retention_days:
+          type: integer
+        watermark:
+          nullable: true
+          type: string
+        last_cleanup:
+          nullable: true
+          type: string
+        last_error:
+          nullable: true
+          type: string
+        storage_used:
+          type: integer
+        storage_limit:
+          type: integer
+        pending_count:
+          type: integer
+        is_uploading:
+          type: boolean
+        chunks_uploaded:
+          type: integer
+        media_files_uploaded:
+          type: integer
+        media_files_pending:
+          type: integer
+      required:
+      - enabled
+      - retention_days
+      - watermark
+      - last_cleanup
+      - last_error
+      - storage_used
+      - storage_limit
+      - pending_count
+      - is_uploading
+      - chunks_uploaded
+      - media_files_uploaded
+      - media_files_pending
+    ArchiveInitResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        machine_id:
+          type: string
+      required:
+      - success
+      - machine_id
+    ArchiveConfigureRequest:
+      type: object
+      properties:
+        enabled:
+          nullable: true
+          type: boolean
+        retention_days:
+          nullable: true
+          type: integer
+      required:
+      - enabled
+      - retention_days

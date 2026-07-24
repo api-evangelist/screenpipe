@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: Screenpipe Activity Elements API
+  version: 1.0.0
+  description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
+
+
+    The server runs locally at `http://localhost:3030` by default.'
+tags:
+- name: Elements
+  description: Query captured UI accessibility tree data
+paths:
+  /elements:
+    get:
+      description: Search elements across all frames with optional FTS, time, and app filters.
+      operationId: routes_elements_search_elements
+      parameters:
+      - name: q
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: frame_id
+        schema:
+          nullable: true
+          type: integer
+        in: query
+        style: form
+      - name: source
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: role
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: start_time
+        schema:
+          nullable: true
+          type: string
+          format: date-time
+        in: query
+        style: form
+      - name: end_time
+        schema:
+          nullable: true
+          type: string
+          format: date-time
+        in: query
+        style: form
+      - name: app_name
+        schema:
+          nullable: true
+          type: string
+        in: query
+        style: form
+      - name: limit
+        schema:
+          type: integer
+        in: query
+        style: form
+      - name: offset
+        schema:
+          type: integer
+        in: query
+        style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ElementsListResponse'
+      tags:
+      - Elements
+      summary: Search UI elements
+components:
+  schemas:
+    ElementsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElementResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - data
+      - pagination
+    ElementResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        frame_id:
+          type: integer
+        source:
+          type: string
+        role:
+          type: string
+        text:
+          nullable: true
+          type: string
+        parent_id:
+          nullable: true
+          type: integer
+        depth:
+          type: integer
+        bounds:
+          $ref: '#/components/schemas/BoundsResponse'
+        confidence:
+          nullable: true
+          type: number
+        sort_order:
+          type: integer
+      required:
+      - id
+      - frame_id
+      - source
+      - role
+      - text
+      - parent_id
+      - depth
+      - bounds
+      - confidence
+      - sort_order
+    BoundsResponse:
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height
+    PaginationResponse:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      - offset
+      - total
