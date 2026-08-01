@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/screenpipe-openapi-original.yml
+note: >-
+  Packaged Agent Skills grounded in real operationIds from the screenpipe local
+  REST API OpenAPI. Each skill assumes the screenpipe recorder is running and
+  serving http://localhost:3030.
+skills:
+- file: screenpipe-search-screen-history.md
+  name: Search screen and audio history
+  api: openapi/screenpipe-openapi-original.yml
+  operations:
+  - routes_search_search
+  - routes_search_keyword_search_handler
+  - routes_frames_get_frame_data
+  - routes_frames_get_frame_context
+- file: screenpipe-meeting-transcripts.md
+  name: Retrieve and clean up meeting transcripts
+  api: openapi/screenpipe-openapi-original.yml
+  operations:
+  - routes_meetings_list_meetings_handler
+  - routes_meetings_get_meeting_handler
+  - routes_speakers_get_unnamed_speakers_handler
+  - routes_speakers_update_speaker_handler
+- file: screenpipe-activity-and-memory.md
+  name: Summarize activity and save a memory
+  api: openapi/screenpipe-openapi-original.yml
+  operations:
+  - routes_activity_summary_get_activity_summary
+  - routes_memories_create_memory_handler
+  - routes_memories_list_memories_handler

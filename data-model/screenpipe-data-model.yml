@@ -1,0 +1,79 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/screenpipe-openapi-original.yml
+docs: https://docs.screenpipe.com/architecture
+note: >-
+  Entity graph derived from OpenAPI component schemas (133 total) and their
+  id-reference fields. Screenpipe stores captured data in a local SQLite
+  database; the core entities are frames (screenshots), audio chunks and their
+  transcriptions, speakers, UI elements (accessibility tree), meetings,
+  memories, tags, and the capturing device/machine and monitor.
+entities:
+- name: Frame
+  description: A captured screenshot with metadata, OCR/accessibility text, and UI elements.
+  id: frame_id
+  schemas: [FrameData, FrameContent, FrameContextResponse, FrameMetadataResponse]
+- name: AudioChunk
+  description: A recorded audio segment and its transcription.
+  id: audio_chunk_id
+  schemas: [AudioChunk, AudioContent, AudioEntry, AudioResult, AudioTranscription]
+- name: Speaker
+  description: A diarized speaker identity from audio transcription.
+  id: speaker_id
+  schemas: [Speaker, SpeakerSummary, SpeakerOldAssignment]
+- name: Element
+  description: A UI/accessibility-tree element attached to a frame.
+  id: element id
+  schemas: [Element, ElementResponse, AccessibilityNode]
+- name: Meeting
+  description: A detected or manually started meeting with transcriptions.
+  id: id
+  schemas: [MeetingRecord]
+- name: Memory
+  description: An AI memory / knowledge item extracted from screen activity.
+  id: id
+  schemas: [MemoryRecord, MemoryListItem, MemoryResponse]
+- name: Device
+  description: A machine/device that captured or synced data.
+  id: machine_id
+  schemas: [DeviceStorageEntry, DeviceControl, AudioDevice]
+- name: Monitor
+  description: A display/monitor captured by the vision pipeline.
+  id: stable_id
+  schemas: [MonitorInfo]
+- name: Tag
+  description: A user tag applied to a frame or audio chunk.
+  schemas: [AddTagsRequest, GetTagsBatchResponse]
+relationships:
+- from: Element
+  type: belongs_to
+  to: Frame
+  via: frame_id
+- from: Element
+  type: belongs_to
+  to: Element
+  via: parent_id
+- from: AudioChunk
+  type: belongs_to
+  to: Speaker
+  via: speaker_id
+- from: Memory
+  type: belongs_to
+  to: Frame
+  via: frame_id
+- from: Frame
+  type: belongs_to
+  to: Device
+  via: machine_id
+- from: UiEventRecord
+  type: belongs_to
+  to: Frame
+  via: frame_id
+- from: Meeting
+  type: has_many
+  to: AudioChunk
+  via: time_range
+- from: Tag
+  type: belongs_to
+  to: Frame
+  via: content id (content_type=vision)

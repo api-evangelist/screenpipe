@@ -1,7 +1,31 @@
 aid: screenpipe
+accessModel:
+  pricing: unknown
+  onboarding: open
+  trial: false
+  try_now: false
+  public: true
+  label: Open access
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/screenpipe.png
 name: Screenpipe
-description: Screenpipe is a company surfaced as a portfolio company of y-combinator and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Screenpipe is a local-first, source-available desktop application (by Mediar
+  AI, Y Combinator S26) that continuously captures everything you see, say, and
+  hear on your computer, reads on-screen text through OS accessibility APIs with
+  an OCR fallback, transcribes system and microphone audio locally with Whisper,
+  and stores it all in a local SQLite database as a private, searchable memory.
+  It exposes a full local REST API at http://localhost:3030 (71 operations
+  across search, frames, audio, meetings, memories, speakers, tags, vault,
+  cloud sync, cloud archive, and data retention) and ships as an MCP server so
+  agents like Claude, Cursor, Codex, and Cline can query screen history and
+  meeting transcripts. Automations are built as "pipes" — scheduled AI agents
+  written in plain markdown. It is positioned as an open, local-first
+  alternative to Rewind.ai, Microsoft Recall, and cloud meeting bots.
 url: https://raw.githubusercontent.com/api-evangelist/screenpipe/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,10 +35,485 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
 tags:
 - Company
-apis: []
+- Screen Recording
+- Screen Memory
+- Audio Transcription
+- Meeting Intelligence
+- Local First
+- Privacy
+- AI Agents
+- MCP
+- Developer Tools
+- Productivity
+- Open Source
+apis:
+- aid: screenpipe:screenpipe-activity-api
+  name: Screenpipe Activity API
+  description: Activity summaries and analytics
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Activity
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-activity-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-audio-api
+  name: Screenpipe Audio API
+  description: Manage audio recording devices
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Audio
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-audio-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-cloud-archive-api
+  name: Screenpipe Cloud Archive API
+  description: Archive old data to cloud storage
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Cloud Archive
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-cloud-archive-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-cloud-sync-api
+  name: Screenpipe Cloud Sync API
+  description: Sync data across devices via cloud
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Cloud Sync
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-cloud-sync-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-data-management-api
+  name: Screenpipe Data Management API
+  description: Manual data deletion and storage info
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Data Management
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-data-management-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-data-retention-api
+  name: Screenpipe Data Retention API
+  description: Auto-delete old data locally
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Data Retention
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-data-retention-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-database-api
+  name: Screenpipe Database API
+  description: Direct database access
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Database
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-database-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-elements-api
+  name: Screenpipe Elements API
+  description: Query captured UI accessibility tree data
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Elements
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-elements-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-experimental-api
+  name: Screenpipe Experimental API
+  description: Experimental/unstable endpoints
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Experimental
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-experimental-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-frames-api
+  name: Screenpipe Frames API
+  description: Access captured screenshots and their extracted text
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Frames
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-frames-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-meetings-api
+  name: Screenpipe Meetings API
+  description: Detected and manual meeting transcriptions
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Meetings
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-meetings-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-memories-api
+  name: Screenpipe Memories API
+  description: AI-extracted knowledge from screen activity
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Memories
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-memories-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-search-api
+  name: Screenpipe Search API
+  description: Search through captured screen and audio content
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-search-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-speakers-api
+  name: Screenpipe Speakers API
+  description: Speaker identification and management
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Speakers
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-speakers-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-system-api
+  name: Screenpipe System API
+  description: Health checks and system status
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-system-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-tags-api
+  name: Screenpipe Tags API
+  description: Tag content items for organization
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-tags-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-vault-api
+  name: Screenpipe Vault API
+  description: Encrypt/decrypt all data at rest
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Vault
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-vault-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+- aid: screenpipe:screenpipe-vision-api
+  name: Screenpipe Vision API
+  description: Manage screen capture monitors
+  humanURL: https://docs.screenpipe.com/api-reference
+  baseURL: http://localhost:3030
+  tags:
+  - Vision
+  properties:
+  - type: OpenAPI
+    url: openapi/screenpipe-vision-api-openapi.yml
+  - type: APIReference
+    url: https://docs.screenpipe.com/api-reference
+  - type: Authentication
+    url: authentication/screenpipe-authentication.yml
+  - type: Conventions
+    url: conventions/screenpipe-conventions.yml
+  - type: ErrorCatalog
+    url: errors/screenpipe-problem-types.yml
+  - type: Conformance
+    url: conformance/screenpipe-conformance.yml
+  - type: DataModel
+    url: data-model/screenpipe-data-model.yml
+common:
+- type: TrustCenter
+  url: security/screenpipe-trust-center.yml
+- type: Compliance
+  url: https://screenpipe.com/security
+- type: DomainSecurity
+  url: security/screenpipe-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/screenpipe-vulnerability-disclosure.yml
+- type: Security
+  url: https://screenpipe.com/security
+- type: AgenticAccess
+  url: agentic-access/screenpipe-agentic-access.yml
+- type: DeveloperPortal
+  url: https://docs.screenpipe.com
+- type: Documentation
+  url: https://docs.screenpipe.com
+- type: APIReference
+  url: https://docs.screenpipe.com/api-reference
+- type: GettingStarted
+  url: https://docs.screenpipe.com/getting-started
+- type: Quickstart
+  url: https://docs.screenpipe.com/quickstart
+- type: Website
+  url: https://screenpi.pe
+- type: GitHubOrganization
+  url: https://github.com/screenpipe
+- type: ChangeLog
+  url: https://docs.screenpipe.com/changelog
+- type: ChangeLog
+  url: changelog/screenpipe-changelog.yml
+- type: Pricing
+  url: https://screenpipe.com/pricing
+- type: Support
+  url: https://docs.screenpipe.com/troubleshooting
+- type: FAQ
+  url: https://docs.screenpipe.com/faq
+- type: MCPServer
+  url: mcp/screenpipe-mcp.yml
+- type: Packages
+  url: packages/screenpipe-packages.yml
+- type: SDKs
+  url: packages/screenpipe-packages.yml
+- type: CLI
+  url: cli/screenpipe-cli.yml
+- type: Authentication
+  url: authentication/screenpipe-authentication.yml
+- type: Conventions
+  url: conventions/screenpipe-conventions.yml
+- type: ErrorCatalog
+  url: errors/screenpipe-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/screenpipe-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/screenpipe-lifecycle.yml
+- type: Conformance
+  url: conformance/screenpipe-conformance.yml
+- type: DataModel
+  url: data-model/screenpipe-data-model.yml
+- type: LLMsTxt
+  url: llms/screenpipe-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

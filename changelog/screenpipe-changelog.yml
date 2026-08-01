@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.screenpipe.com/changelog
+scheme: week-based release train
+current: "week of July 20, 2026"
+entries:
+- version: "week of 2026-07-20"
+  date: '2026-07-20'
+  highlights:
+  - "Fix: free hosted chat accepts one verbose tool — aggregate size limits for
+    tool definitions rather than per-tool restrictions."
+- version: "week of 2026-07-17"
+  date: '2026-07-17'
+  highlights:
+  - "Cleaner pipe sidebar after onboarding; auto-expansion shows newly installed
+    pipes."
+  - "Fix: streaming capture keeps running over RDP (Remote Desktop session
+    transitions)."
+- version: "week of 2026-07-13"
+  date: '2026-07-13'
+  highlights:
+  - "Faster, broader browser URL detection (~150-200ms to ~2ms) by reading URLs
+    directly from browser web areas."
+  - "Fix: auto-update no longer gets stuck in a restart loop."
+  - "Fix: pipe sidebar shows exact run counts from stored executions."
+- version: "week of 2026-07-06"
+  date: '2026-07-06'
+  additions:
+  - "Meeting piggyback (experimental) — selective audio capture targeting
+    meeting apps and appropriate microphone devices."
+  - "Batch select and delete for pipes."
+  - "Pill-based attendee editor for meeting notes."
+  breaking: []
+  highlights:
+  - "Fix: multi-GB memory leak in audio recording resolved."
+  - "Fix: frame/transcript preservation during database contention."

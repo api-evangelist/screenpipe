@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.screenpipe.com/changelog
+versioning:
+  api:
+    scheme: single-version (OpenAPI info.version 1.0.0); the local REST API is
+      not path- or header-versioned.
+  product:
+    scheme: week-based release train
+    docs: https://docs.screenpipe.com/changelog
+    example: "week of July 20, 2026"
+deprecation:
+  policy_url: https://docs.screenpipe.com/changelog
+  sunset_header: false
+  note: >-
+    No formal deprecation-policy page or RFC 8594 Sunset/Deprecation header
+    support is documented. Deprecations are communicated in the weekly changelog
+    and marked in the API reference (e.g. the frame OCR endpoints below).
+deprecated_operations:
+- operation: routes_frames_get_frame_text_data
+  path: /frames/{frame_id}/ocr
+  note: "Get frame OCR (deprecated) — accessibility-tree text is preferred; OCR is
+    a fallback for legacy/visual-only frames."
+- operation: routes_frames_run_frame_ocr
+  path: /frames/{frame_id}/ocr
+  note: "Run frame OCR (deprecated) — on-demand OCR fallback."
+sla:
+  url: null
+  note: Local-first desktop software; no hosted uptime SLA.
+status_page: null
+status_page_note: >-
+  No public status page (the product runs locally; there is no hosted API to
+  monitor). The /health endpoint (HealthCheckResponse) reports local pipeline
+  state.
+changelog: changelog/screenpipe-changelog.yml

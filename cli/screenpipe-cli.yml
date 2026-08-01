@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.screenpipe.com/getting-started
+name: screenpipe
+description: >-
+  First-party CLI / recorder for screenpipe. Runs the local capture daemon,
+  retrieves the local API token, and registers the MCP server with AI tools.
+install:
+- method: npx
+  command: npx -y screenpipe@latest record
+- method: desktop
+  note: Downloadable desktop app (macOS, Windows, Linux) from https://screenpi.pe/onboarding
+commands:
+- command: screenpipe record
+  description: Start the capture daemon and record screen + audio (serves the local
+    REST API at localhost:3030).
+- command: screenpipe --version
+  description: Print the current version.
+- command: screenpipe auth token
+  description: Retrieve the local API authentication (bearer) token.
+- command: screenpipe agent setup <target>
+  description: Register the screenpipe MCP server with an AI tool.
+  targets:
+  - openclaw
+  - hermes
+  - claude-code
+  - claude-desktop
+  - codex
+  - cursor
+  - windsurf
+env:
+- name: SCREENPIPE_NO_REMINDERS
+  value: '1'
+  description: Disable reminders about downloading the desktop app.

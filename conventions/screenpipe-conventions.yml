@@ -1,0 +1,75 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/screenpipe-openapi-original.yml
+docs: https://docs.screenpipe.com/api-reference
+summary: >-
+  Cross-cutting request/response semantics for the screenpipe local REST API,
+  derived from the OpenAPI (63 paths / 71 operations) and the docs API recipes.
+authentication:
+  style: none-by-default (local loopback); optional bearer via `screenpipe auth token`
+  ref: authentication/screenpipe-authentication.yml
+base_url: http://localhost:3030
+content_type: application/json
+pagination:
+  style: offset-limit
+  request_params:
+  - limit
+  - offset
+  response_fields:
+  - pagination.limit
+  - pagination.offset
+  - pagination.total
+  schema: PaginationInfo / PaginationResponse / PaginationQuery
+  note: >-
+    Search and list endpoints accept `limit` and `offset` query params and
+    return a `pagination` object. There is no documented cursor pagination.
+filtering:
+  common_params:
+  - q
+  - content_type
+  - start_time
+  - end_time
+  - app_name
+  - window_name
+  - browser_url
+  - speaker_name
+  - speaker_ids
+  - device_name
+  - machine_id
+  - focused
+  content_types:
+  - all
+  - ocr
+  - audio
+  - input
+  - accessibility
+  - memory
+  time_format: ISO 8601 (start_time / end_time)
+idempotency:
+  supported: false
+  note: >-
+    No Idempotency-Key header or idempotent-write contract is documented; writes
+    (add, tags, meetings, memories, speakers) are not idempotency-keyed. Many
+    destructive operations are naturally idempotent by resource id (DELETE by id)
+    but there is no dedicated idempotency mechanism.
+versioning:
+  scheme: single-version-local (OpenAPI info.version 1.0.0)
+  api_versioned: false
+  app_versioning: week-based release train (see changelog/screenpipe-changelog.yml)
+  ref: lifecycle/screenpipe-lifecycle.yml
+error_envelope:
+  documented_responses: only 200 responses are declared in the OpenAPI
+  note: >-
+    The spec does not enumerate 4xx/5xx problem shapes. Errors surface as HTTP
+    status codes with a JSON body; there is no RFC 9457 problem+json contract.
+    See errors/screenpipe-problem-types.yml.
+rate_limiting:
+  applies: false
+  note: Local loopback API; no rate-limit headers or quotas documented.
+request_tracing:
+  documented: false
+cross_links:
+  errors: errors/screenpipe-problem-types.yml
+  lifecycle: lifecycle/screenpipe-lifecycle.yml
+  authentication: authentication/screenpipe-authentication.yml
+  data_model: data-model/screenpipe-data-model.yml

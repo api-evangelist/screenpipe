@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/screenpipe-openapi-original.yml
+format: http-status
+docs: https://docs.screenpipe.com/api-recipes
+note: >-
+  The Screenpipe OpenAPI declares only 200 responses across its 71 operations
+  and defines no application/problem+json shapes, so a full RFC 9457 error
+  catalog cannot be derived from the spec. Errors surface as conventional HTTP
+  status codes with a JSON body. The entries below are the standard status codes
+  the local API returns per the docs API recipes (search, raw SQL, deletion,
+  frame lookup); they are not enumerated in the spec.
+problems:
+- status: 400
+  title: Bad request
+  detail: Malformed query parameters, invalid content_type, or invalid raw SQL.
+  applies_to:
+  - routes_search_search
+  - routes_content_execute_raw_sql
+  - routes_data_delete_time_range_handler
+- status: 404
+  title: Not found
+  detail: Requested frame, meeting, memory, or speaker id does not exist.
+  applies_to:
+  - routes_frames_get_frame_data
+  - routes_meetings_get_meeting_handler
+  - routes_memories_get_memory_handler
+- status: 500
+  title: Internal server error
+  detail: >-
+    Recording pipeline, OCR, transcription, database, or filesystem error while
+    servicing the request.
+  applies_to:
+  - routes_frames_run_frame_ocr
+  - routes_content_add_to_database
+- status: 503
+  title: Service unavailable
+  detail: >-
+    The local screenpipe server / recording pipeline is not healthy or not yet
+    ready (see /health, HealthCheckResponse).
+  applies_to:
+  - routes_health_health_check

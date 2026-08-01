@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/screenpipe-openapi-original.yml
+docs: https://docs.screenpipe.com/connection-reference
+summary:
+  types: []
+  model: local-loopback
+  note: >-
+    The OpenAPI declares NO securitySchemes. The screenpipe REST API is served
+    locally at http://localhost:3030 and is unauthenticated by default, relying
+    on loopback binding and OS-level process isolation rather than API-layer
+    auth. An OPTIONAL bearer token can be retrieved via the CLI command
+    `screenpipe auth token` and supplied by clients (e.g. the MCP server) when
+    the local server is configured to require it. Pipes are additionally scoped
+    by an endpoint allowlist (see docs pipe-permissions).
+schemes: []
+optional_token:
+  mechanism: bearer
+  retrieval: screenpipe auth token
+  docs: https://docs.screenpipe.com/getting-started
+pipe_permissions:
+  docs: https://docs.screenpipe.com/pipe-permissions
+  note: >-
+    Per-pipe API access is controlled by allowlisting endpoints and restricting
+    writes, scoping permissions per automation.

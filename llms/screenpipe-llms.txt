@@ -1,0 +1,131 @@
+# screenpipe docs
+
+## Docs
+
+- [give AI memory of your screen](https://docs.screenpipe.com/ai-memory.md): Give Claude, Cursor, Ollama, and other LLMs persistent memory of everything on your screen so they can answer questions with full context.
+- [screenpipe API recipes](https://docs.screenpipe.com/api-recipes.md): Copy-paste recipes for the most useful screenpipe API workflows: search, meetings, speakers, frames, memories, retention, archive, and safe data deletion.
+- [Get activity summary](https://docs.screenpipe.com/api-reference/activity/get-activity-summary.md): Lightweight compressed activity overview for a time range. Returns app usage, recent accessibility texts, and audio summary (~200-500 tokens).
+- [List audio devices](https://docs.screenpipe.com/api-reference/audio/list-audio-devices.md): Returns all available audio input and output devices.
+- [Start audio recording](https://docs.screenpipe.com/api-reference/audio/start-audio-recording.md)
+- [Start recording a specific audio device](https://docs.screenpipe.com/api-reference/audio/start-recording-a-specific-audio-device.md)
+- [Stop audio recording](https://docs.screenpipe.com/api-reference/audio/stop-audio-recording.md)
+- [Stop recording a specific audio device](https://docs.screenpipe.com/api-reference/audio/stop-recording-a-specific-audio-device.md)
+- [Configure archive settings](https://docs.screenpipe.com/api-reference/cloud-archive/configure-archive-settings.md): POST /archive/configure — update retention or disable.
+- [Get archive status](https://docs.screenpipe.com/api-reference/cloud-archive/get-archive-status.md): GET /archive/status — return current state.
+- [Initialize cloud archive](https://docs.screenpipe.com/api-reference/cloud-archive/initialize-cloud-archive.md): POST /archive/init — initialize the archive system.
+- [Run archive now](https://docs.screenpipe.com/api-reference/cloud-archive/run-archive-now.md): POST /archive/run — trigger an immediate archive run.
+- [Download synced data](https://docs.screenpipe.com/api-reference/cloud-sync/download-synced-data.md): Download and import data from other devices.
+- [Get sync status](https://docs.screenpipe.com/api-reference/cloud-sync/get-sync-status.md): Get current sync status.
+- [Initialize cloud sync](https://docs.screenpipe.com/api-reference/cloud-sync/initialize-cloud-sync.md): Initialize sync at runtime with credentials.
+- [Lock sync](https://docs.screenpipe.com/api-reference/cloud-sync/lock-sync.md): Lock sync (stop service and clear state).
+- [Pull pipe configs from cloud](https://docs.screenpipe.com/api-reference/cloud-sync/pull-pipe-configs-from-cloud.md): Pull pipe manifest from cloud, merge with local, apply to disk.
+- [Push pipe configs to cloud](https://docs.screenpipe.com/api-reference/cloud-sync/push-pipe-configs-to-cloud.md): Push local pipe manifest to cloud (merge with remote first).
+- [Trigger sync](https://docs.screenpipe.com/api-reference/cloud-sync/trigger-sync.md): Trigger an immediate sync.
+- [Delete data in time range](https://docs.screenpipe.com/api-reference/data-management/delete-data-in-time-range.md): Permanently delete all captured data (frames, accessibility text, OCR fallback text, audio, etc.) within a time range.
+- [Delete device data](https://docs.screenpipe.com/api-reference/data-management/delete-device-data.md): Delete all locally-stored data that was synced from a specific remote device.
+- [Get device storage usage](https://docs.screenpipe.com/api-reference/data-management/get-device-storage-usage.md): Get record counts per synced device.
+- [Configure retention policy](https://docs.screenpipe.com/api-reference/data-retention/configure-retention-policy.md): POST /retention/configure — enable/disable local retention, set days.
+- [Get retention status](https://docs.screenpipe.com/api-reference/data-retention/get-retention-status.md): GET /retention/status — return current retention state.
+- [Run retention cleanup now](https://docs.screenpipe.com/api-reference/data-retention/run-retention-cleanup-now.md): POST /retention/run — trigger an immediate cleanup run.
+- [Add content to database](https://docs.screenpipe.com/api-reference/database/add-content-to-database.md): Manually insert screen or audio content into the database.
+- [Execute raw SQL](https://docs.screenpipe.com/api-reference/database/execute-raw-sql.md): Execute a raw SQL query against the screenpipe database. Use with caution.
+- [Search UI elements](https://docs.screenpipe.com/api-reference/elements/search-ui-elements.md): Search elements across all frames with optional FTS, time, and app filters.
+- [Merge video frames](https://docs.screenpipe.com/api-reference/experimental/merge-video-frames.md)
+- [Validate media files](https://docs.screenpipe.com/api-reference/experimental/validate-media-files.md)
+- [Get frame by ID](https://docs.screenpipe.com/api-reference/frames/get-frame-by-id.md): Returns a captured screenshot frame with optional base64 image data.
+- [Get frame context](https://docs.screenpipe.com/api-reference/frames/get-frame-context.md): Get frame context: accessibility text, tree nodes, and extracted URLs. Falls back to OCR data for legacy frames without accessibility data.
+- [Get frame metadata](https://docs.screenpipe.com/api-reference/frames/get-frame-metadata.md): Get frame metadata (timestamp) for deep link navigation. screenpipe://frame/123 → resolve to timestamp.
+- [Get frame OCR (deprecated)](https://docs.screenpipe.com/api-reference/frames/get-frame-ocr-deprecated.md): Get frame text positions with bounding boxes for a specific frame. Uses accessibility tree node bounds when available, and OCR fallback positions for visual-only or legacy frames. Both OCR and accessibility bounds are normalized to 0-1 relative to the monitor (full-screen capture), so they align cor…
+- [Get frame text and bounds](https://docs.screenpipe.com/api-reference/frames/get-frame-text-and-bounds.md): Get frame text positions with bounding boxes for a specific frame. Uses accessibility tree node bounds when available, and OCR fallback positions for visual-only or legacy frames. Both OCR and accessibility bounds are normalized to 0-1 relative to the monitor (full-screen capture), so they align cor…
+- [Get frame UI elements](https://docs.screenpipe.com/api-reference/frames/get-frame-ui-elements.md): Get all elements for a specific frame (full element tree).
+- [Get next valid frame](https://docs.screenpipe.com/api-reference/frames/get-next-valid-frame.md): Find the next frame that has a valid video file on disk. This allows the frontend to skip directly to a valid frame instead of trying each frame one-by-one when frames fail to load.
+- [Run frame OCR (deprecated)](https://docs.screenpipe.com/api-reference/frames/run-frame-ocr-deprecated.md): Run on-demand OCR on a frame that has no stored bounding boxes. Loads the snapshot JPEG, runs Apple Vision OCR, stores the result, and returns the text positions. Subsequent GET requests will hit the cached DB row. If OCR data already exists, returns it without re-running.
+- [Run OCR on frame](https://docs.screenpipe.com/api-reference/frames/run-ocr-on-frame.md): Run on-demand OCR on a frame that has no stored bounding boxes. Loads the snapshot JPEG, runs Apple Vision OCR, stores the result, and returns the text positions. Subsequent GET requests will hit the cached DB row. If OCR data already exists, returns it without re-running.
+- [Bulk delete meetings](https://docs.screenpipe.com/api-reference/meetings/bulk-delete-meetings.md)
+- [Delete meeting](https://docs.screenpipe.com/api-reference/meetings/delete-meeting.md)
+- [Get meeting by ID](https://docs.screenpipe.com/api-reference/meetings/get-meeting-by-id.md)
+- [Get meeting detection status](https://docs.screenpipe.com/api-reference/meetings/get-meeting-detection-status.md)
+- [List meetings](https://docs.screenpipe.com/api-reference/meetings/list-meetings.md): Returns detected and manually started meetings with transcriptions.
+- [Merge meetings](https://docs.screenpipe.com/api-reference/meetings/merge-meetings.md)
+- [Start a manual meeting](https://docs.screenpipe.com/api-reference/meetings/start-a-manual-meeting.md)
+- [Stop a manual meeting](https://docs.screenpipe.com/api-reference/meetings/stop-a-manual-meeting.md)
+- [Update meeting](https://docs.screenpipe.com/api-reference/meetings/update-meeting.md)
+- [Create memory](https://docs.screenpipe.com/api-reference/memories/create-memory.md)
+- [Delete memory](https://docs.screenpipe.com/api-reference/memories/delete-memory.md)
+- [Get memory by ID](https://docs.screenpipe.com/api-reference/memories/get-memory-by-id.md)
+- [List memories](https://docs.screenpipe.com/api-reference/memories/list-memories.md): Returns saved AI memories / knowledge extracted from screen activity.
+- [Update memory](https://docs.screenpipe.com/api-reference/memories/update-memory.md)
+- [Keyword search](https://docs.screenpipe.com/api-reference/search/keyword-search.md): Fast keyword-based search across all content types.
+- [Search screen and audio content](https://docs.screenpipe.com/api-reference/search/search-screen-and-audio-content.md): Query captured screen text (accessibility-first with OCR fallback), audio transcriptions, and UI elements with filters for time range, app, window, content type, and more.
+- [Delete speaker](https://docs.screenpipe.com/api-reference/speakers/delete-speaker.md)
+- [Find similar speakers](https://docs.screenpipe.com/api-reference/speakers/find-similar-speakers.md)
+- [List unnamed speakers](https://docs.screenpipe.com/api-reference/speakers/list-unnamed-speakers.md): Returns speakers that haven't been identified/named yet.
+- [Mark speaker as hallucination](https://docs.screenpipe.com/api-reference/speakers/mark-speaker-as-hallucination.md): Flag a detected speaker as a false positive / hallucination.
+- [Merge speakers](https://docs.screenpipe.com/api-reference/speakers/merge-speakers.md): Merge two speaker identities into one.
+- [Reassign speaker](https://docs.screenpipe.com/api-reference/speakers/reassign-speaker.md): Reassign audio segments from one speaker to another.
+- [Search speakers](https://docs.screenpipe.com/api-reference/speakers/search-speakers.md)
+- [Undo speaker reassignment](https://docs.screenpipe.com/api-reference/speakers/undo-speaker-reassignment.md)
+- [Update speaker name](https://docs.screenpipe.com/api-reference/speakers/update-speaker-name.md)
+- [Health check](https://docs.screenpipe.com/api-reference/system/health-check.md): Returns system health status including audio/video pipeline state, device info, and version.
+- [Add tags](https://docs.screenpipe.com/api-reference/tags/add-tags.md): Add tags to a specific content item (frame or audio chunk).
+- [Get tags in batch](https://docs.screenpipe.com/api-reference/tags/get-tags-in-batch.md): Batch fetch tags for multiple vision frame IDs. POST /tags/vision/batch  { "frame_ids": [1, 2, 3] }
+- [Remove tags](https://docs.screenpipe.com/api-reference/tags/remove-tags.md): Remove tags from a specific content item.
+- [Get vault status](https://docs.screenpipe.com/api-reference/vault/get-vault-status.md): GET /vault/status
+- [Lock vault](https://docs.screenpipe.com/api-reference/vault/lock-vault.md): POST /vault/lock
+- [Set up vault](https://docs.screenpipe.com/api-reference/vault/set-up-vault.md): POST /vault/setup
+- [Unlock vault](https://docs.screenpipe.com/api-reference/vault/unlock-vault.md): POST /vault/unlock
+- [List monitors](https://docs.screenpipe.com/api-reference/vision/list-monitors.md): Returns all available monitors/displays.
+- [screenpipe architecture: event-driven capture and storage](https://docs.screenpipe.com/architecture.md): How screenpipe uses event-driven capture, accessibility tree extraction, OCR fallback, and SQLite storage to build a searchable local memory of your screen.
+- [screenpipe changelog: releases, features, and fixes](https://docs.screenpipe.com/changelog.md): Track every screenpipe release: new features, performance improvements, bug fixes, and breaking changes across desktop and CLI versions.
+- [ChatGPT — use your subscription with screenpipe](https://docs.screenpipe.com/chatgpt.md): Connect your ChatGPT Plus or Pro subscription to power screenpipe's AI chat and pipes with the latest OpenAI models — no API key required.
+- [Claude Code - AI coding with screen context](https://docs.screenpipe.com/claude-code.md): Use screenpipe with Claude Code CLI to give Claude access to your screen history, meeting transcriptions, and app context while coding.
+- [screenpipe REST API reference at localhost:3030](https://docs.screenpipe.com/cli-reference.md): Complete REST API reference for screenpipe at localhost:3030 — search screen history, query frames, audio transcripts, tags, health, and more endpoints.
+- [cline - VS Code agent with screen memory](https://docs.screenpipe.com/cline.md): Connect screenpipe to Cline via MCP to give this autonomous VS Code coding agent access to your screen history, meetings, and app context.
+- [cloud archive - free disk space automatically](https://docs.screenpipe.com/cloud-archive.md): Free disk space by encrypting old screenpipe screen recordings and uploading them to the cloud with zero-knowledge encryption — searchable on demand.
+- [connection reference: auth, proxies, and credentials](https://docs.screenpipe.com/connection-reference.md): Reference for screenpipe app connections: available integrations, auth style, proxy usage, multi-account support, credential storage, and test queries.
+- [connect Slack, Notion, Calendar, and other apps](https://docs.screenpipe.com/connections.md): Connect apps to screenpipe — Slack, Notion, Google Calendar, Obsidian, HubSpot, Salesforce, Zoom, PostHog, and Sentry — to give AI agents structured context.
+- [continue - open-source copilot with screen context](https://docs.screenpipe.com/continue.md): Set up screenpipe with Continue, the open-source AI copilot for VS Code and JetBrains, so it can reference your screen history while you code.
+- [contribute to screenpipe - local-first screen recording](https://docs.screenpipe.com/contributing.md): Contribute to screenpipe: report bugs, submit pull requests, join bounty programs, and help build the local-first screen recording platform.
+- [GitHub Copilot CLI — agentic coding with screen context](https://docs.screenpipe.com/copilot-cli.md): Connect screenpipe to GitHub Copilot CLI via MCP so Copilot can reference your screen history, meeting transcriptions, and app context from the terminal.
+- [docs maintenance guide for screenpipe contributors](https://docs.screenpipe.com/docs-maintenance.md): How screenpipe maintainers keep docs synced with product changes, OpenAPI routes, app connections, UI screenshots, and changelog release notes.
+- [screenpipe FAQ: install, permissions, pipes, and privacy](https://docs.screenpipe.com/faq.md): Answers to common screenpipe questions on install, screen and mic permissions, Zoom and Teams transcription, pipes, AI keys, Ollama, and privacy.
+- [screenpipe for developers: MCP and REST API for AI coding](https://docs.screenpipe.com/for-developers.md): Give your AI coding assistant memory of your screen via MCP and the screenpipe REST API — works with Claude Code, Cursor, Cline, Continue, and Gemini CLI.
+- [gemini CLI - google's AI with screen context](https://docs.screenpipe.com/gemini-cli.md): Connect screenpipe to Gemini CLI via MCP so Google's terminal AI assistant can reference your screen history and meeting transcriptions while you code.
+- [install screenpipe on macOS, Windows, and Linux](https://docs.screenpipe.com/getting-started.md): Install screenpipe on macOS, Windows, or Linux. Record everything on screen and search screen history on Mac, Windows, and Linux. Start recording in minutes.
+- [screenpipe: local-first 24/7 screen and audio memory for AI](https://docs.screenpipe.com/home.md): screenpipe captures your screen 24/7, reads app text through accessibility APIs, transcribes audio locally, and feeds it to AI assistants.
+- [deploy screenpipe via Microsoft Intune](https://docs.screenpipe.com/intune-deployment.md): Fleet-deploy screenpipe enterprise to Windows devices via Microsoft Intune by assigning a Microsoft Entra group for automatic installation.
+- [MCP server setup for Codex, Claude, Cursor, and AI tools](https://docs.screenpipe.com/mcp-server.md): Set up screenpipe as a Model Context Protocol server so Codex, Claude, and Cursor can search your screen history and audio transcripts.
+- [meeting intelligence: botless transcripts and summaries](https://docs.screenpipe.com/meeting-intelligence.md): Use screenpipe for botless meeting memory: live transcripts, speaker naming, calendar context, summaries, transcript copy, and API automation.
+- [local meeting transcription for Zoom, Meet, and Teams](https://docs.screenpipe.com/meeting-transcription.md): Automatically transcribe Zoom, Meet, and Teams meetings locally with screenpipe using Whisper speech-to-text and speaker diarization — no bot, no cloud.
+- [msty - privacy-first AI with screen context](https://docs.screenpipe.com/msty.md): Connect screenpipe to Msty's Toolbox via MCP (STDIO or HTTP) so this privacy-first desktop AI can search your screen history and meeting transcripts.
+- [obsidian - sync screen history to your notes](https://docs.screenpipe.com/obsidian.md): Sync screenpipe's screen history and meeting transcripts into Obsidian via the Copilot plugin so you can query your activity from your local notes vault.
+- [Ollama — run AI locally with screenpipe](https://docs.screenpipe.com/ollama.md): Run open-source LLMs like Llama, Qwen, and Mistral locally with Ollama and screenpipe — completely free, private, and offline with no API keys required.
+- [OpenClaw - AI assistant with screenpipe memory](https://docs.screenpipe.com/openclaw.md): Connect screenpipe to OpenClaw, a self-hosted personal AI that ties into WhatsApp, Telegram, Discord, and iMessage, so it can recall your screen history.
+- [OpenCode - terminal AI with screen memory](https://docs.screenpipe.com/opencode.md): Integrate screenpipe with OpenCode to give your terminal AI assistant access to your screen history, audio transcriptions, and app context.
+- [fix screen recording permission on macos for screenpipe](https://docs.screenpipe.com/permissions.md): Grant, reset, and recover macOS Screen Recording permission for screenpipe — covers per-bundle-id TCC, tccutil commands, and System Settings steps.
+- [debug screenpipe pipes](https://docs.screenpipe.com/pipe-debugging.md): A practical debugging guide for screenpipe pipes: schedules, logs, API access, AI provider auth, connection proxies, permissions, and stuck runs.
+- [pipe permissions: scope API access for screenpipe pipes](https://docs.screenpipe.com/pipe-permissions.md): Control which screenpipe API endpoints your pipes can access by allowlisting endpoints, restricting writes, and scoping permissions per automation.
+- [pipe store — browse all automations](https://docs.screenpipe.com/pipe-store.md): Browse every screenpipe pipe: digital clone, meeting intelligence, time tracking, Obsidian sync, CRM, and more. One-click install from the app.
+- [pipes — build your own automations](https://docs.screenpipe.com/pipes.md): Build custom AI automations that run on your screen data. Pipes are scheduled AI agents written in plain markdown — prompt plus schedule, no code required.
+- [privacy data flow: what screenpipe captures and stores](https://docs.screenpipe.com/privacy-data-flow.md): What screenpipe captures, where it is stored locally, when data can leave your machine, and the controls that keep screen and audio data private.
+- [privacy filter - strip personal info before AI sees it](https://docs.screenpipe.com/privacy-filter.md): Strip names, emails, phone numbers, addresses, and secrets from screenpipe data before AI sees it, using local redaction or a confidential enclave.
+- [screenpipe quickstart: install and connect AI in 5 minutes](https://docs.screenpipe.com/quickstart.md): Go from install to your first AI-powered insight in under 5 minutes — set up screenpipe, connect your AI assistant, and run your first automation pipe.
+- [search your screen history](https://docs.screenpipe.com/search-screen-history.md): Find any text, conversation, or activity from your screen history with screenpipe's local AI-powered search on Mac, Windows, and Linux.
+- [build a second brain in your agent](https://docs.screenpipe.com/second-brain.md): Turn any agent — OpenClaw, Hermes, Claude, or Codex — into a second brain that watches your screenpipe activity and remembers your workflows.
+- [teams — share configs with end-to-end encryption](https://docs.screenpipe.com/teams.md): Push pipe configurations and content filters to your team. Everything is encrypted client-side — the server only sees encrypted blobs.
+- [troubleshoot screenpipe: install, permissions, and pipes](https://docs.screenpipe.com/troubleshooting.md): Fix common screenpipe issues including installation errors, screen and microphone permissions, missing audio, pipe failures, and MCP connection problems.
+- [what can you do with screenpipe?](https://docs.screenpipe.com/use-cases.md): Everything you can do with screenpipe — from daily summaries to time tracking to meeting transcription. Organized by what you're trying to accomplish.
+- [screenpipe vs Fathom: 24/7 screen memory vs meeting bot](https://docs.screenpipe.com/vs-fathom.md): Compare screenpipe and Fathom: 24/7 local screen plus audio capture vs cloud meeting transcription for Zoom, Meet, and Teams — features, pricing, and privacy.
+- [screenpipe vs Fireflies.ai: local memory vs meeting bot](https://docs.screenpipe.com/vs-fireflies.md): Compare screenpipe and Fireflies.ai: local 24/7 screen and audio capture vs a cloud meeting bot with per-seat pricing and AI credit caps.
+- [screenpipe vs Granola - full screen memory vs meeting notes](https://docs.screenpipe.com/vs-granola.md): Compare screenpipe and Granola: local 24/7 screen plus audio capture vs a cloud AI meeting notepad — features, pricing, and Google Workspace requirements.
+- [screenpipe vs Limitless - self-hosted alternative](https://docs.screenpipe.com/vs-limitless.md): Compare screenpipe and Limitless.ai: a self-hosted, source-available desktop screen recorder vs the Limitless AI pendant. Data ownership and privacy compared.
+- [screenpipe vs Littlebird: local-first vs cloud screen AI](https://docs.screenpipe.com/vs-littlebird.md): Compare screenpipe and Littlebird: 100% local source-available screen plus audio capture vs a cloud-hosted screen reader. Privacy, data ownership, and features.
+- [screenpipe vs Omi — desktop capture vs AI wearable](https://docs.screenpipe.com/vs-omi.md): Compare screenpipe and Omi (formerly Friend): desktop screen and audio capture vs an $89 AI wearable pendant. Two auditable approaches to AI memory.
+- [screenpipe vs Otter.ai: local screen memory vs meeting bot](https://docs.screenpipe.com/vs-otter.md): Compare screenpipe and Otter.ai: local 24/7 screen and audio capture vs cloud meeting transcription with a 6000 minute monthly cap and a visible bot.
+- [screenpipe vs Pieces: screen capture vs code snippets](https://docs.screenpipe.com/vs-pieces.md): Compare screenpipe to Pieces for Developers. Full screen capture vs code snippet manager. screenpipe captures everything — Pieces only sees your editor.
+- [screenpipe vs Microsoft Recall - privacy-focused alternative](https://docs.screenpipe.com/vs-recall.md): Compare screenpipe and Microsoft Recall: a source-available Windows Recall alternative that runs on Mac, Windows, and Linux with no cloud dependency.
+- [screenpipe vs Rewind.ai - local-first alternative](https://docs.screenpipe.com/vs-rewind.md): Compare screenpipe and Rewind.ai: a source-available, local-first, cross-platform Rewind alternative now that Rewind has pivoted to Limitless.
+
+## OpenAPI Specs
+
+- [openapi](https://docs.screenpipe.com/openapi.yaml)

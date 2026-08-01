@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/screenpipe-openapi-original.yml
+docs: https://screenpipe.com/security
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: openapi 3.0.3 document published at docs.screenpipe.com/openapi.yaml
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme; local API is unauthenticated by default
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no application/problem+json responses declared
+- id: rest-json
+  conforms: true
+  evidence: JSON over HTTP REST with resource-oriented paths
+- id: offset-pagination
+  conforms: true
+  evidence: limit/offset params with a pagination response object
+- id: mcp
+  conforms: true
+  evidence: official screenpipe-mcp Model Context Protocol server (mcp/screenpipe-mcp.yml)
+- id: soc2-type2
+  conforms: true
+  evidence: "SOC 2 Type II claimed on https://screenpipe.com/security"
+- id: hipaa
+  conforms: true
+  evidence: "HIPAA compliance claimed on https://screenpipe.com/security"
+- id: gdpr
+  conforms: true
+  evidence: "GDPR compliance claimed on https://screenpipe.com/security"

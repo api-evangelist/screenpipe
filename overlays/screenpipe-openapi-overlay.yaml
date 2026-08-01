@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Screenpipe Local REST API
+  version: 1.0.0
+extends: openapi/screenpipe-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: screenpipe
+    x-apievangelist-deployment: local-first
+    x-apievangelist-notes: >-
+      Local-first REST API served by the screenpipe desktop app / CLI at
+      http://localhost:3030. Unauthenticated by default (bound to loopback); an
+      optional bearer token is available via `screenpipe auth token`.
+- target: $
+  update:
+    servers:
+    - url: http://localhost:3030
+      description: Default local screenpipe server (loopback only).
+- target: $.info
+  update:
+    x-agent-readiness:
+      mcp_server: mcp/screenpipe-mcp.yml
+      conventions: conventions/screenpipe-conventions.yml
+      agentic_access: agentic-access/screenpipe-agentic-access.yml

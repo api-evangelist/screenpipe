@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: searched
+probe: true
+source: https://screenpipe.com/security
+url: https://screenpipe.com/security
+certifications:
+- SOC 2
+- HIPAA
+- GDPR
+evidence:
+- source: https://screenpipe.com/security
+  keywords:
+  - soc 2
+  - hipaa
+  - gdpr

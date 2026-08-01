@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+note: >-
+  Probed the public web hosts for /.well-known/ discovery documents. None were
+  found — all returned 404 (SPA/doc catch-alls). The screenpipe REST API is
+  served on loopback (http://localhost:3030) and is not a public host, so it has
+  no public /.well-known/ surface. Recorded as negative evidence; no WellKnown
+  pointer emitted.
+hosts:
+- host: https://screenpi.pe
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://screenpipe.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://docs.screenpipe.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}

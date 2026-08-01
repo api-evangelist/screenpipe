@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.npmjs.com/org/screenpipe
+notes: >-
+  First-party client libraries are published under the @screenpipe npm scope.
+  The desktop app / recorder itself is distributed via `npx screenpipe` and the
+  downloadable desktop build (screenpi.pe/onboarding); the MCP server ships as
+  the screenpipe-mcp npm package. The Rust core lives in the monorepo /crates
+  directory but is not published to crates.io as a public client SDK.
+packages:
+- language: javascript
+  registry: npm
+  name: "@screenpipe/js"
+  url: https://www.npmjs.com/package/@screenpipe/js
+  install: npm install @screenpipe/js
+  version: 1.0.21
+  official: true
+  description: >-
+    Node/TypeScript SDK for the screenpipe local REST API (pipe.queryScreenpipe,
+    input control, notifications) used to build pipes and automations.
+- language: javascript
+  registry: npm
+  name: "@screenpipe/browser"
+  url: https://www.npmjs.com/package/@screenpipe/browser
+  install: npm install @screenpipe/browser
+  version: 0.1.40
+  official: true
+  description: Browser-targeted screenpipe SDK build.
+- language: javascript
+  registry: npm
+  name: screenpipe-mcp
+  url: https://www.npmjs.com/package/screenpipe-mcp
+  install: npx -y screenpipe-mcp
+  version: 0.18.15
+  official: true
+  description: >-
+    Model Context Protocol server exposing screenpipe screen/audio history to AI
+    clients (Claude, Cursor, Codex, Cline). See mcp/screenpipe-mcp.yml.
+- language: javascript
+  registry: npm
+  name: screenpipe
+  url: https://www.npmjs.com/package/screenpipe
+  install: npx -y screenpipe@latest record
+  official: true
+  description: >-
+    CLI / recorder entrypoint (`screenpipe record`, `auth token`, `agent
+    setup`). Command surface catalogued in cli/screenpipe-cli.yml.
