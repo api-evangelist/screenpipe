@@ -452,6 +452,8 @@ apis:
   - type: DataModel
     url: data-model/screenpipe-data-model.yml
 common:
+- type: Overlay
+  url: overlays/screenpipe-openapi-overlay.yaml
 - type: TrustCenter
   url: security/screenpipe-trust-center.yml
 - type: Compliance
