@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Vault API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vault",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vault status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vault/status"
+          },
+          "docs": "GET /vault/status"
+        },
+        {
+          "info": {
+            "name": "Lock vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vault/lock"
+          },
+          "docs": "POST /vault/lock"
+        },
+        {
+          "info": {
+            "name": "Unlock vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vault/unlock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /vault/unlock"
+        },
+        {
+          "info": {
+            "name": "Set up vault",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vault/setup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /vault/setup"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

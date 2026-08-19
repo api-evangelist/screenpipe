@@ -1,0 +1,582 @@
+{
+  "item": [
+    {
+      "id": "14641165-25ed-43e6-8ac8-242d747b2be8",
+      "name": "Cloud Sync",
+      "description": {
+        "content": "Sync data across devices via cloud",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c49a2a44-4c0f-41b7-83ab-fd50154d09a6",
+          "name": "Initialize cloud sync",
+          "request": {
+            "name": "Initialize cloud sync",
+            "description": {
+              "content": "Initialize sync at runtime with credentials.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sync",
+                "init"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<string>\",\n  \"password\": \"<string>\",\n  \"machine_id\": \"<string>\",\n  \"sync_interval_secs\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f2f9eadf-edd7-4f70-b2f6-830f448e7347",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sync",
+                    "init"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"password\": \"<string>\",\n  \"machine_id\": \"<string>\",\n  \"sync_interval_secs\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"is_new_user\": false,\n  \"machine_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79bfa541-fefd-476a-b2a7-f9f6a57d92ec",
+          "name": "Get sync status",
+          "request": {
+            "name": "Get sync status",
+            "description": {
+              "content": "Get current sync status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sync",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f6bf30b-d7a4-40fa-8791-5893d740663d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sync",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enabled\": true,\n  \"is_syncing\": false,\n  \"last_sync\": \"string\",\n  \"last_error\": \"string\",\n  \"machine_id\": \"string\",\n  \"last_download_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1cf42be-f8e0-4dc1-a5fd-1207ca1eb8eb",
+          "name": "Trigger sync",
+          "request": {
+            "name": "Trigger sync",
+            "description": {
+              "content": "Trigger an immediate sync.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sync",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "edbe1ea7-94ef-40db-9e48-ed7b99ff9194",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sync",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09ff3ad2-8eef-4c4f-9854-292954d5ce10",
+          "name": "Lock sync",
+          "request": {
+            "name": "Lock sync",
+            "description": {
+              "content": "Lock sync (stop service and clear state).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sync",
+                "lock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a57cf29-7fae-452f-9051-d9b153217c2c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sync",
+                    "lock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0134e61-a966-47d9-899c-305f2a56b662",
+          "name": "Download synced data",
+          "request": {
+            "name": "Download synced data",
+            "description": {
+              "content": "Download and import data from other devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sync",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hours\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c8d5085-676c-4a4e-9cf0-c534d3dce559",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sync",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hours\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"blobs_downloaded\": 9665,\n  \"records_imported\": 3494\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "def57cc1-e9d1-4db9-a0e1-601c22e01a37",
+          "name": "Push pipe configs to cloud",
+          "request": {
+            "name": "Push pipe configs to cloud",
+            "description": {
+              "content": "Push local pipe manifest to cloud (merge with remote first).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sync",
+                "pipes",
+                "push"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5875c9f-94a8-463b-87b6-919163172536",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sync",
+                    "pipes",
+                    "push"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"actions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d00c9437-9c5b-44fa-b9fc-fe6a3d644713",
+          "name": "Pull pipe configs from cloud",
+          "request": {
+            "name": "Pull pipe configs from cloud",
+            "description": {
+              "content": "Pull pipe manifest from cloud, merge with local, apply to disk.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sync",
+                "pipes",
+                "pull"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea695b1b-1da1-410d-8b55-9485df938cc7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sync",
+                    "pipes",
+                    "pull"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"actions\": [\n    \"string\",\n    \"string\"\n  ],\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c3ab1a32-0fbc-44e9-bdcb-944d4794435f",
+    "name": "Screenpipe Activity Cloud Sync API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

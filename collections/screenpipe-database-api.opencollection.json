@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Database API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Database",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute raw SQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/raw_sql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a raw SQL query against the screenpipe database. Use with caution."
+        },
+        {
+          "info": {
+            "name": "Add content to database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manually insert screen or audio content into the database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

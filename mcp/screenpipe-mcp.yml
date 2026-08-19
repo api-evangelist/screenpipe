@@ -12,9 +12,8 @@ server:
     transport: http
     install: npx -y screenpipe-mcp-http --port 3031
   backing_api: openapi/screenpipe-openapi-original.yml
-  requires: >-
-    The screenpipe desktop app / recorder must be running locally (REST API on
-    http://localhost:3030); the MCP server proxies to that local API.
+  requires: The screenpipe desktop app / recorder must be running locally (REST API on http://localhost:3030);
+    the MCP server proxies to that local API.
 clients_documented:
 - claude-code
 - claude-desktop
@@ -28,14 +27,12 @@ clients_documented:
 - opencode
 tools:
 - name: search-content
-  description: >-
-    Query recorded screen content, audio transcriptions, and input events with
-    filters for time range, application, window title, content type, and speaker.
+  description: Query recorded screen content, audio transcriptions, and input events with filters for
+    time range, application, window title, content type, and speaker.
   source_operation: openapi/screenpipe-openapi-original.yml#routes_search_search
 - name: export-video
-  description: >-
-    Generate a video export from screen recordings for a specified time range
-    with configurable frame rate.
+  description: Generate a video export from screen recordings for a specified time range with configurable
+    frame rate.
 setup_via_cli: npx -y screenpipe@latest agent setup <target>
 setup_targets:
 - openclaw
@@ -45,3 +42,12 @@ setup_targets:
 - codex
 - cursor
 - windsurf
+deployment:
+  mode: none
+  endpoint: http://localhost:3030
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census

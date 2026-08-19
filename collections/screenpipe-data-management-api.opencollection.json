@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Data Management API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete data in time range",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/data/delete-range",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete all captured data (frames, accessibility text, OCR fallback text, audio, etc.) within a time range."
+        },
+        {
+          "info": {
+            "name": "Delete device data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/data/delete-device",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete all locally-stored data that was synced from a specific remote device."
+        },
+        {
+          "info": {
+            "name": "Get device storage usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/data/device-storage"
+          },
+          "docs": "Get record counts per synced device."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

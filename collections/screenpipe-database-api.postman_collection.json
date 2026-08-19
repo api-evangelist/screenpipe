@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "fe97f7e7-cb33-4b4b-81e3-9b371077a266",
+      "name": "Database",
+      "description": {
+        "content": "Direct database access",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e529d0d-5ec6-4bdd-83a3-d3fb619ef54e",
+          "name": "Execute raw SQL",
+          "request": {
+            "name": "Execute raw SQL",
+            "description": {
+              "content": "Execute a raw SQL query against the screenpipe database. Use with caution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "raw_sql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4700841-bde6-4038-8b6a-d77b659475d4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raw_sql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72e302ef-0283-417c-abba-9802e86d2e7f",
+          "name": "Add content to database",
+          "request": {
+            "name": "Add content to database",
+            "description": {
+              "content": "Manually insert screen or audio content into the database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"device_name\": \"<string>\",\n  \"content\": {\n    \"content_type\": \"<string>\",\n    \"data\": [\n      {\n        \"file_path\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"app_name\": \"<string>\",\n        \"window_name\": \"<string>\",\n        \"ocr_results\": [\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ocr_engine\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"focused\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ocr_engine\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"focused\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"file_path\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"app_name\": \"<string>\",\n        \"window_name\": \"<string>\",\n        \"ocr_results\": [\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ocr_engine\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"focused\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ocr_engine\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"focused\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8fce31f7-4137-4a95-b907-e4615b83cedc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device_name\": \"<string>\",\n  \"content\": {\n    \"content_type\": \"<string>\",\n    \"data\": [\n      {\n        \"file_path\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"app_name\": \"<string>\",\n        \"window_name\": \"<string>\",\n        \"ocr_results\": [\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ocr_engine\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"focused\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ocr_engine\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"focused\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"file_path\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"app_name\": \"<string>\",\n        \"window_name\": \"<string>\",\n        \"ocr_results\": [\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ocr_engine\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"focused\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ocr_engine\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"focused\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9840f8d8-40b4-4c47-b028-c5e53e43ce55",
+    "name": "Screenpipe Activity Database API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

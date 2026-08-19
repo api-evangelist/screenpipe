@@ -1,0 +1,290 @@
+{
+  "item": [
+    {
+      "id": "1cbeced4-9b8c-4b89-abd2-9ef058eb8fa5",
+      "name": "Data Management",
+      "description": {
+        "content": "Manual data deletion and storage info",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39de7e21-d8ca-4f4c-bbc8-5a6329eb3fa9",
+          "name": "Delete data in time range",
+          "request": {
+            "name": "Delete data in time range",
+            "description": {
+              "content": "Permanently delete all captured data (frames, accessibility text, OCR fallback text, audio, etc.) within a time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "delete-range"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e9eee97-560d-4665-9b33-4780d2a59367",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "delete-range"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start\": \"<dateTime>\",\n  \"end\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frames_deleted\": 6419,\n  \"ocr_deleted\": 1480,\n  \"audio_transcriptions_deleted\": 7317,\n  \"audio_chunks_deleted\": 1858,\n  \"video_chunks_deleted\": 3818,\n  \"accessibility_deleted\": 4983,\n  \"ui_events_deleted\": 9499,\n  \"video_files_deleted\": 338,\n  \"audio_files_deleted\": 3983\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f80c3ee-1f19-4d5f-b527-6ee5ffb68132",
+          "name": "Delete device data",
+          "request": {
+            "name": "Delete device data",
+            "description": {
+              "content": "Delete all locally-stored data that was synced from a specific remote device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "delete-device"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"machine_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e03f248e-b111-4de4-9951-46d70f284fa4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "delete-device"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"machine_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frames_deleted\": 6419,\n  \"ocr_deleted\": 1480,\n  \"audio_transcriptions_deleted\": 7317,\n  \"audio_chunks_deleted\": 1858,\n  \"video_chunks_deleted\": 3818,\n  \"accessibility_deleted\": 4983,\n  \"ui_events_deleted\": 9499,\n  \"video_files_deleted\": 338,\n  \"audio_files_deleted\": 3983\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c635fb98-5fd3-48c8-9298-5dde5224d325",
+          "name": "Get device storage usage",
+          "request": {
+            "name": "Get device storage usage",
+            "description": {
+              "content": "Get record counts per synced device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "device-storage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ebd6bf5-7bb2-4709-9400-55f39c93242f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "device-storage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"machine_id\": \"string\",\n    \"frames\": 9451,\n    \"audio_chunks\": 6710\n  },\n  {\n    \"machine_id\": \"string\",\n    \"frames\": 9814,\n    \"audio_chunks\": 9719\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5d013e6a-126c-4ba2-84e1-6c1b6cef22e9",
+    "name": "Screenpipe Activity Data Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

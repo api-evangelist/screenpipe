@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Cloud Sync API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cloud Sync",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize cloud sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sync/init",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize sync at runtime with credentials."
+        },
+        {
+          "info": {
+            "name": "Get sync status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/sync/status"
+          },
+          "docs": "Get current sync status."
+        },
+        {
+          "info": {
+            "name": "Trigger sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sync/trigger"
+          },
+          "docs": "Trigger an immediate sync."
+        },
+        {
+          "info": {
+            "name": "Lock sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sync/lock"
+          },
+          "docs": "Lock sync (stop service and clear state)."
+        },
+        {
+          "info": {
+            "name": "Download synced data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sync/download",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Download and import data from other devices."
+        },
+        {
+          "info": {
+            "name": "Push pipe configs to cloud",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sync/pipes/push"
+          },
+          "docs": "Push local pipe manifest to cloud (merge with remote first)."
+        },
+        {
+          "info": {
+            "name": "Pull pipe configs from cloud",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/sync/pipes/pull"
+          },
+          "docs": "Pull pipe manifest from cloud, merge with local, apply to disk."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

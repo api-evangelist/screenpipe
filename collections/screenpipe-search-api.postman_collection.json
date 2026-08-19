@@ -1,0 +1,457 @@
+{
+  "item": [
+    {
+      "id": "4558d98b-772c-4fe8-8738-2bfd26ba4c9c",
+      "name": "Search",
+      "description": {
+        "content": "Search through captured screen and audio content",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb377671-fc81-4480-93a5-004e008e8580",
+          "name": "Search screen and audio content",
+          "request": {
+            "name": "Search screen and audio content",
+            "description": {
+              "content": "Query captured screen text (accessibility-first with OCR fallback), audio transcriptions, and UI elements with filters for time range, app, window, content type, and more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "content_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "window_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "frame_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_frames",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "min_length",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_length",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "speaker_ids",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "speaker_ids",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "focused",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "browser_url",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "speaker_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_cloud",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_content_length",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "machine_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66bae58d-182c-4308-9a70-662f2b3b76d1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "app_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "window_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frame_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_frames",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "min_length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "speaker_ids",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "speaker_ids",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "focused",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "browser_url",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "speaker_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_cloud",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "max_content_length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "device_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "machine_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"OCR\",\n      \"content\": {\n        \"frame_id\": 7596,\n        \"text\": \"string\",\n        \"timestamp\": \"1985-12-28T22:12:01.264Z\",\n        \"file_path\": \"string\",\n        \"offset_index\": 476,\n        \"app_name\": \"string\",\n        \"window_name\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"frame\": \"string\",\n        \"frame_name\": \"string\",\n        \"browser_url\": \"string\",\n        \"focused\": false,\n        \"device_name\": \"string\"\n      }\n    },\n    {\n      \"type\": \"OCR\",\n      \"content\": {\n        \"frame_id\": 7867,\n        \"text\": \"string\",\n        \"timestamp\": \"1952-03-29T12:12:15.213Z\",\n        \"file_path\": \"string\",\n        \"offset_index\": 7653,\n        \"app_name\": \"string\",\n        \"window_name\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"frame\": \"string\",\n        \"frame_name\": \"string\",\n        \"browser_url\": \"string\",\n        \"focused\": false,\n        \"device_name\": \"string\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 2194,\n    \"offset\": 3009,\n    \"total\": 4060\n  },\n  \"cloud\": {\n    \"cloudSearchAvailable\": true,\n    \"cloudHasRelevantData\": true,\n    \"cloudQueryHint\": \"string\",\n    \"status\": \"available\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed894ba9-7890-4946-8390-18b092271fb6",
+          "name": "Keyword search",
+          "request": {
+            "name": "Keyword search",
+            "description": {
+              "content": "Fast keyword-based search across all content types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "keyword"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fuzzy_match",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_names",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_names",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "group",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e36d7985-2680-4877-bd66-fc63c2adde15",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "keyword"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "fuzzy_match",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_names",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_names",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "745429e2-f18e-4a95-9b85-edaaa4f40547",
+    "name": "Screenpipe Activity Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

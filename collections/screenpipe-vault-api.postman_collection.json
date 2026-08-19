@@ -1,0 +1,362 @@
+{
+  "item": [
+    {
+      "id": "525456c4-4838-4495-b3c0-72d14448ca0b",
+      "name": "Vault",
+      "description": {
+        "content": "Encrypt/decrypt all data at rest",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e4f1950d-bd19-43d2-b2d7-a5ee3abeaeee",
+          "name": "Get vault status",
+          "request": {
+            "name": "Get vault status",
+            "description": {
+              "content": "GET /vault/status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vault",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2188edc1-6a95-4988-bd63-b7acc5ffcd96",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d0ad3a6-0e6b-447e-92de-be2fd0f0d31d",
+          "name": "Lock vault",
+          "request": {
+            "name": "Lock vault",
+            "description": {
+              "content": "POST /vault/lock",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vault",
+                "lock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c18d6d66-2e2e-4edb-b05d-e4a19e37539d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "lock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3b9df35-8d27-4e63-a296-16ee98bc0cde",
+          "name": "Unlock vault",
+          "request": {
+            "name": "Unlock vault",
+            "description": {
+              "content": "POST /vault/unlock",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vault",
+                "unlock"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5ebd683-fdc1-422f-9ff3-d5956873ff48",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "unlock"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c55614a-0e32-4bed-ae84-6d0624d89f6e",
+          "name": "Set up vault",
+          "request": {
+            "name": "Set up vault",
+            "description": {
+              "content": "POST /vault/setup",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vault",
+                "setup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75ba9f8b-246a-4dc5-bf14-9970bc38c5cf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vault",
+                    "setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f6ed424-2e4c-441a-9cae-a9934b44a9ea",
+    "name": "Screenpipe Activity Vault API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

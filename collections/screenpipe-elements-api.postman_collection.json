@@ -1,0 +1,185 @@
+{
+  "item": [
+    {
+      "id": "1e8cd371-25f3-4f6d-bff8-fd3c2128959b",
+      "name": "Elements",
+      "description": {
+        "content": "Query captured UI accessibility tree data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d30e2e3c-a6b4-4965-b007-e14516d53226",
+          "name": "Search UI elements",
+          "request": {
+            "name": "Search UI elements",
+            "description": {
+              "content": "Search elements across all frames with optional FTS, time, and app filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "frame_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4001f143-ed0f-4a47-975e-8b59bd93f049",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frame_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "app_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 3170,\n      \"frame_id\": 6907,\n      \"source\": \"string\",\n      \"role\": \"string\",\n      \"text\": \"string\",\n      \"parent_id\": 6961,\n      \"depth\": 3206,\n      \"bounds\": {\n        \"left\": 7725.149243570309,\n        \"top\": 7890.781555644068,\n        \"width\": 8659.968032061182,\n        \"height\": 5745.208859856825\n      },\n      \"confidence\": 6588.512408588708,\n      \"sort_order\": 9496\n    },\n    {\n      \"id\": 9362,\n      \"frame_id\": 3173,\n      \"source\": \"string\",\n      \"role\": \"string\",\n      \"text\": \"string\",\n      \"parent_id\": 4929,\n      \"depth\": 11,\n      \"bounds\": {\n        \"left\": 9720.899035711736,\n        \"top\": 1075.0352008763275,\n        \"width\": 1257.8359372766702,\n        \"height\": 138.87473450854282\n      },\n      \"confidence\": 3476.009473978494,\n      \"sort_order\": 9914\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 9413,\n    \"offset\": 4673,\n    \"total\": 757\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bd4daa32-3cf0-4f12-899d-bc11ccfc59a7",
+    "name": "Screenpipe Activity Elements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

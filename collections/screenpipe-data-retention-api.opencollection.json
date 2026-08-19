@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Data Retention API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Retention",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Configure retention policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/retention/configure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /retention/configure — enable/disable local retention, set days."
+        },
+        {
+          "info": {
+            "name": "Get retention status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/retention/status"
+          },
+          "docs": "GET /retention/status — return current retention state."
+        },
+        {
+          "info": {
+            "name": "Run retention cleanup now",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/retention/run"
+          },
+          "docs": "POST /retention/run — trigger an immediate cleanup run."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

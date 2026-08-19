@@ -1,0 +1,824 @@
+{
+  "item": [
+    {
+      "id": "88744ae4-ba55-4680-bde6-1735153ca985",
+      "name": "Meetings",
+      "description": {
+        "content": "Detected and manual meeting transcriptions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48f31028-8a4b-4833-8635-59b1dd07efdc",
+          "name": "List meetings",
+          "request": {
+            "name": "List meetings",
+            "description": {
+              "content": "Returns detected and manually started meetings with transcriptions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "meetings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8ced3d1-7d45-428a-ad04-2722f5a2d797",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5737,\n    \"meeting_start\": \"string\",\n    \"meeting_end\": \"string\",\n    \"meeting_app\": \"string\",\n    \"title\": \"string\",\n    \"attendees\": \"string\",\n    \"note\": \"string\",\n    \"detection_source\": \"string\",\n    \"created_at\": \"string\"\n  },\n  {\n    \"id\": 5721,\n    \"meeting_start\": \"string\",\n    \"meeting_end\": \"string\",\n    \"meeting_app\": \"string\",\n    \"title\": \"string\",\n    \"attendees\": \"string\",\n    \"note\": \"string\",\n    \"detection_source\": \"string\",\n    \"created_at\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a76db88-00f1-4db7-9ddb-3dcc9b9b5e7a",
+          "name": "Get meeting detection status",
+          "request": {
+            "name": "Get meeting detection status",
+            "description": {},
+            "url": {
+              "path": [
+                "meetings",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5169d5fe-fc17-40a5-aba7-510637c8f433",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab4f7087-37fa-4c1a-bd30-3f9eaaba493c",
+          "name": "Merge meetings",
+          "request": {
+            "name": "Merge meetings",
+            "description": {},
+            "url": {
+              "path": [
+                "meetings",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5fa2782-78b9-484f-a749-8b908ab8a915",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6374,\n  \"meeting_start\": \"string\",\n  \"meeting_end\": \"string\",\n  \"meeting_app\": \"string\",\n  \"title\": \"string\",\n  \"attendees\": \"string\",\n  \"note\": \"string\",\n  \"detection_source\": \"string\",\n  \"created_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c55f47b-5def-4516-85a9-d0fd2a5fb909",
+          "name": "Bulk delete meetings",
+          "request": {
+            "name": "Bulk delete meetings",
+            "description": {},
+            "url": {
+              "path": [
+                "meetings",
+                "bulk-delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29695ecb-a59c-4bd8-add1-fe8c7fdc17c6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings",
+                    "bulk-delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "193fc8de-1924-42a3-a41e-6261f092cc07",
+          "name": "Start a manual meeting",
+          "request": {
+            "name": "Start a manual meeting",
+            "description": {},
+            "url": {
+              "path": [
+                "meetings",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"app\": \"<string>\",\n  \"title\": \"<string>\",\n  \"attendees\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63704d49-186c-421c-8a3a-aade9ec27565",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app\": \"<string>\",\n  \"title\": \"<string>\",\n  \"attendees\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6374,\n  \"meeting_start\": \"string\",\n  \"meeting_end\": \"string\",\n  \"meeting_app\": \"string\",\n  \"title\": \"string\",\n  \"attendees\": \"string\",\n  \"note\": \"string\",\n  \"detection_source\": \"string\",\n  \"created_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "561fa995-6b25-4f74-8304-5cf363021d08",
+          "name": "Stop a manual meeting",
+          "request": {
+            "name": "Stop a manual meeting",
+            "description": {},
+            "url": {
+              "path": [
+                "meetings",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25e8a60d-1428-4bb9-a998-80df6c2896f6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6374,\n  \"meeting_start\": \"string\",\n  \"meeting_end\": \"string\",\n  \"meeting_app\": \"string\",\n  \"title\": \"string\",\n  \"attendees\": \"string\",\n  \"note\": \"string\",\n  \"detection_source\": \"string\",\n  \"created_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ba4b7ad-b0fb-4a11-9d88-605dd0c19a5c",
+          "name": "Get meeting by ID",
+          "request": {
+            "name": "Get meeting by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "meetings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b7e9634-9a95-41b2-9eb0-571682b49eea",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6374,\n  \"meeting_start\": \"string\",\n  \"meeting_end\": \"string\",\n  \"meeting_app\": \"string\",\n  \"title\": \"string\",\n  \"attendees\": \"string\",\n  \"note\": \"string\",\n  \"detection_source\": \"string\",\n  \"created_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7ad3d5f-5e66-4e54-a35e-cdb704c814cc",
+          "name": "Update meeting",
+          "request": {
+            "name": "Update meeting",
+            "description": {},
+            "url": {
+              "path": [
+                "meetings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"meeting_start\": \"<string>\",\n  \"meeting_end\": \"<string>\",\n  \"title\": \"<string>\",\n  \"attendees\": \"<string>\",\n  \"note\": \"<string>\",\n  \"meeting_app\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1aba40e-d3f5-46f7-8cb2-1f3010d981e4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"meeting_start\": \"<string>\",\n  \"meeting_end\": \"<string>\",\n  \"title\": \"<string>\",\n  \"attendees\": \"<string>\",\n  \"note\": \"<string>\",\n  \"meeting_app\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6374,\n  \"meeting_start\": \"string\",\n  \"meeting_end\": \"string\",\n  \"meeting_app\": \"string\",\n  \"title\": \"string\",\n  \"attendees\": \"string\",\n  \"note\": \"string\",\n  \"detection_source\": \"string\",\n  \"created_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "512c080c-10bb-4727-92f2-8a60ca567eb1",
+          "name": "Delete meeting",
+          "request": {
+            "name": "Delete meeting",
+            "description": {},
+            "url": {
+              "path": [
+                "meetings",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "842ff625-5d04-4721-a208-7d6650b81d29",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meetings",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3b63aa7a-22c0-4452-903a-715c73006332",
+    "name": "Screenpipe Activity Meetings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

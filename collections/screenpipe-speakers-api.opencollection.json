@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Speakers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Speakers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List unnamed speakers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/speakers/unnamed",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "speaker_ids",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns speakers that haven't been identified/named yet."
+        },
+        {
+          "info": {
+            "name": "Update speaker name",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/speakers/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update speaker name"
+        },
+        {
+          "info": {
+            "name": "Search speakers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/speakers/search",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search speakers"
+        },
+        {
+          "info": {
+            "name": "Delete speaker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/speakers/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete speaker"
+        },
+        {
+          "info": {
+            "name": "Mark speaker as hallucination",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/speakers/hallucination",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Flag a detected speaker as a false positive / hallucination."
+        },
+        {
+          "info": {
+            "name": "Merge speakers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/speakers/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Merge two speaker identities into one."
+        },
+        {
+          "info": {
+            "name": "Find similar speakers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/speakers/similar",
+            "params": [
+              {
+                "name": "speaker_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Find similar speakers"
+        },
+        {
+          "info": {
+            "name": "Reassign speaker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/speakers/reassign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reassign audio segments from one speaker to another."
+        },
+        {
+          "info": {
+            "name": "Undo speaker reassignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/speakers/undo-reassign",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Undo speaker reassignment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

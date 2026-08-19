@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "7d55f82d-bd9e-4cfd-a607-0f31ac5b75dc",
+      "name": "Vision",
+      "description": {
+        "content": "Manage screen capture monitors",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4cc146bd-6fe8-46c6-9879-63b4ec16520f",
+          "name": "List monitors",
+          "request": {
+            "name": "List monitors",
+            "description": {
+              "content": "Returns all available monitors/displays.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vision",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04dbc93a-02f9-4719-b051-7c57a0f487f1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vision",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3538,\n    \"stable_id\": \"string\",\n    \"name\": \"string\",\n    \"width\": 652,\n    \"height\": 1012,\n    \"is_default\": true\n  },\n  {\n    \"id\": 5723,\n    \"stable_id\": \"string\",\n    \"name\": \"string\",\n    \"width\": 9111,\n    \"height\": 6205,\n    \"is_default\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2f633a5e-eaf6-4bd4-b297-bc6c9c8e9fe9",
+    "name": "Screenpipe Activity Vision API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

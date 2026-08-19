@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Vision API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vision",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List monitors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/vision/list"
+          },
+          "docs": "Returns all available monitors/displays."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

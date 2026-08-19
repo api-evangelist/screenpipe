@@ -1,0 +1,884 @@
+{
+  "item": [
+    {
+      "id": "c82e9c9b-a903-49a0-863f-d51a688f167f",
+      "name": "Frames",
+      "description": {
+        "content": "Access captured screenshots and their extracted text",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9d40205-a8d9-4b90-abce-ce0dfbba4791",
+          "name": "Get frame by ID",
+          "request": {
+            "name": "Get frame by ID",
+            "description": {
+              "content": "Returns a captured screenshot frame with optional base64 image data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                ":frame_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "frame_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46fb4afe-c889-480c-bee5-56e9004a21fc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    ":frame_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "frame_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75f0f2d3-93cd-432f-abfc-45be978300fa",
+          "name": "Get frame text and bounds",
+          "request": {
+            "name": "Get frame text and bounds",
+            "description": {
+              "content": "Get frame text positions with bounding boxes for a specific frame.\nUses accessibility tree node bounds when available, and OCR fallback positions for visual-only or legacy frames.\nBoth OCR and accessibility bounds are normalized to 0-1 relative to the\nmonitor (full-screen capture), so they align correctly with the screenshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                ":frame_id",
+                "text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "frame_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35225bf1-a3ad-4ad9-a94a-574644186650",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    ":frame_id",
+                    "text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "frame_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frame_id\": 7690,\n  \"text_positions\": [\n    {\n      \"text\": \"string\",\n      \"confidence\": 9996.848509549574,\n      \"bounds\": {\n        \"left\": 7308.935984148927,\n        \"top\": 3016.147451656691,\n        \"width\": 6733.168584040713,\n        \"height\": 4968.9650548345335\n      }\n    },\n    {\n      \"text\": \"string\",\n      \"confidence\": 9967.627652602841,\n      \"bounds\": {\n        \"left\": 5234.996449487254,\n        \"top\": 9641.347599126753,\n        \"width\": 3987.2101403071124,\n        \"height\": 5316.9730119131455\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42e76927-920e-4026-a6c9-89f48b7fcb7a",
+          "name": "Run OCR on frame",
+          "request": {
+            "name": "Run OCR on frame",
+            "description": {
+              "content": "Run on-demand OCR on a frame that has no stored bounding boxes.\nLoads the snapshot JPEG, runs Apple Vision OCR, stores the result,\nand returns the text positions. Subsequent GET requests will hit the\ncached DB row. If OCR data already exists, returns it without re-running.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                ":frame_id",
+                "text"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "frame_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e5e3129-4c6d-4593-9fa2-02cd1220ee61",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    ":frame_id",
+                    "text"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "frame_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frame_id\": 5169,\n  \"text_positions\": [\n    {\n      \"text\": \"string\",\n      \"confidence\": 992.5040089428816,\n      \"bounds\": {\n        \"left\": 4091.8619424072967,\n        \"top\": 3246.1361121507202,\n        \"width\": 8166.847120261527,\n        \"height\": 9316.563457891201\n      }\n    },\n    {\n      \"text\": \"string\",\n      \"confidence\": 8897.890619931728,\n      \"bounds\": {\n        \"left\": 9389.561255785322,\n        \"top\": 8576.19312871778,\n        \"width\": 6603.961932618367,\n        \"height\": 578.1185030092295\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ef1d392-759c-4d9b-9417-c0dd10c4957a",
+          "name": "Get frame OCR (deprecated)",
+          "request": {
+            "name": "Get frame OCR (deprecated)",
+            "description": {
+              "content": "Get frame text positions with bounding boxes for a specific frame.\nUses accessibility tree node bounds when available, and OCR fallback positions for visual-only or legacy frames.\nBoth OCR and accessibility bounds are normalized to 0-1 relative to the\nmonitor (full-screen capture), so they align correctly with the screenshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                ":frame_id",
+                "ocr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "frame_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e5a3f26-f050-46a9-8407-b9d92991ba90",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    ":frame_id",
+                    "ocr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "frame_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frame_id\": 5169,\n  \"text_positions\": [\n    {\n      \"text\": \"string\",\n      \"confidence\": 992.5040089428816,\n      \"bounds\": {\n        \"left\": 4091.8619424072967,\n        \"top\": 3246.1361121507202,\n        \"width\": 8166.847120261527,\n        \"height\": 9316.563457891201\n      }\n    },\n    {\n      \"text\": \"string\",\n      \"confidence\": 8897.890619931728,\n      \"bounds\": {\n        \"left\": 9389.561255785322,\n        \"top\": 8576.19312871778,\n        \"width\": 6603.961932618367,\n        \"height\": 578.1185030092295\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a78b133-6f80-49c8-b4ec-96e1e1e29e0a",
+          "name": "Run frame OCR (deprecated)",
+          "request": {
+            "name": "Run frame OCR (deprecated)",
+            "description": {
+              "content": "Run on-demand OCR on a frame that has no stored bounding boxes.\nLoads the snapshot JPEG, runs Apple Vision OCR, stores the result,\nand returns the text positions. Subsequent GET requests will hit the\ncached DB row. If OCR data already exists, returns it without re-running.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                ":frame_id",
+                "ocr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "frame_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44d22935-3b74-4ddd-8a30-dfa8125ed23d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    ":frame_id",
+                    "ocr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "frame_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frame_id\": 5169,\n  \"text_positions\": [\n    {\n      \"text\": \"string\",\n      \"confidence\": 992.5040089428816,\n      \"bounds\": {\n        \"left\": 4091.8619424072967,\n        \"top\": 3246.1361121507202,\n        \"width\": 8166.847120261527,\n        \"height\": 9316.563457891201\n      }\n    },\n    {\n      \"text\": \"string\",\n      \"confidence\": 8897.890619931728,\n      \"bounds\": {\n        \"left\": 9389.561255785322,\n        \"top\": 8576.19312871778,\n        \"width\": 6603.961932618367,\n        \"height\": 578.1185030092295\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21830566-a2f3-4472-92aa-e1b155a6f730",
+          "name": "Get frame context",
+          "request": {
+            "name": "Get frame context",
+            "description": {
+              "content": "Get frame context: accessibility text, tree nodes, and extracted URLs.\nFalls back to OCR data for legacy frames without accessibility data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                ":frame_id",
+                "context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "frame_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c730f0c-16a7-43ed-afbb-1ef93bbd7d96",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    ":frame_id",
+                    "context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "frame_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frame_id\": 6397,\n  \"text\": \"string\",\n  \"nodes\": [\n    {\n      \"role\": \"string\",\n      \"text\": \"string\",\n      \"depth\": 5744,\n      \"bounds\": {\n        \"left\": 5903.961932509824,\n        \"top\": 925.300775372474,\n        \"width\": 8517.720915219985,\n        \"height\": 6611.09658691776\n      },\n      \"properties\": {}\n    },\n    {\n      \"role\": \"string\",\n      \"text\": \"string\",\n      \"depth\": 5064,\n      \"bounds\": {\n        \"left\": 5528.039008886256,\n        \"top\": 3026.910349599846,\n        \"width\": 8000.0591819753845,\n        \"height\": 1055.4197048980573\n      },\n      \"properties\": {}\n    }\n  ],\n  \"urls\": [\n    \"string\",\n    \"string\"\n  ],\n  \"text_source\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a3398cb-96c4-464f-ae69-de0df5837a3d",
+          "name": "Get frame metadata",
+          "request": {
+            "name": "Get frame metadata",
+            "description": {
+              "content": "Get frame metadata (timestamp) for deep link navigation. screenpipe://frame/123 → resolve to timestamp.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                ":frame_id",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "frame_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2371881-e9ce-4e84-b73b-be99841acf17",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    ":frame_id",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "frame_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frame_id\": 3094,\n  \"timestamp\": \"1977-09-27T10:57:00.870Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e8ae7cb-6809-4c4e-bf0c-a024cdb500a5",
+          "name": "Get next valid frame",
+          "request": {
+            "name": "Get next valid frame",
+            "description": {
+              "content": "Find the next frame that has a valid video file on disk.\nThis allows the frontend to skip directly to a valid frame instead of\ntrying each frame one-by-one when frames fail to load.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                "next-valid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "frame_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f834b02d-515f-463a-933b-c7d365470f47",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    "next-valid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "frame_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frame_id\": 9237,\n  \"timestamp\": \"2019-04-29T17:31:04.495Z\",\n  \"skipped_count\": 373\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56055e85-bf13-4024-a8a7-0b2d30a2f38f",
+          "name": "Get frame UI elements",
+          "request": {
+            "name": "Get frame UI elements",
+            "description": {
+              "content": "Get all elements for a specific frame (full element tree).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frames",
+                ":frame_id",
+                "elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "frame_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fc9285c-ce86-4088-95a7-02aeca2c9606",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frames",
+                    ":frame_id",
+                    "elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "frame_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 9738,\n      \"frame_id\": 1926,\n      \"source\": \"string\",\n      \"role\": \"string\",\n      \"text\": \"string\",\n      \"parent_id\": 1830,\n      \"depth\": 5263,\n      \"bounds\": {\n        \"left\": 4744.647407387879,\n        \"top\": 3810.1655659943003,\n        \"width\": 3845.7538217180045,\n        \"height\": 168.85779972668047\n      },\n      \"confidence\": 7955.880469233565,\n      \"sort_order\": 5829\n    },\n    {\n      \"id\": 6617,\n      \"frame_id\": 2225,\n      \"source\": \"string\",\n      \"role\": \"string\",\n      \"text\": \"string\",\n      \"parent_id\": 7893,\n      \"depth\": 9962,\n      \"bounds\": {\n        \"left\": 314.0790574065344,\n        \"top\": 6552.406787175391,\n        \"width\": 6116.253996621608,\n        \"height\": 3944.3513568945464\n      },\n      \"confidence\": 1935.7178268718978,\n      \"sort_order\": 9472\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 7780,\n    \"offset\": 7790,\n    \"total\": 4204\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dc51b4d5-d281-4667-9a32-5b488a2c7ebe",
+    "name": "Screenpipe Activity Frames API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Cloud Archive API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cloud Archive",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize cloud archive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/archive/init",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /archive/init — initialize the archive system."
+        },
+        {
+          "info": {
+            "name": "Configure archive settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/archive/configure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /archive/configure — update retention or disable."
+        },
+        {
+          "info": {
+            "name": "Get archive status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/archive/status"
+          },
+          "docs": "GET /archive/status — return current state."
+        },
+        {
+          "info": {
+            "name": "Run archive now",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/archive/run"
+          },
+          "docs": "POST /archive/run — trigger an immediate archive run."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

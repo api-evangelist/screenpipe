@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Audio API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audio devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/audio/list"
+          },
+          "docs": "Returns all available audio input and output devices."
+        },
+        {
+          "info": {
+            "name": "Start audio recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/audio/start"
+          },
+          "docs": "Start audio recording"
+        },
+        {
+          "info": {
+            "name": "Stop audio recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/audio/stop"
+          },
+          "docs": "Stop audio recording"
+        },
+        {
+          "info": {
+            "name": "Start recording a specific audio device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/audio/device/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start recording a specific audio device"
+        },
+        {
+          "info": {
+            "name": "Stop recording a specific audio device",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/audio/device/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stop recording a specific audio device"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

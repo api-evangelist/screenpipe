@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Activity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get activity summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/activity-summary",
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lightweight compressed activity overview for a time range.\nReturns app usage, recent accessibility texts, and audio summary (~200-500 tokens)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

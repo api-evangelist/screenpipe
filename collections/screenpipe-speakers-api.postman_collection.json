@@ -1,0 +1,860 @@
+{
+  "item": [
+    {
+      "id": "a9dec3c0-3c63-449e-ac7f-870362220fdf",
+      "name": "Speakers",
+      "description": {
+        "content": "Speaker identification and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "238d8447-816d-4c11-8864-822768de058a",
+          "name": "List unnamed speakers",
+          "request": {
+            "name": "List unnamed speakers",
+            "description": {
+              "content": "Returns speakers that haven't been identified/named yet.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speakers",
+                "unnamed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "speaker_ids",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "speaker_ids",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f48e9e6-9859-4360-a9a9-cea8db62d37f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "unnamed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "speaker_ids",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "speaker_ids",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7600,\n    \"name\": \"string\",\n    \"metadata\": \"string\"\n  },\n  {\n    \"id\": 3097,\n    \"name\": \"string\",\n    \"metadata\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41bd9c8e-4350-4adb-9a92-2164e9bc1e68",
+          "name": "Update speaker name",
+          "request": {
+            "name": "Update speaker name",
+            "description": {},
+            "url": {
+              "path": [
+                "speakers",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c17cc448-76a3-4fe3-9aab-fc8755c7bfd1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3397,\n  \"name\": \"string\",\n  \"metadata\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c5d37e7-1b97-44f0-8128-c890d8cf0d08",
+          "name": "Search speakers",
+          "request": {
+            "name": "Search speakers",
+            "description": {},
+            "url": {
+              "path": [
+                "speakers",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c4b2a4e-4a51-4760-bbc4-8a58f47a85f9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7600,\n    \"name\": \"string\",\n    \"metadata\": \"string\"\n  },\n  {\n    \"id\": 3097,\n    \"name\": \"string\",\n    \"metadata\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90f68440-16da-45a6-b920-8dfc0af1476c",
+          "name": "Delete speaker",
+          "request": {
+            "name": "Delete speaker",
+            "description": {},
+            "url": {
+              "path": [
+                "speakers",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d546780e-aaa5-470b-b07c-9c8ddd5bf43e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46602962-661e-475d-ac33-2525b439f479",
+          "name": "Mark speaker as hallucination",
+          "request": {
+            "name": "Mark speaker as hallucination",
+            "description": {
+              "content": "Flag a detected speaker as a false positive / hallucination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speakers",
+                "hallucination"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "502b153a-289c-4d22-bd86-9ef594439eac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "hallucination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "976a63b5-5395-4653-877b-2575e2d84625",
+          "name": "Merge speakers",
+          "request": {
+            "name": "Merge speakers",
+            "description": {
+              "content": "Merge two speaker identities into one.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speakers",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speaker_to_keep_id\": \"<integer>\",\n  \"speaker_to_merge_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46d68f0f-e46a-46a6-9e4e-527fa756a3bb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speaker_to_keep_id\": \"<integer>\",\n  \"speaker_to_merge_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da809a25-3ce9-4378-adad-35a63303399a",
+          "name": "Find similar speakers",
+          "request": {
+            "name": "Find similar speakers",
+            "description": {},
+            "url": {
+              "path": [
+                "speakers",
+                "similar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "speaker_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20f18982-0f9e-42f1-a26a-9c07c1e6aec0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "similar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "speaker_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7600,\n    \"name\": \"string\",\n    \"metadata\": \"string\"\n  },\n  {\n    \"id\": 3097,\n    \"name\": \"string\",\n    \"metadata\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03230c0b-5e16-4358-bf73-aa6937061a2c",
+          "name": "Reassign speaker",
+          "request": {
+            "name": "Reassign speaker",
+            "description": {
+              "content": "Reassign audio segments from one speaker to another.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "speakers",
+                "reassign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audio_chunk_id\": \"<integer>\",\n  \"new_speaker_name\": \"<string>\",\n  \"propagate_similar\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8db1e9d8-1004-4d2f-9885-9ab091511927",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "reassign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audio_chunk_id\": \"<integer>\",\n  \"new_speaker_name\": \"<string>\",\n  \"propagate_similar\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"new_speaker_id\": 8983,\n  \"new_speaker_name\": \"string\",\n  \"transcriptions_updated\": 8358,\n  \"embeddings_moved\": 7966,\n  \"old_assignments\": [\n    {\n      \"transcription_id\": 3249,\n      \"old_speaker_id\": 2636\n    },\n    {\n      \"transcription_id\": 8881,\n      \"old_speaker_id\": 9573\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d97ca76-59e3-475c-8956-8549010123e4",
+          "name": "Undo speaker reassignment",
+          "request": {
+            "name": "Undo speaker reassignment",
+            "description": {},
+            "url": {
+              "path": [
+                "speakers",
+                "undo-reassign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"old_assignments\": [\n    {\n      \"transcription_id\": \"<integer>\",\n      \"old_speaker_id\": \"<integer>\"\n    },\n    {\n      \"transcription_id\": \"<integer>\",\n      \"old_speaker_id\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b202689b-95ca-463c-b9a5-b8347ecbbfdf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "speakers",
+                    "undo-reassign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"old_assignments\": [\n    {\n      \"transcription_id\": \"<integer>\",\n      \"old_speaker_id\": \"<integer>\"\n    },\n    {\n      \"transcription_id\": \"<integer>\",\n      \"old_speaker_id\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"restored\": 716\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8e78ec9f-f9d9-46c1-ba53-747f38f16675",
+    "name": "Screenpipe Activity Speakers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

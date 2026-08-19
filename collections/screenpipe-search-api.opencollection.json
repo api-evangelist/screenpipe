@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Search API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search screen and audio content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "content_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "window_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "frame_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_frames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "min_length",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_length",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "speaker_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "focused",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "browser_url",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "speaker_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_cloud",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_content_length",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "device_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "machine_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query captured screen text (accessibility-first with OCR fallback), audio transcriptions, and UI elements with filters for time range, app, window, content type, and more."
+        },
+        {
+          "info": {
+            "name": "Keyword search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/keyword",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fuzzy_match",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_names",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fast keyword-based search across all content types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

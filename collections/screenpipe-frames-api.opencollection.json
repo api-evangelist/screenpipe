@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Frames API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Frames",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get frame by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/frames/:frame_id",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a captured screenshot frame with optional base64 image data."
+        },
+        {
+          "info": {
+            "name": "Get frame text and bounds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/frames/:frame_id/text",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get frame text positions with bounding boxes for a specific frame.\nUses accessibility tree node bounds when available, and OCR fallback positions for visual-only or legacy frames.\nBoth OCR and accessibility bounds are normalized to 0-1 relative to the\nmonitor (full-screen capture), so they align correctly with the screenshot."
+        },
+        {
+          "info": {
+            "name": "Run OCR on frame",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/frames/:frame_id/text",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Run on-demand OCR on a frame that has no stored bounding boxes.\nLoads the snapshot JPEG, runs Apple Vision OCR, stores the result,\nand returns the text positions. Subsequent GET requests will hit the\ncached DB row. If OCR data already exists, returns it without re-running."
+        },
+        {
+          "info": {
+            "name": "Get frame OCR (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/frames/:frame_id/ocr",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get frame text positions with bounding boxes for a specific frame.\nUses accessibility tree node bounds when available, and OCR fallback positions for visual-only or legacy frames.\nBoth OCR and accessibility bounds are normalized to 0-1 relative to the\nmonitor (full-screen capture), so they align correctly with the screenshot."
+        },
+        {
+          "info": {
+            "name": "Run frame OCR (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/frames/:frame_id/ocr",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Run on-demand OCR on a frame that has no stored bounding boxes.\nLoads the snapshot JPEG, runs Apple Vision OCR, stores the result,\nand returns the text positions. Subsequent GET requests will hit the\ncached DB row. If OCR data already exists, returns it without re-running."
+        },
+        {
+          "info": {
+            "name": "Get frame context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/frames/:frame_id/context",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get frame context: accessibility text, tree nodes, and extracted URLs.\nFalls back to OCR data for legacy frames without accessibility data."
+        },
+        {
+          "info": {
+            "name": "Get frame metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/frames/:frame_id/metadata",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get frame metadata (timestamp) for deep link navigation. screenpipe://frame/123 → resolve to timestamp."
+        },
+        {
+          "info": {
+            "name": "Get next valid frame",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/frames/next-valid",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Find the next frame that has a valid video file on disk.\nThis allows the frontend to skip directly to a valid frame instead of\ntrying each frame one-by-one when frames fail to load."
+        },
+        {
+          "info": {
+            "name": "Get frame UI elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/frames/:frame_id/elements",
+            "params": [
+              {
+                "name": "frame_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all elements for a specific frame (full element tree)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

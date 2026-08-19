@@ -1,0 +1,131 @@
+{
+  "item": [
+    {
+      "id": "3c7b92c1-9204-4e89-b06d-5f6691641f52",
+      "name": "Activity",
+      "description": {
+        "content": "Activity summaries and analytics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10ac6c5a-710d-46e5-ab2f-9ffccf5ac642",
+          "name": "Get activity summary",
+          "request": {
+            "name": "Get activity summary",
+            "description": {
+              "content": "Lightweight compressed activity overview for a time range.\nReturns app usage, recent accessibility texts, and audio summary (~200-500 tokens).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activity-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_name",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c7f82db-766f-469c-bf33-a25da55f8dbd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activity-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "app_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apps\": [\n    {\n      \"name\": \"string\",\n      \"frame_count\": 1247,\n      \"minutes\": 4796.901635192156,\n      \"first_seen\": \"string\",\n      \"last_seen\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"frame_count\": 148,\n      \"minutes\": 2327.342496129383,\n      \"first_seen\": \"string\",\n      \"last_seen\": \"string\"\n    }\n  ],\n  \"recent_texts\": [\n    {\n      \"text\": \"string\",\n      \"app_name\": \"string\",\n      \"timestamp\": \"string\"\n    },\n    {\n      \"text\": \"string\",\n      \"app_name\": \"string\",\n      \"timestamp\": \"string\"\n    }\n  ],\n  \"audio_summary\": {\n    \"segment_count\": 2907,\n    \"speakers\": [\n      {\n        \"name\": \"string\",\n        \"segment_count\": 575\n      },\n      {\n        \"name\": \"string\",\n        \"segment_count\": 2863\n      }\n    ]\n  },\n  \"total_frames\": 4992,\n  \"time_range\": {\n    \"start\": \"string\",\n    \"end\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5301bb95-87b3-4d69-b4ae-6a7297a2c985",
+    "name": "Screenpipe Activity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

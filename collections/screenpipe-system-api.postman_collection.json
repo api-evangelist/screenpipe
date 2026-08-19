@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "ccc2107b-084e-409e-8e8d-71307a10e52e",
+      "name": "System",
+      "description": {
+        "content": "Health checks and system status",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98766bbc-7cc2-4ed9-8f57-a7273006ae1c",
+          "name": "Health check",
+          "request": {
+            "name": "Health check",
+            "description": {
+              "content": "Returns system health status including audio/video pipeline state, device info, and version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e88b4ce0-4a04-45d9-96b7-6e150815cdbe",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"status_code\": 5225,\n  \"last_frame_timestamp\": \"1969-02-24T01:13:45.584Z\",\n  \"last_audio_timestamp\": \"1985-12-05T00:57:23.041Z\",\n  \"frame_status\": \"string\",\n  \"audio_status\": \"string\",\n  \"message\": \"string\",\n  \"verbose_instructions\": \"string\",\n  \"device_status_details\": \"string\",\n  \"vision_db_write_stalled\": false,\n  \"audio_db_write_stalled\": false,\n  \"drm_content_paused\": true,\n  \"schedule_paused\": false,\n  \"monitors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"pipeline\": {\n    \"uptime_secs\": 1007.5442589628059,\n    \"frames_captured\": 2045,\n    \"frames_db_written\": 8069,\n    \"frames_dropped\": 9325,\n    \"frame_drop_rate\": 623.0417750052708,\n    \"capture_fps_actual\": 2938.7394668187926,\n    \"avg_ocr_latency_ms\": 2355.141467407513,\n    \"avg_db_latency_ms\": 255.81030233451708,\n    \"ocr_queue_depth\": 1894,\n    \"video_queue_depth\": 7896,\n    \"time_to_first_frame_ms\": 6733.681047654978,\n    \"pipeline_stall_count\": 7549,\n    \"ocr_cache_hit_rate\": 6358.646734573107\n  },\n  \"audio_pipeline\": {\n    \"uptime_secs\": 3685.000276035358,\n    \"chunks_sent\": 7248,\n    \"chunks_channel_full\": 4547,\n    \"stream_timeouts\": 1615,\n    \"vad_passed\": 3965,\n    \"vad_rejected\": 2912,\n    \"vad_passthrough_rate\": 7363.599323972885,\n    \"avg_speech_ratio\": 577.5117721484579,\n    \"transcriptions_completed\": 8372,\n    \"transcriptions_empty\": 298,\n    \"transcription_errors\": 2571,\n    \"db_inserted\": 5971,\n    \"total_words\": 584,\n    \"words_per_minute\": 4306.553592229402,\n    \"chunks_received\": 1150,\n    \"process_errors\": 9418,\n    \"audio_level_rms\": 7090.907828868812,\n    \"audio_devices\": [\n      \"string\",\n      \"string\"\n    ],\n    \"transcription_mode\": \"string\",\n    \"transcription_paused\": false,\n    \"segments_deferred\": 5138,\n    \"segments_batch_processed\": 1734,\n    \"batch_paused_reason\": \"string\",\n    \"meeting_detected\": false,\n    \"meeting_app\": \"string\"\n  },\n  \"accessibility\": {\n    \"walks_total\": 5176,\n    \"walks_stored\": 766,\n    \"walks_deduped\": 1972,\n    \"walks_empty\": 8378,\n    \"walks_error\": 8786,\n    \"walks_truncated\": 365,\n    \"walks_truncated_timeout\": 3527,\n    \"walks_truncated_max_nodes\": 3909,\n    \"truncation_rate\": 1944.6801800372205,\n    \"avg_walk_duration_ms\": 7529,\n    \"max_walk_duration_ms\": 5610,\n    \"avg_nodes_per_walk\": 6672,\n    \"max_depth_reached\": 7024,\n    \"total_text_chars\": 3154\n  },\n  \"pool_stats\": {\n    \"read_pool_size\": 2416,\n    \"read_pool_idle\": 3139,\n    \"write_pool_size\": 6093,\n    \"write_pool_idle\": 6550\n  },\n  \"hostname\": \"string\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "95cd5510-ffe7-407a-836e-324d418ecdce",
+    "name": "Screenpipe Activity System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.\n\nThe server runs locally at `http://localhost:3030` by default.",
+      "type": "text/plain"
+    }
+  }
+}

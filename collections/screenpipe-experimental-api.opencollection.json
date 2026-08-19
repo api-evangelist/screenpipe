@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Screenpipe Activity Experimental API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experimental",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Merge video frames",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/experimental/frames/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Merge video frames"
+        },
+        {
+          "info": {
+            "name": "Validate media files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/experimental/validate/media",
+            "params": [
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Validate media files"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
