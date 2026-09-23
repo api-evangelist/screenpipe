@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Screenpipe Activity Speakers API
+  title: Screenpipe Speakers API
   version: 1.0.0
   description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
 
@@ -26,8 +26,9 @@ paths:
         style: form
       - name: speaker_ids
         schema:
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: integer
         in: query
@@ -70,8 +71,9 @@ paths:
       parameters:
       - name: name
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       responses:
@@ -212,26 +214,15 @@ paths:
       summary: Undo speaker reassignment
 components:
   schemas:
-    UndoSpeakerReassignResponse:
+    UndoSpeakerReassignRequest:
       type: object
       properties:
-        restored:
-          type: integer
+        old_assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeakerOldAssignment'
       required:
-      - restored
-    Speaker:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        metadata:
-          type: string
-      required:
-      - id
-      - name
-      - metadata
+      - old_assignments
     ReassignSpeakerResponse:
       type: object
       properties:
@@ -253,15 +244,56 @@ components:
       - transcriptions_updated
       - embeddings_moved
       - old_assignments
-    UndoSpeakerReassignRequest:
+    UpdateSpeakerRequest:
       type: object
       properties:
-        old_assignments:
-          type: array
-          items:
-            $ref: '#/components/schemas/SpeakerOldAssignment'
+        id:
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type:
+          - string
+          - 'null'
       required:
-      - old_assignments
+      - id
+      - name
+      - metadata
+    ReassignSpeakerRequest:
+      type: object
+      properties:
+        audio_chunk_id:
+          type: integer
+        new_speaker_name:
+          type: string
+        propagate_similar:
+          type: boolean
+      required:
+      - audio_chunk_id
+      - new_speaker_name
+      - propagate_similar
+    DeleteSpeakerRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+      required:
+      - id
+    Speaker:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        metadata:
+          type: string
+      required:
+      - id
+      - name
+      - metadata
     MarkAsHallucinationRequest:
       type: object
       properties:
@@ -279,26 +311,13 @@ components:
       required:
       - transcription_id
       - old_speaker_id
-    DeleteSpeakerRequest:
+    UndoSpeakerReassignResponse:
       type: object
       properties:
-        id:
+        restored:
           type: integer
       required:
-      - id
-    ReassignSpeakerRequest:
-      type: object
-      properties:
-        audio_chunk_id:
-          type: integer
-        new_speaker_name:
-          type: string
-        propagate_similar:
-          type: boolean
-      required:
-      - audio_chunk_id
-      - new_speaker_name
-      - propagate_similar
+      - restored
     MergeSpeakersRequest:
       type: object
       properties:
@@ -309,18 +328,3 @@ components:
       required:
       - speaker_to_keep_id
       - speaker_to_merge_id
-    UpdateSpeakerRequest:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          nullable: true
-          type: string
-        metadata:
-          nullable: true
-          type: string
-      required:
-      - id
-      - name
-      - metadata

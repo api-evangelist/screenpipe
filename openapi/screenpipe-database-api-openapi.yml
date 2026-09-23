@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Screenpipe Activity Database API
+  title: Screenpipe Database API
   version: 1.0.0
   description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
 
@@ -52,27 +52,50 @@ paths:
       description: Manually insert screen or audio content into the database.
 components:
   schemas:
-    AddContentRequest:
-      type: object
-      properties:
-        device_name:
-          type: string
-        content:
-          $ref: '#/components/schemas/AddContentData'
-      required:
-      - device_name
-      - content
     AddContentResponse:
       type: object
       properties:
         success:
           type: boolean
         message:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - success
       - message
+    AddContentData:
+      type: object
+      properties:
+        content_type:
+          type: string
+        data:
+          $ref: '#/components/schemas/ContentData'
+      required:
+      - content_type
+      - data
+    OCRResult:
+      type: object
+      properties:
+        text:
+          type: string
+        text_json:
+          type:
+          - string
+          - 'null'
+        ocr_engine:
+          type:
+          - string
+          - 'null'
+        focused:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - text
+      - text_json
+      - ocr_engine
+      - focused
     ContentData:
       oneOf:
       - type: array
@@ -82,23 +105,28 @@ components:
             file_path:
               type: string
             timestamp:
-              nullable: true
-              type: string
+              type:
+              - string
+              - 'null'
               format: date-time
             app_name:
-              nullable: true
-              type: string
+              type:
+              - string
+              - 'null'
             window_name:
-              nullable: true
-              type: string
+              type:
+              - string
+              - 'null'
             ocr_results:
-              nullable: true
-              type: array
+              type:
+              - array
+              - 'null'
               items:
                 $ref: '#/components/schemas/OCRResult'
             tags:
-              nullable: true
-              type: array
+              type:
+              - array
+              - 'null'
               items:
                 type: string
           required:
@@ -117,25 +145,6 @@ components:
         required:
         - transcription
         - transcription_engine
-    OCRResult:
-      type: object
-      properties:
-        text:
-          type: string
-        text_json:
-          nullable: true
-          type: string
-        ocr_engine:
-          nullable: true
-          type: string
-        focused:
-          nullable: true
-          type: boolean
-      required:
-      - text
-      - text_json
-      - ocr_engine
-      - focused
     RawSqlQuery:
       type: object
       properties:
@@ -143,13 +152,13 @@ components:
           type: string
       required:
       - query
-    AddContentData:
+    AddContentRequest:
       type: object
       properties:
-        content_type:
+        device_name:
           type: string
-        data:
-          $ref: '#/components/schemas/ContentData'
+        content:
+          $ref: '#/components/schemas/AddContentData'
       required:
-      - content_type
-      - data
+      - device_name
+      - content

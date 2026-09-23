@@ -1,24 +1,7 @@
 {
   "provider": "screenpipe",
   "sources": [
-    "screenpipe-activity-api-openapi.yml",
-    "screenpipe-audio-api-openapi.yml",
-    "screenpipe-cloud-archive-api-openapi.yml",
-    "screenpipe-cloud-sync-api-openapi.yml",
-    "screenpipe-data-management-api-openapi.yml",
-    "screenpipe-data-retention-api-openapi.yml",
-    "screenpipe-database-api-openapi.yml",
-    "screenpipe-elements-api-openapi.yml",
-    "screenpipe-experimental-api-openapi.yml",
-    "screenpipe-frames-api-openapi.yml",
-    "screenpipe-meetings-api-openapi.yml",
-    "screenpipe-memories-api-openapi.yml",
-    "screenpipe-search-api-openapi.yml",
-    "screenpipe-speakers-api-openapi.yml",
-    "screenpipe-system-api-openapi.yml",
-    "screenpipe-tags-api-openapi.yml",
-    "screenpipe-vault-api-openapi.yml",
-    "screenpipe-vision-api-openapi.yml"
+    "_original/screenpipe-openapi-original.yml"
   ],
   "outputs": [
     "screenpipe-activity-api-openapi.yml",
@@ -43,6 +26,29 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "screenpipe-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "screenpipe-activity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-audio-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-cloud-archive-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-cloud-sync-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-data-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-data-retention-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-database-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-elements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-experimental-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-frames-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-meetings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-memories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-speakers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-system-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-vault-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "screenpipe-vision-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Screenpipe Activity Data Management API
+  title: Screenpipe Data Management API
   version: 1.0.0
   description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
 
@@ -68,6 +68,37 @@ paths:
       summary: Get device storage usage
 components:
   schemas:
+    DeleteTimeRangeResponse:
+      type: object
+      properties:
+        frames_deleted:
+          type: integer
+        ocr_deleted:
+          type: integer
+        audio_transcriptions_deleted:
+          type: integer
+        audio_chunks_deleted:
+          type: integer
+        video_chunks_deleted:
+          type: integer
+        accessibility_deleted:
+          type: integer
+        ui_events_deleted:
+          type: integer
+        video_files_deleted:
+          type: integer
+        audio_files_deleted:
+          type: integer
+      required:
+      - frames_deleted
+      - ocr_deleted
+      - audio_transcriptions_deleted
+      - audio_chunks_deleted
+      - video_chunks_deleted
+      - accessibility_deleted
+      - ui_events_deleted
+      - video_files_deleted
+      - audio_files_deleted
     DeleteTimeRangeRequest:
       type: object
       properties:
@@ -100,34 +131,3 @@ components:
           type: string
       required:
       - machine_id
-    DeleteTimeRangeResponse:
-      type: object
-      properties:
-        frames_deleted:
-          type: integer
-        ocr_deleted:
-          type: integer
-        audio_transcriptions_deleted:
-          type: integer
-        audio_chunks_deleted:
-          type: integer
-        video_chunks_deleted:
-          type: integer
-        accessibility_deleted:
-          type: integer
-        ui_events_deleted:
-          type: integer
-        video_files_deleted:
-          type: integer
-        audio_files_deleted:
-          type: integer
-      required:
-      - frames_deleted
-      - ocr_deleted
-      - audio_transcriptions_deleted
-      - audio_chunks_deleted
-      - video_chunks_deleted
-      - accessibility_deleted
-      - ui_events_deleted
-      - video_files_deleted
-      - audio_files_deleted

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Screenpipe Activity API
   version: 1.0.0
@@ -31,8 +31,9 @@ paths:
         style: form
       - name: app_name
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       responses:
@@ -47,16 +48,6 @@ paths:
       summary: Get activity summary
 components:
   schemas:
-    SpeakerSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        segment_count:
-          type: integer
-      required:
-      - name
-      - segment_count
     RecentText:
       type: object
       properties:
@@ -70,6 +61,26 @@ components:
       - text
       - app_name
       - timestamp
+    SpeakerSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        segment_count:
+          type: integer
+      required:
+      - name
+      - segment_count
+    TimeRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+      required:
+      - start
+      - end
     ActivitySummaryResponse:
       type: object
       properties:
@@ -93,18 +104,6 @@ components:
       - audio_summary
       - total_frames
       - time_range
-    AudioSummary:
-      type: object
-      properties:
-        segment_count:
-          type: integer
-        speakers:
-          type: array
-          items:
-            $ref: '#/components/schemas/SpeakerSummary'
-      required:
-      - segment_count
-      - speakers
     AppUsage:
       type: object
       properties:
@@ -124,13 +123,15 @@ components:
       - minutes
       - first_seen
       - last_seen
-    TimeRange:
+    AudioSummary:
       type: object
       properties:
-        start:
-          type: string
-        end:
-          type: string
+        segment_count:
+          type: integer
+        speakers:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeakerSummary'
       required:
-      - start
-      - end
+      - segment_count
+      - speakers

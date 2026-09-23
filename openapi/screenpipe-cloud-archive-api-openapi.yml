@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Screenpipe Activity Cloud Archive API
+  title: Screenpipe Cloud Archive API
   version: 1.0.0
   description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
 
@@ -80,16 +80,19 @@ paths:
       summary: Run archive now
 components:
   schemas:
-    ArchiveInitRequest:
+    ArchiveConfigureRequest:
       type: object
       properties:
-        token:
-          type: string
+        enabled:
+          type:
+          - boolean
+          - 'null'
         retention_days:
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
       required:
-      - token
+      - enabled
       - retention_days
     ArchiveStatusResponse:
       type: object
@@ -99,14 +102,17 @@ components:
         retention_days:
           type: integer
         watermark:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         last_cleanup:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         last_error:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         storage_used:
           type: integer
         storage_limit:
@@ -134,6 +140,18 @@ components:
       - chunks_uploaded
       - media_files_uploaded
       - media_files_pending
+    ArchiveInitRequest:
+      type: object
+      properties:
+        token:
+          type: string
+        retention_days:
+          type:
+          - integer
+          - 'null'
+      required:
+      - token
+      - retention_days
     ArchiveInitResponse:
       type: object
       properties:
@@ -144,15 +162,3 @@ components:
       required:
       - success
       - machine_id
-    ArchiveConfigureRequest:
-      type: object
-      properties:
-        enabled:
-          nullable: true
-          type: boolean
-        retention_days:
-          nullable: true
-          type: integer
-      required:
-      - enabled
-      - retention_days

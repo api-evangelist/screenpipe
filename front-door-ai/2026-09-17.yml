@@ -1,0 +1,30 @@
+# Front Door AI Index — screenpipe — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: screenpipe
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: screenpi.pe
+  final_host: screenpipe.com
+  ownership: own
+  owner: screenpipe
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 18
+  host_score: 18
+  density: 23.35
+  words: 771
+  tiers:
+    agentic: 6
+    core: 9
+    model: 3
+  ambiguous: 11
+  top_terms:
+    agent: 11
+    AI: 9
+    MCP: 4
+    Claude: 3
+    AI agent: 1
+    prompts: 1

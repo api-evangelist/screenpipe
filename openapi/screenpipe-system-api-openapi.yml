@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Screenpipe Activity System API
+  title: Screenpipe System API
   version: 1.0.0
   description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
 
@@ -26,103 +26,6 @@ paths:
       description: Returns system health status including audio/video pipeline state, device info, and version.
 components:
   schemas:
-    AudioPipelineHealthInfo:
-      type: object
-      properties:
-        uptime_secs:
-          type: number
-        chunks_sent:
-          type: integer
-        chunks_channel_full:
-          type: integer
-        stream_timeouts:
-          type: integer
-        vad_passed:
-          type: integer
-        vad_rejected:
-          type: integer
-        vad_passthrough_rate:
-          type: number
-        avg_speech_ratio:
-          type: number
-        transcriptions_completed:
-          type: integer
-        transcriptions_empty:
-          type: integer
-        transcription_errors:
-          type: integer
-        db_inserted:
-          type: integer
-        total_words:
-          type: integer
-        words_per_minute:
-          type: number
-        chunks_received:
-          nullable: true
-          type: integer
-        process_errors:
-          nullable: true
-          type: integer
-        audio_level_rms:
-          nullable: true
-          type: number
-        audio_devices:
-          nullable: true
-          type: array
-          items:
-            type: string
-        transcription_mode:
-          nullable: true
-          type: string
-        transcription_paused:
-          nullable: true
-          type: boolean
-        segments_deferred:
-          nullable: true
-          type: integer
-        segments_batch_processed:
-          nullable: true
-          type: integer
-        batch_paused_reason:
-          nullable: true
-          type: string
-        meeting_detected:
-          nullable: true
-          type: boolean
-        meeting_app:
-          nullable: true
-          type: string
-      required:
-      - uptime_secs
-      - chunks_sent
-      - chunks_channel_full
-      - stream_timeouts
-      - vad_passed
-      - vad_rejected
-      - vad_passthrough_rate
-      - avg_speech_ratio
-      - transcriptions_completed
-      - transcriptions_empty
-      - transcription_errors
-      - db_inserted
-      - total_words
-      - words_per_minute
-    PoolHealthInfo:
-      type: object
-      properties:
-        read_pool_size:
-          type: integer
-        read_pool_idle:
-          type: integer
-        write_pool_size:
-          type: integer
-        write_pool_idle:
-          type: integer
-      required:
-      - read_pool_size
-      - read_pool_idle
-      - write_pool_size
-      - write_pool_idle
     TreeWalkerSnapshot:
       description: Point-in-time snapshot of tree walker health metrics (no private data).
       type: object
@@ -170,74 +73,6 @@ components:
       - avg_nodes_per_walk
       - max_depth_reached
       - total_text_chars
-    HealthCheckResponse:
-      type: object
-      properties:
-        status:
-          type: string
-        status_code:
-          type: integer
-        last_frame_timestamp:
-          nullable: true
-          type: string
-          format: date-time
-        last_audio_timestamp:
-          nullable: true
-          type: string
-          format: date-time
-        frame_status:
-          type: string
-        audio_status:
-          type: string
-        message:
-          type: string
-        verbose_instructions:
-          nullable: true
-          type: string
-        device_status_details:
-          nullable: true
-          type: string
-        monitors:
-          nullable: true
-          type: array
-          items:
-            type: string
-        pipeline:
-          $ref: '#/components/schemas/PipelineHealthInfo'
-        audio_pipeline:
-          $ref: '#/components/schemas/AudioPipelineHealthInfo'
-        accessibility:
-          $ref: '#/components/schemas/TreeWalkerSnapshot'
-        pool_stats:
-          $ref: '#/components/schemas/PoolHealthInfo'
-        vision_db_write_stalled:
-          type: boolean
-        audio_db_write_stalled:
-          type: boolean
-        drm_content_paused:
-          type: boolean
-        schedule_paused:
-          type: boolean
-        hostname:
-          nullable: true
-          type: string
-        version:
-          nullable: true
-          type: string
-      required:
-      - status
-      - status_code
-      - last_frame_timestamp
-      - last_audio_timestamp
-      - frame_status
-      - audio_status
-      - message
-      - verbose_instructions
-      - device_status_details
-      - vision_db_write_stalled
-      - audio_db_write_stalled
-      - drm_content_paused
-      - schedule_paused
     PipelineHealthInfo:
       type: object
       properties:
@@ -262,8 +97,9 @@ components:
         video_queue_depth:
           type: integer
         time_to_first_frame_ms:
-          nullable: true
-          type: number
+          type:
+          - number
+          - 'null'
         pipeline_stall_count:
           type: integer
         ocr_cache_hit_rate:
@@ -282,3 +118,186 @@ components:
       - time_to_first_frame_ms
       - pipeline_stall_count
       - ocr_cache_hit_rate
+    PoolHealthInfo:
+      type: object
+      properties:
+        read_pool_size:
+          type: integer
+        read_pool_idle:
+          type: integer
+        write_pool_size:
+          type: integer
+        write_pool_idle:
+          type: integer
+      required:
+      - read_pool_size
+      - read_pool_idle
+      - write_pool_size
+      - write_pool_idle
+    AudioPipelineHealthInfo:
+      type: object
+      properties:
+        uptime_secs:
+          type: number
+        chunks_sent:
+          type: integer
+        chunks_channel_full:
+          type: integer
+        stream_timeouts:
+          type: integer
+        vad_passed:
+          type: integer
+        vad_rejected:
+          type: integer
+        vad_passthrough_rate:
+          type: number
+        avg_speech_ratio:
+          type: number
+        transcriptions_completed:
+          type: integer
+        transcriptions_empty:
+          type: integer
+        transcription_errors:
+          type: integer
+        db_inserted:
+          type: integer
+        total_words:
+          type: integer
+        words_per_minute:
+          type: number
+        chunks_received:
+          type:
+          - integer
+          - 'null'
+        process_errors:
+          type:
+          - integer
+          - 'null'
+        audio_level_rms:
+          type:
+          - number
+          - 'null'
+        audio_devices:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        transcription_mode:
+          type:
+          - string
+          - 'null'
+        transcription_paused:
+          type:
+          - boolean
+          - 'null'
+        segments_deferred:
+          type:
+          - integer
+          - 'null'
+        segments_batch_processed:
+          type:
+          - integer
+          - 'null'
+        batch_paused_reason:
+          type:
+          - string
+          - 'null'
+        meeting_detected:
+          type:
+          - boolean
+          - 'null'
+        meeting_app:
+          type:
+          - string
+          - 'null'
+      required:
+      - uptime_secs
+      - chunks_sent
+      - chunks_channel_full
+      - stream_timeouts
+      - vad_passed
+      - vad_rejected
+      - vad_passthrough_rate
+      - avg_speech_ratio
+      - transcriptions_completed
+      - transcriptions_empty
+      - transcription_errors
+      - db_inserted
+      - total_words
+      - words_per_minute
+    HealthCheckResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        status_code:
+          type: integer
+        last_frame_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        last_audio_timestamp:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        frame_status:
+          type: string
+        audio_status:
+          type: string
+        message:
+          type: string
+        verbose_instructions:
+          type:
+          - string
+          - 'null'
+        device_status_details:
+          type:
+          - string
+          - 'null'
+        monitors:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        pipeline:
+          $ref: '#/components/schemas/PipelineHealthInfo'
+        audio_pipeline:
+          $ref: '#/components/schemas/AudioPipelineHealthInfo'
+        accessibility:
+          $ref: '#/components/schemas/TreeWalkerSnapshot'
+        pool_stats:
+          $ref: '#/components/schemas/PoolHealthInfo'
+        vision_db_write_stalled:
+          type: boolean
+        audio_db_write_stalled:
+          type: boolean
+        drm_content_paused:
+          type: boolean
+        schedule_paused:
+          type: boolean
+        hostname:
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+      required:
+      - status
+      - status_code
+      - last_frame_timestamp
+      - last_audio_timestamp
+      - frame_status
+      - audio_status
+      - message
+      - verbose_instructions
+      - device_status_details
+      - vision_db_write_stalled
+      - audio_db_write_stalled
+      - drm_content_paused
+      - schedule_paused

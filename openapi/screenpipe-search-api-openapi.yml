@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Screenpipe Activity Search API
+  title: Screenpipe Search API
   version: 1.0.0
   description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
 
@@ -16,8 +16,9 @@ paths:
       parameters:
       - name: q
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: limit
@@ -37,34 +38,39 @@ paths:
         style: form
       - name: start_time
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
         in: query
         style: form
       - name: end_time
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
         in: query
         style: form
       - name: app_name
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: window_name
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: frame_name
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: include_frames
@@ -74,40 +80,46 @@ paths:
         style: form
       - name: min_length
         schema:
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
         in: query
         style: form
       - name: max_length
         schema:
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
         in: query
         style: form
       - name: speaker_ids
         schema:
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: integer
         in: query
         style: form
       - name: focused
         schema:
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         in: query
         style: form
       - name: browser_url
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: speaker_name
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: include_cloud
@@ -117,20 +129,23 @@ paths:
         style: form
       - name: max_content_length
         schema:
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
         in: query
         style: form
       - name: device_name
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: machine_id
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       responses:
@@ -165,15 +180,17 @@ paths:
         style: form
       - name: start_time
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
         in: query
         style: form
       - name: end_time
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
         in: query
         style: form
@@ -189,8 +206,9 @@ paths:
         style: form
       - name: app_names
         schema:
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
         in: query
@@ -227,26 +245,6 @@ components:
       required:
       - data
       - pagination
-    Speaker:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        metadata:
-          type: string
-      required:
-      - id
-      - name
-      - metadata
-    CloudStatus:
-      type: string
-      enum:
-      - available
-      - disabled
-      - not_initialized
-      - error
     ContentType:
       type: string
       enum:
@@ -256,6 +254,23 @@ components:
       - input
       - accessibility
       - memory
+    Order:
+      type: string
+      enum:
+      - ascending
+      - descending
+    DeviceType:
+      type: string
+      enum:
+      - Input
+      - Output
+    CloudStatus:
+      type: string
+      enum:
+      - available
+      - disabled
+      - not_initialized
+      - error
     ContentItem:
       oneOf:
       - type: object
@@ -287,17 +302,21 @@ components:
                 items:
                   type: string
               frame:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               frame_name:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               browser_url:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               focused:
-                nullable: true
-                type: boolean
+                type:
+                - boolean
+                - 'null'
               device_name:
                 type: string
             required:
@@ -348,11 +367,13 @@ components:
               speaker:
                 $ref: '#/components/schemas/Speaker'
               start_time:
-                nullable: true
-                type: number
+                type:
+                - number
+                - 'null'
               end_time:
-                nullable: true
-                type: number
+                type:
+                - number
+                - 'null'
             required:
             - chunk_id
             - transcription
@@ -389,19 +410,22 @@ components:
               window_name:
                 type: string
               initial_traversal_at:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
                 format: date-time
               file_path:
                 type: string
               offset_index:
                 type: integer
               frame_name:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               browser_url:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
             required:
             - id
             - text
@@ -434,35 +458,45 @@ components:
               event_type:
                 type: string
               app_name:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               window_title:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               browser_url:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               text_content:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               x:
-                nullable: true
-                type: integer
+                type:
+                - integer
+                - 'null'
               y:
-                nullable: true
-                type: integer
+                type:
+                - integer
+                - 'null'
               key_code:
-                nullable: true
-                type: integer
+                type:
+                - integer
+                - 'null'
               modifiers:
-                nullable: true
-                type: integer
+                type:
+                - integer
+                - 'null'
               element_role:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
               element_name:
-                nullable: true
-                type: string
+                type:
+                - string
+                - 'null'
             required:
             - id
             - timestamp
@@ -496,8 +530,9 @@ components:
               source:
                 type: string
               source_context:
-                nullable: true
-                type: object
+                type:
+                - object
+                - 'null'
               tags:
                 type: array
                 items:
@@ -520,34 +555,19 @@ components:
         required:
         - type
         - content
-    Order:
-      type: string
-      enum:
-      - ascending
-      - descending
-    CloudSearchMetadata:
-      description: Metadata about cloud search to include in responses.
+    Speaker:
       type: object
       properties:
-        cloudSearchAvailable:
-          type: boolean
-        cloudHasRelevantData:
-          type: boolean
-        cloudQueryHint:
-          nullable: true
+        id:
+          type: integer
+        name:
           type: string
-        status:
-          $ref: '#/components/schemas/CloudStatus'
+        metadata:
+          type: string
       required:
-      - cloudSearchAvailable
-      - cloudHasRelevantData
-      - cloudQueryHint
-      - status
-    DeviceType:
-      type: string
-      enum:
-      - Input
-      - Output
+      - id
+      - name
+      - metadata
     PaginationInfo:
       type: object
       properties:
@@ -561,3 +581,22 @@ components:
       - limit
       - offset
       - total
+    CloudSearchMetadata:
+      description: Metadata about cloud search to include in responses.
+      type: object
+      properties:
+        cloudSearchAvailable:
+          type: boolean
+        cloudHasRelevantData:
+          type: boolean
+        cloudQueryHint:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/CloudStatus'
+      required:
+      - cloudSearchAvailable
+      - cloudHasRelevantData
+      - cloudQueryHint
+      - status

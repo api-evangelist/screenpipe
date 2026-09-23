@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Screenpipe Activity Frames API
+  title: Screenpipe Frames API
   version: 1.0.0
   description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
 
@@ -49,8 +49,9 @@ paths:
         style: simple
       - name: query
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       responses:
@@ -108,8 +109,9 @@ paths:
         style: simple
       - name: query
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       responses:
@@ -239,8 +241,9 @@ paths:
         style: simple
       - name: source
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       responses:
@@ -255,19 +258,6 @@ paths:
       summary: Get frame UI elements
 components:
   schemas:
-    FrameTextResponse:
-      description: Response type for frame OCR data endpoint
-      type: object
-      properties:
-        frame_id:
-          type: integer
-        text_positions:
-          type: array
-          items:
-            $ref: '#/components/schemas/TextPosition'
-      required:
-      - frame_id
-      - text_positions
     TextBounds:
       type: object
       properties:
@@ -284,18 +274,6 @@ components:
       - top
       - width
       - height
-    ElementsListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ElementResponse'
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-      required:
-      - data
-      - pagination
     FrameContextResponse:
       description: Response type for frame context endpoint (accessibility-first, OCR fallback)
       type: object
@@ -303,8 +281,9 @@ components:
         frame_id:
           type: integer
         text:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         nodes:
           type: array
           items:
@@ -321,6 +300,124 @@ components:
       - nodes
       - urls
       - text_source
+    TextPosition:
+      type: object
+      properties:
+        text:
+          type: string
+        confidence:
+          type: number
+        bounds:
+          $ref: '#/components/schemas/TextBounds'
+      required:
+      - text
+      - confidence
+      - bounds
+    ElementResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        frame_id:
+          type: integer
+        source:
+          type: string
+        role:
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        parent_id:
+          type:
+          - integer
+          - 'null'
+        depth:
+          type: integer
+        bounds:
+          $ref: '#/components/schemas/BoundsResponse'
+        confidence:
+          type:
+          - number
+          - 'null'
+        sort_order:
+          type: integer
+      required:
+      - id
+      - frame_id
+      - source
+      - role
+      - text
+      - parent_id
+      - depth
+      - bounds
+      - confidence
+      - sort_order
+    PaginationResponse:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      - offset
+      - total
+    NextValidFrameResponse:
+      description: Response for next valid frame endpoint
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+        skipped_count:
+          type: integer
+      required:
+      - frame_id
+      - timestamp
+      - skipped_count
+    FrameTextResponse:
+      description: Response type for frame OCR data endpoint
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        text_positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextPosition'
+      required:
+      - frame_id
+      - text_positions
+    FrameMetadataResponse:
+      description: Response type for frame metadata (used by deep link navigation)
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+      required:
+      - frame_id
+      - timestamp
+    ElementsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElementResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - data
+      - pagination
     BoundsResponse:
       type: object
       properties:
@@ -337,19 +434,6 @@ components:
       - top
       - width
       - height
-    PaginationResponse:
-      type: object
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-      required:
-      - limit
-      - offset
-      - total
     AccessibilityNode:
       description: A node from the accessibility tree
       type: object
@@ -363,74 +447,13 @@ components:
         bounds:
           $ref: '#/components/schemas/AccessibilityNodeBounds'
         properties:
-          nullable: true
-          type: object
+          type:
+          - object
+          - 'null'
       required:
       - role
       - text
       - depth
-    TextPosition:
-      type: object
-      properties:
-        text:
-          type: string
-        confidence:
-          type: number
-        bounds:
-          $ref: '#/components/schemas/TextBounds'
-      required:
-      - text
-      - confidence
-      - bounds
-    FrameMetadataResponse:
-      description: Response type for frame metadata (used by deep link navigation)
-      type: object
-      properties:
-        frame_id:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
-      required:
-      - frame_id
-      - timestamp
-    ElementResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        frame_id:
-          type: integer
-        source:
-          type: string
-        role:
-          type: string
-        text:
-          nullable: true
-          type: string
-        parent_id:
-          nullable: true
-          type: integer
-        depth:
-          type: integer
-        bounds:
-          $ref: '#/components/schemas/BoundsResponse'
-        confidence:
-          nullable: true
-          type: number
-        sort_order:
-          type: integer
-      required:
-      - id
-      - frame_id
-      - source
-      - role
-      - text
-      - parent_id
-      - depth
-      - bounds
-      - confidence
-      - sort_order
     AccessibilityNodeBounds:
       description: Bounding box for an accessibility node (0-1 normalized to monitor)
       type: object
@@ -448,18 +471,3 @@ components:
       - top
       - width
       - height
-    NextValidFrameResponse:
-      description: Response for next valid frame endpoint
-      type: object
-      properties:
-        frame_id:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
-        skipped_count:
-          type: integer
-      required:
-      - frame_id
-      - timestamp
-      - skipped_count

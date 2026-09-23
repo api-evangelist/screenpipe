@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Screenpipe Activity Meetings API
+  title: Screenpipe Meetings API
   version: 1.0.0
   description: 'Screenpipe captures everything you see, say, and hear on your computer. Use this API to search through captured content, manage recordings, and build AI-powered automations on top of your screen data.
 
@@ -16,14 +16,16 @@ paths:
       parameters:
       - name: start_time
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: end_time
         schema:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         in: query
         style: form
       - name: limit
@@ -198,6 +200,49 @@ paths:
       summary: Delete meeting
 components:
   schemas:
+    UpdateMeetingRequest:
+      type: object
+      properties:
+        meeting_start:
+          type:
+          - string
+          - 'null'
+        meeting_end:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        attendees:
+          type:
+          - string
+          - 'null'
+        note:
+          type:
+          - string
+          - 'null'
+        meeting_app:
+          type:
+          - string
+          - 'null'
+      required:
+      - meeting_start
+      - meeting_end
+      - title
+      - attendees
+      - note
+      - meeting_app
+    BulkDeleteMeetingsRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+      required:
+      - ids
     MeetingRecord:
       type: object
       properties:
@@ -206,19 +251,23 @@ components:
         meeting_start:
           type: string
         meeting_end:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         meeting_app:
           type: string
         title:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         attendees:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         note:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         detection_source:
           type: string
         created_at:
@@ -233,15 +282,25 @@ components:
       - note
       - detection_source
       - created_at
-    BulkDeleteMeetingsRequest:
+    StartMeetingRequest:
       type: object
       properties:
-        ids:
-          type: array
-          items:
-            type: integer
+        app:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        attendees:
+          type:
+          - string
+          - 'null'
       required:
-      - ids
+      - app
+      - title
+      - attendees
     MergeMeetingsRequest:
       type: object
       properties:
@@ -251,47 +310,3 @@ components:
             type: integer
       required:
       - ids
-    StartMeetingRequest:
-      type: object
-      properties:
-        app:
-          nullable: true
-          type: string
-        title:
-          nullable: true
-          type: string
-        attendees:
-          nullable: true
-          type: string
-      required:
-      - app
-      - title
-      - attendees
-    UpdateMeetingRequest:
-      type: object
-      properties:
-        meeting_start:
-          nullable: true
-          type: string
-        meeting_end:
-          nullable: true
-          type: string
-        title:
-          nullable: true
-          type: string
-        attendees:
-          nullable: true
-          type: string
-        note:
-          nullable: true
-          type: string
-        meeting_app:
-          nullable: true
-          type: string
-      required:
-      - meeting_start
-      - meeting_end
-      - title
-      - attendees
-      - note
-      - meeting_app
