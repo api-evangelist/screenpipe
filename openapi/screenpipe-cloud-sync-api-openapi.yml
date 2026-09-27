@@ -122,80 +122,6 @@ paths:
       summary: Pull pipe configs from cloud
 components:
   schemas:
-    PipeSyncResponse:
-      description: Response from pipe sync operations.
-      type: object
-      properties:
-        success:
-          type: boolean
-        actions:
-          type: array
-          items:
-            type: string
-        errors:
-          type: array
-          items:
-            type: string
-      required:
-      - success
-      - actions
-    SyncInitRequest:
-      description: Request to initialize sync at runtime.
-      type: object
-      properties:
-        token:
-          type: string
-        password:
-          type: string
-        machine_id:
-          type:
-          - string
-          - 'null'
-        sync_interval_secs:
-          type:
-          - integer
-          - 'null'
-      required:
-      - token
-      - password
-      - machine_id
-      - sync_interval_secs
-    SyncDownloadRequest:
-      description: Request to download data from other devices.
-      type: object
-      properties:
-        hours:
-          type: integer
-      required:
-      - hours
-    SyncInitResponse:
-      description: Response from sync initialization.
-      type: object
-      properties:
-        success:
-          type: boolean
-        is_new_user:
-          type: boolean
-        machine_id:
-          type: string
-      required:
-      - success
-      - is_new_user
-      - machine_id
-    SyncDownloadResponse:
-      description: Response from download operation.
-      type: object
-      properties:
-        success:
-          type: boolean
-        blobs_downloaded:
-          type: integer
-        records_imported:
-          type: integer
-      required:
-      - success
-      - blobs_downloaded
-      - records_imported
     SyncStatusResponse:
       description: Response for sync status.
       type: object
@@ -227,3 +153,77 @@ components:
       - last_error
       - machine_id
       - last_download_at
+    SyncDownloadResponse:
+      description: Response from download operation.
+      type: object
+      properties:
+        success:
+          type: boolean
+        blobs_downloaded:
+          type: integer
+        records_imported:
+          type: integer
+      required:
+      - success
+      - blobs_downloaded
+      - records_imported
+    SyncInitRequest:
+      description: Request to initialize sync at runtime.
+      type: object
+      properties:
+        token:
+          type: string
+        password:
+          type: string
+        machine_id:
+          type:
+          - string
+          - 'null'
+        sync_interval_secs:
+          type:
+          - integer
+          - 'null'
+      required:
+      - token
+      - password
+      - machine_id
+      - sync_interval_secs
+    PipeSyncResponse:
+      description: Response from pipe sync operations.
+      type: object
+      properties:
+        success:
+          type: boolean
+        actions:
+          type: array
+          items:
+            type: string
+        errors:
+          type: array
+          items:
+            type: string
+      required:
+      - success
+      - actions
+    SyncDownloadRequest:
+      description: Request to download data from other devices.
+      type: object
+      properties:
+        hours:
+          type: integer
+      required:
+      - hours
+    SyncInitResponse:
+      description: Response from sync initialization.
+      type: object
+      properties:
+        success:
+          type: boolean
+        is_new_user:
+          type: boolean
+        machine_id:
+          type: string
+      required:
+      - success
+      - is_new_user
+      - machine_id

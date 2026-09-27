@@ -61,16 +61,6 @@ components:
       - text
       - app_name
       - timestamp
-    SpeakerSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        segment_count:
-          type: integer
-      required:
-      - name
-      - segment_count
     TimeRange:
       type: object
       properties:
@@ -135,3 +125,13 @@ components:
       required:
       - segment_count
       - speakers
+    SpeakerSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        segment_count:
+          type: integer
+      required:
+      - name
+      - segment_count

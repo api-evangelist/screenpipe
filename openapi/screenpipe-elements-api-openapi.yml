@@ -88,34 +88,6 @@ paths:
       summary: Search UI elements
 components:
   schemas:
-    ElementsListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ElementResponse'
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-      required:
-      - data
-      - pagination
-    BoundsResponse:
-      type: object
-      properties:
-        left:
-          type: number
-        top:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
-      required:
-      - left
-      - top
-      - width
-      - height
     ElementResponse:
       type: object
       properties:
@@ -156,6 +128,34 @@ components:
       - bounds
       - confidence
       - sort_order
+    BoundsResponse:
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height
+    ElementsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElementResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - data
+      - pagination
     PaginationResponse:
       type: object
       properties:

@@ -94,6 +94,16 @@ components:
       required:
       - enabled
       - retention_days
+    ArchiveInitResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        machine_id:
+          type: string
+      required:
+      - success
+      - machine_id
     ArchiveStatusResponse:
       type: object
       properties:
@@ -152,13 +162,3 @@ components:
       required:
       - token
       - retention_days
-    ArchiveInitResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        machine_id:
-          type: string
-      required:
-      - success
-      - machine_id

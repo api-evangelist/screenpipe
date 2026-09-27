@@ -200,6 +200,34 @@ paths:
       summary: Delete meeting
 components:
   schemas:
+    StartMeetingRequest:
+      type: object
+      properties:
+        app:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        attendees:
+          type:
+          - string
+          - 'null'
+      required:
+      - app
+      - title
+      - attendees
+    BulkDeleteMeetingsRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+      required:
+      - ids
     UpdateMeetingRequest:
       type: object
       properties:
@@ -234,15 +262,6 @@ components:
       - attendees
       - note
       - meeting_app
-    BulkDeleteMeetingsRequest:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-      required:
-      - ids
     MeetingRecord:
       type: object
       properties:
@@ -282,25 +301,6 @@ components:
       - note
       - detection_source
       - created_at
-    StartMeetingRequest:
-      type: object
-      properties:
-        app:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        attendees:
-          type:
-          - string
-          - 'null'
-      required:
-      - app
-      - title
-      - attendees
     MergeMeetingsRequest:
       type: object
       properties:

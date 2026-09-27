@@ -26,98 +26,6 @@ paths:
       description: Returns system health status including audio/video pipeline state, device info, and version.
 components:
   schemas:
-    TreeWalkerSnapshot:
-      description: Point-in-time snapshot of tree walker health metrics (no private data).
-      type: object
-      properties:
-        walks_total:
-          type: integer
-        walks_stored:
-          type: integer
-        walks_deduped:
-          type: integer
-        walks_empty:
-          type: integer
-        walks_error:
-          type: integer
-        walks_truncated:
-          type: integer
-        walks_truncated_timeout:
-          type: integer
-        walks_truncated_max_nodes:
-          type: integer
-        truncation_rate:
-          type: number
-        avg_walk_duration_ms:
-          type: integer
-        max_walk_duration_ms:
-          type: integer
-        avg_nodes_per_walk:
-          type: integer
-        max_depth_reached:
-          type: integer
-        total_text_chars:
-          type: integer
-      required:
-      - walks_total
-      - walks_stored
-      - walks_deduped
-      - walks_empty
-      - walks_error
-      - walks_truncated
-      - walks_truncated_timeout
-      - walks_truncated_max_nodes
-      - truncation_rate
-      - avg_walk_duration_ms
-      - max_walk_duration_ms
-      - avg_nodes_per_walk
-      - max_depth_reached
-      - total_text_chars
-    PipelineHealthInfo:
-      type: object
-      properties:
-        uptime_secs:
-          type: number
-        frames_captured:
-          type: integer
-        frames_db_written:
-          type: integer
-        frames_dropped:
-          type: integer
-        frame_drop_rate:
-          type: number
-        capture_fps_actual:
-          type: number
-        avg_ocr_latency_ms:
-          type: number
-        avg_db_latency_ms:
-          type: number
-        ocr_queue_depth:
-          type: integer
-        video_queue_depth:
-          type: integer
-        time_to_first_frame_ms:
-          type:
-          - number
-          - 'null'
-        pipeline_stall_count:
-          type: integer
-        ocr_cache_hit_rate:
-          type: number
-      required:
-      - uptime_secs
-      - frames_captured
-      - frames_db_written
-      - frames_dropped
-      - frame_drop_rate
-      - capture_fps_actual
-      - avg_ocr_latency_ms
-      - avg_db_latency_ms
-      - ocr_queue_depth
-      - video_queue_depth
-      - time_to_first_frame_ms
-      - pipeline_stall_count
-      - ocr_cache_hit_rate
     PoolHealthInfo:
       type: object
       properties:
@@ -301,3 +209,95 @@ components:
       - audio_db_write_stalled
       - drm_content_paused
       - schedule_paused
+    PipelineHealthInfo:
+      type: object
+      properties:
+        uptime_secs:
+          type: number
+        frames_captured:
+          type: integer
+        frames_db_written:
+          type: integer
+        frames_dropped:
+          type: integer
+        frame_drop_rate:
+          type: number
+        capture_fps_actual:
+          type: number
+        avg_ocr_latency_ms:
+          type: number
+        avg_db_latency_ms:
+          type: number
+        ocr_queue_depth:
+          type: integer
+        video_queue_depth:
+          type: integer
+        time_to_first_frame_ms:
+          type:
+          - number
+          - 'null'
+        pipeline_stall_count:
+          type: integer
+        ocr_cache_hit_rate:
+          type: number
+      required:
+      - uptime_secs
+      - frames_captured
+      - frames_db_written
+      - frames_dropped
+      - frame_drop_rate
+      - capture_fps_actual
+      - avg_ocr_latency_ms
+      - avg_db_latency_ms
+      - ocr_queue_depth
+      - video_queue_depth
+      - time_to_first_frame_ms
+      - pipeline_stall_count
+      - ocr_cache_hit_rate
+    TreeWalkerSnapshot:
+      description: Point-in-time snapshot of tree walker health metrics (no private data).
+      type: object
+      properties:
+        walks_total:
+          type: integer
+        walks_stored:
+          type: integer
+        walks_deduped:
+          type: integer
+        walks_empty:
+          type: integer
+        walks_error:
+          type: integer
+        walks_truncated:
+          type: integer
+        walks_truncated_timeout:
+          type: integer
+        walks_truncated_max_nodes:
+          type: integer
+        truncation_rate:
+          type: number
+        avg_walk_duration_ms:
+          type: integer
+        max_walk_duration_ms:
+          type: integer
+        avg_nodes_per_walk:
+          type: integer
+        max_depth_reached:
+          type: integer
+        total_text_chars:
+          type: integer
+      required:
+      - walks_total
+      - walks_stored
+      - walks_deduped
+      - walks_empty
+      - walks_error
+      - walks_truncated
+      - walks_truncated_timeout
+      - walks_truncated_max_nodes
+      - truncation_rate
+      - avg_walk_duration_ms
+      - max_walk_duration_ms
+      - avg_nodes_per_walk
+      - max_depth_reached
+      - total_text_chars

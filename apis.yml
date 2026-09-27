@@ -68,7 +68,7 @@ tags:
 - MCP
 - Developer Tools
 - Productivity
-- Open-Source
+- Open Source
 tags_raw:
 - Company
 - Screen Recording
@@ -82,6 +82,7 @@ tags_raw:
 - Developer Tools
 - Productivity
 - Open Source
+- Open-Source
 apis:
 - aid: screenpipe:screenpipe-activity-api
   name: Screenpipe Activity API

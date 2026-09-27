@@ -214,15 +214,59 @@ paths:
       summary: Undo speaker reassignment
 components:
   schemas:
-    UndoSpeakerReassignRequest:
+    Speaker:
       type: object
       properties:
-        old_assignments:
-          type: array
-          items:
-            $ref: '#/components/schemas/SpeakerOldAssignment'
+        id:
+          type: integer
+        name:
+          type: string
+        metadata:
+          type: string
       required:
-      - old_assignments
+      - id
+      - name
+      - metadata
+    ReassignSpeakerRequest:
+      type: object
+      properties:
+        audio_chunk_id:
+          type: integer
+        new_speaker_name:
+          type: string
+        propagate_similar:
+          type: boolean
+      required:
+      - audio_chunk_id
+      - new_speaker_name
+      - propagate_similar
+    MergeSpeakersRequest:
+      type: object
+      properties:
+        speaker_to_keep_id:
+          type: integer
+        speaker_to_merge_id:
+          type: integer
+      required:
+      - speaker_to_keep_id
+      - speaker_to_merge_id
+    UpdateSpeakerRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        metadata:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+      - metadata
     ReassignSpeakerResponse:
       type: object
       properties:
@@ -244,63 +288,6 @@ components:
       - transcriptions_updated
       - embeddings_moved
       - old_assignments
-    UpdateSpeakerRequest:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type:
-          - string
-          - 'null'
-        metadata:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - name
-      - metadata
-    ReassignSpeakerRequest:
-      type: object
-      properties:
-        audio_chunk_id:
-          type: integer
-        new_speaker_name:
-          type: string
-        propagate_similar:
-          type: boolean
-      required:
-      - audio_chunk_id
-      - new_speaker_name
-      - propagate_similar
-    DeleteSpeakerRequest:
-      type: object
-      properties:
-        id:
-          type: integer
-      required:
-      - id
-    Speaker:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        metadata:
-          type: string
-      required:
-      - id
-      - name
-      - metadata
-    MarkAsHallucinationRequest:
-      type: object
-      properties:
-        speaker_id:
-          type: integer
-      required:
-      - speaker_id
     SpeakerOldAssignment:
       type: object
       properties:
@@ -311,6 +298,15 @@ components:
       required:
       - transcription_id
       - old_speaker_id
+    UndoSpeakerReassignRequest:
+      type: object
+      properties:
+        old_assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpeakerOldAssignment'
+      required:
+      - old_assignments
     UndoSpeakerReassignResponse:
       type: object
       properties:
@@ -318,13 +314,17 @@ components:
           type: integer
       required:
       - restored
-    MergeSpeakersRequest:
+    DeleteSpeakerRequest:
       type: object
       properties:
-        speaker_to_keep_id:
-          type: integer
-        speaker_to_merge_id:
+        id:
           type: integer
       required:
-      - speaker_to_keep_id
-      - speaker_to_merge_id
+      - id
+    MarkAsHallucinationRequest:
+      type: object
+      properties:
+        speaker_id:
+          type: integer
+      required:
+      - speaker_id

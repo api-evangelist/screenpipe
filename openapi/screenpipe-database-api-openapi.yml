@@ -52,50 +52,6 @@ paths:
       description: Manually insert screen or audio content into the database.
 components:
   schemas:
-    AddContentResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type:
-          - string
-          - 'null'
-      required:
-      - success
-      - message
-    AddContentData:
-      type: object
-      properties:
-        content_type:
-          type: string
-        data:
-          $ref: '#/components/schemas/ContentData'
-      required:
-      - content_type
-      - data
-    OCRResult:
-      type: object
-      properties:
-        text:
-          type: string
-        text_json:
-          type:
-          - string
-          - 'null'
-        ocr_engine:
-          type:
-          - string
-          - 'null'
-        focused:
-          type:
-          - boolean
-          - 'null'
-      required:
-      - text
-      - text_json
-      - ocr_engine
-      - focused
     ContentData:
       oneOf:
       - type: array
@@ -152,6 +108,50 @@ components:
           type: string
       required:
       - query
+    OCRResult:
+      type: object
+      properties:
+        text:
+          type: string
+        text_json:
+          type:
+          - string
+          - 'null'
+        ocr_engine:
+          type:
+          - string
+          - 'null'
+        focused:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - text
+      - text_json
+      - ocr_engine
+      - focused
+    AddContentResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type:
+          - string
+          - 'null'
+      required:
+      - success
+      - message
+    AddContentData:
+      type: object
+      properties:
+        content_type:
+          type: string
+        data:
+          $ref: '#/components/schemas/ContentData'
+      required:
+      - content_type
+      - data
     AddContentRequest:
       type: object
       properties:

@@ -99,7 +99,7 @@ paths:
         Both OCR and accessibility bounds are normalized to 0-1 relative to the
 
         monitor (full-screen capture), so they align correctly with the screenshot.'
-      operationId: routes_frames_get_frame_text_data
+      operationId: getFramesByFrameIdOcr
       parameters:
       - name: frame_id
         schema:
@@ -124,6 +124,8 @@ paths:
       tags:
       - Frames
       summary: Get frame OCR (deprecated)
+      x-operation-id-source: normalized
+      x-operation-id-original: routes_frames_get_frame_text_data
     post:
       description: 'Run on-demand OCR on a frame that has no stored bounding boxes.
 
@@ -132,7 +134,7 @@ paths:
         and returns the text positions. Subsequent GET requests will hit the
 
         cached DB row. If OCR data already exists, returns it without re-running.'
-      operationId: routes_frames_run_frame_ocr
+      operationId: postFramesByFrameIdOcr
       parameters:
       - name: frame_id
         schema:
@@ -150,6 +152,8 @@ paths:
       tags:
       - Frames
       summary: Run frame OCR (deprecated)
+      x-operation-id-source: normalized
+      x-operation-id-original: routes_frames_run_frame_ocr
   /frames/{frame_id}/context:
     get:
       description: 'Get frame context: accessibility text, tree nodes, and extracted URLs.
@@ -258,6 +262,71 @@ paths:
       summary: Get frame UI elements
 components:
   schemas:
+    AccessibilityNodeBounds:
+      description: Bounding box for an accessibility node (0-1 normalized to monitor)
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height
+    FrameMetadataResponse:
+      description: Response type for frame metadata (used by deep link navigation)
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+      required:
+      - frame_id
+      - timestamp
+    BoundsResponse:
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height
+    AccessibilityNode:
+      description: A node from the accessibility tree
+      type: object
+      properties:
+        role:
+          type: string
+        text:
+          type: string
+        depth:
+          type: integer
+        bounds:
+          $ref: '#/components/schemas/AccessibilityNodeBounds'
+        properties:
+          type:
+          - object
+          - 'null'
+      required:
+      - role
+      - text
+      - depth
     TextBounds:
       type: object
       properties:
@@ -274,6 +343,72 @@ components:
       - top
       - width
       - height
+    PaginationResponse:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      - offset
+      - total
+    NextValidFrameResponse:
+      description: Response for next valid frame endpoint
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+        skipped_count:
+          type: integer
+      required:
+      - frame_id
+      - timestamp
+      - skipped_count
+    TextPosition:
+      type: object
+      properties:
+        text:
+          type: string
+        confidence:
+          type: number
+        bounds:
+          $ref: '#/components/schemas/TextBounds'
+      required:
+      - text
+      - confidence
+      - bounds
+    FrameTextResponse:
+      description: Response type for frame OCR data endpoint
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        text_positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextPosition'
+      required:
+      - frame_id
+      - text_positions
+    ElementsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElementResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - data
+      - pagination
     FrameContextResponse:
       description: Response type for frame context endpoint (accessibility-first, OCR fallback)
       type: object
@@ -300,19 +435,6 @@ components:
       - nodes
       - urls
       - text_source
-    TextPosition:
-      type: object
-      properties:
-        text:
-          type: string
-        confidence:
-          type: number
-        bounds:
-          $ref: '#/components/schemas/TextBounds'
-      required:
-      - text
-      - confidence
-      - bounds
     ElementResponse:
       type: object
       properties:
@@ -353,121 +475,3 @@ components:
       - bounds
       - confidence
       - sort_order
-    PaginationResponse:
-      type: object
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-      required:
-      - limit
-      - offset
-      - total
-    NextValidFrameResponse:
-      description: Response for next valid frame endpoint
-      type: object
-      properties:
-        frame_id:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
-        skipped_count:
-          type: integer
-      required:
-      - frame_id
-      - timestamp
-      - skipped_count
-    FrameTextResponse:
-      description: Response type for frame OCR data endpoint
-      type: object
-      properties:
-        frame_id:
-          type: integer
-        text_positions:
-          type: array
-          items:
-            $ref: '#/components/schemas/TextPosition'
-      required:
-      - frame_id
-      - text_positions
-    FrameMetadataResponse:
-      description: Response type for frame metadata (used by deep link navigation)
-      type: object
-      properties:
-        frame_id:
-          type: integer
-        timestamp:
-          type: string
-          format: date-time
-      required:
-      - frame_id
-      - timestamp
-    ElementsListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ElementResponse'
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-      required:
-      - data
-      - pagination
-    BoundsResponse:
-      type: object
-      properties:
-        left:
-          type: number
-        top:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
-      required:
-      - left
-      - top
-      - width
-      - height
-    AccessibilityNode:
-      description: A node from the accessibility tree
-      type: object
-      properties:
-        role:
-          type: string
-        text:
-          type: string
-        depth:
-          type: integer
-        bounds:
-          $ref: '#/components/schemas/AccessibilityNodeBounds'
-        properties:
-          type:
-          - object
-          - 'null'
-      required:
-      - role
-      - text
-      - depth
-    AccessibilityNodeBounds:
-      description: Bounding box for an accessibility node (0-1 normalized to monitor)
-      type: object
-      properties:
-        left:
-          type: number
-        top:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
-      required:
-      - left
-      - top
-      - width
-      - height

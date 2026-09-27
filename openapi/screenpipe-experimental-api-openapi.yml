@@ -50,6 +50,13 @@ paths:
       summary: Validate media files
 components:
   schemas:
+    MergeVideosResponse:
+      type: object
+      properties:
+        video_path:
+          type: string
+      required:
+      - video_path
     MergeVideosRequest:
       type: object
       properties:
@@ -59,10 +66,3 @@ components:
             type: string
       required:
       - video_paths
-    MergeVideosResponse:
-      type: object
-      properties:
-        video_path:
-          type: string
-      required:
-      - video_path

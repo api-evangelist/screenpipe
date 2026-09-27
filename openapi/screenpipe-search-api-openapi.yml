@@ -231,46 +231,6 @@ paths:
       description: Fast keyword-based search across all content types.
 components:
   schemas:
-    SearchResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContentItem'
-        pagination:
-          $ref: '#/components/schemas/PaginationInfo'
-        cloud:
-          $ref: '#/components/schemas/CloudSearchMetadata'
-      required:
-      - data
-      - pagination
-    ContentType:
-      type: string
-      enum:
-      - all
-      - ocr
-      - audio
-      - input
-      - accessibility
-      - memory
-    Order:
-      type: string
-      enum:
-      - ascending
-      - descending
-    DeviceType:
-      type: string
-      enum:
-      - Input
-      - Output
-    CloudStatus:
-      type: string
-      enum:
-      - available
-      - disabled
-      - not_initialized
-      - error
     ContentItem:
       oneOf:
       - type: object
@@ -568,19 +528,6 @@ components:
       - id
       - name
       - metadata
-    PaginationInfo:
-      type: object
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-      required:
-      - limit
-      - offset
-      - total
     CloudSearchMetadata:
       description: Metadata about cloud search to include in responses.
       type: object
@@ -600,3 +547,56 @@ components:
       - cloudHasRelevantData
       - cloudQueryHint
       - status
+    CloudStatus:
+      type: string
+      enum:
+      - available
+      - disabled
+      - not_initialized
+      - error
+    ContentType:
+      type: string
+      enum:
+      - all
+      - ocr
+      - audio
+      - input
+      - accessibility
+      - memory
+    DeviceType:
+      type: string
+      enum:
+      - Input
+      - Output
+    SearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItem'
+        pagination:
+          $ref: '#/components/schemas/PaginationInfo'
+        cloud:
+          $ref: '#/components/schemas/CloudSearchMetadata'
+      required:
+      - data
+      - pagination
+    PaginationInfo:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      - offset
+      - total
+    Order:
+      type: string
+      enum:
+      - ascending
+      - descending
