@@ -550,3 +550,9 @@ maintainers:
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-correction-request:
+  requested: '2026-09-27'
+  source: https://github.com/api-evangelist/screenpipe/issues/1
+  request: 'Founder correction: remove the Open-Source / Open Source tags (tags and tags_raw); Screenpipe
+    uses the Screenpipe Commercial license (source-available). Description: transcription is local Whisper
+    by default with a configurable cloud path -- say both. Verify against the repo LICENSE and docs.'
