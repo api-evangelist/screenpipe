@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-add-content-request-schema.json",
+  "title": "AddContentRequest",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-database-api-openapi.yml#/components/schemas/AddContentRequest",
+  "type": "object",
+  "properties": {
+    "device_name": {
+      "type": "string"
+    },
+    "content": {
+      "$ref": "#/$defs/AddContentData"
+    }
+  },
+  "required": [
+    "device_name",
+    "content"
+  ],
+  "$defs": {
+    "AddContentData": {
+      "type": "object",
+      "properties": {
+        "content_type": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/$defs/ContentData"
+        }
+      },
+      "required": [
+        "content_type",
+        "data"
+      ]
+    },
+    "ContentData": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "file_path": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "app_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "window_name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "ocr_results": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "$ref": "#/$defs/OCRResult"
+                }
+              },
+              "tags": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "file_path",
+              "timestamp",
+              "app_name",
+              "window_name",
+              "ocr_results",
+              "tags"
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "transcription": {
+              "type": "string"
+            },
+            "transcription_engine": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "transcription",
+            "transcription_engine"
+          ]
+        }
+      ]
+    },
+    "OCRResult": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "text_json": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ocr_engine": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "focused": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "text",
+        "text_json",
+        "ocr_engine",
+        "focused"
+      ]
+    }
+  }
+}

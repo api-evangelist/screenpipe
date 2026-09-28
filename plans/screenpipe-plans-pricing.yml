@@ -1,0 +1,23 @@
+generated: '2026-09-28'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://screenpipe.com/onboarding
+sources:
+- https://screenpipe.com/onboarding
+name: Screenpipe pricing
+audience: business-product
+pricing_basis: per-seat
+plans:
+- name: Free
+  price_text: $0
+  price: 0
+  billing_period: monthly
+- name: Basic
+  price_text: $21 / month
+  price: 21
+  billing_period: monthly
+- name: Business
+  price_text: $42 / seat / month
+  price: 42
+  billing_period: monthly
+docs: https://screenpipe.com/onboarding

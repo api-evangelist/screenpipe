@@ -1,5 +1,5 @@
 ---
-name: Summarize activity and save a memory
+name: summarize-activity-and-save-a-memory
 description: >-
   Pull a lightweight activity summary for a time range from screenpipe and
   persist a durable AI memory the agent can recall later.

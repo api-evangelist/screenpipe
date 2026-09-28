@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-merge-videos-response-schema.json",
+  "title": "MergeVideosResponse",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-experimental-api-openapi.yml#/components/schemas/MergeVideosResponse",
+  "type": "object",
+  "properties": {
+    "video_path": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "video_path"
+  ]
+}

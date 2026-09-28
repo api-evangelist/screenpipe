@@ -1,0 +1,520 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-search-response-schema.json",
+  "title": "SearchResponse",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-search-api-openapi.yml#/components/schemas/SearchResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ContentItem"
+      }
+    },
+    "pagination": {
+      "$ref": "#/$defs/PaginationInfo"
+    },
+    "cloud": {
+      "$ref": "#/$defs/CloudSearchMetadata"
+    }
+  },
+  "required": [
+    "data",
+    "pagination"
+  ],
+  "$defs": {
+    "CloudSearchMetadata": {
+      "description": "Metadata about cloud search to include in responses.",
+      "type": "object",
+      "properties": {
+        "cloudSearchAvailable": {
+          "type": "boolean"
+        },
+        "cloudHasRelevantData": {
+          "type": "boolean"
+        },
+        "cloudQueryHint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/CloudStatus"
+        }
+      },
+      "required": [
+        "cloudSearchAvailable",
+        "cloudHasRelevantData",
+        "cloudQueryHint",
+        "status"
+      ]
+    },
+    "CloudStatus": {
+      "type": "string",
+      "enum": [
+        "available",
+        "disabled",
+        "not_initialized",
+        "error"
+      ]
+    },
+    "ContentItem": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "OCR"
+              ]
+            },
+            "content": {
+              "type": "object",
+              "properties": {
+                "frame_id": {
+                  "type": "integer"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "file_path": {
+                  "type": "string"
+                },
+                "offset_index": {
+                  "type": "integer"
+                },
+                "app_name": {
+                  "type": "string"
+                },
+                "window_name": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "frame": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "frame_name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "browser_url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "focused": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                },
+                "device_name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "frame_id",
+                "text",
+                "timestamp",
+                "file_path",
+                "offset_index",
+                "app_name",
+                "window_name",
+                "tags",
+                "frame",
+                "frame_name",
+                "browser_url",
+                "focused",
+                "device_name"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "content"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Audio"
+              ]
+            },
+            "content": {
+              "type": "object",
+              "properties": {
+                "chunk_id": {
+                  "type": "integer"
+                },
+                "transcription": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "file_path": {
+                  "type": "string"
+                },
+                "offset_index": {
+                  "type": "integer"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "device_name": {
+                  "type": "string"
+                },
+                "device_type": {
+                  "$ref": "#/$defs/DeviceType"
+                },
+                "speaker": {
+                  "$ref": "#/$defs/Speaker"
+                },
+                "start_time": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "end_time": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "chunk_id",
+                "transcription",
+                "timestamp",
+                "file_path",
+                "offset_index",
+                "tags",
+                "device_name",
+                "device_type",
+                "speaker",
+                "start_time",
+                "end_time"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "content"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "UI"
+              ]
+            },
+            "content": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "app_name": {
+                  "type": "string"
+                },
+                "window_name": {
+                  "type": "string"
+                },
+                "initial_traversal_at": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date-time"
+                },
+                "file_path": {
+                  "type": "string"
+                },
+                "offset_index": {
+                  "type": "integer"
+                },
+                "frame_name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "browser_url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "text",
+                "timestamp",
+                "app_name",
+                "window_name",
+                "initial_traversal_at",
+                "file_path",
+                "offset_index",
+                "frame_name",
+                "browser_url"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "content"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Input"
+              ]
+            },
+            "content": {
+              "description": "User input event content (clicks, keystrokes, clipboard, etc.)",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "event_type": {
+                  "type": "string"
+                },
+                "app_name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "window_title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "browser_url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "text_content": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "x": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "y": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "key_code": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "modifiers": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "element_role": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "element_name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "timestamp",
+                "event_type",
+                "app_name",
+                "window_title",
+                "browser_url",
+                "text_content",
+                "x",
+                "y",
+                "key_code",
+                "modifiers",
+                "element_role",
+                "element_name"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "content"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Memory"
+              ]
+            },
+            "content": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "source_context": {
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "importance": {
+                  "type": "number"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "content",
+                "source",
+                "source_context",
+                "tags",
+                "importance",
+                "created_at",
+                "updated_at"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "content"
+          ]
+        }
+      ]
+    },
+    "DeviceType": {
+      "type": "string",
+      "enum": [
+        "Input",
+        "Output"
+      ]
+    },
+    "PaginationInfo": {
+      "type": "object",
+      "properties": {
+        "limit": {
+          "type": "integer"
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "limit",
+        "offset",
+        "total"
+      ]
+    },
+    "Speaker": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "metadata"
+      ]
+    }
+  }
+}

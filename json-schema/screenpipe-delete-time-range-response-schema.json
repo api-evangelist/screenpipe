@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-delete-time-range-response-schema.json",
+  "title": "DeleteTimeRangeResponse",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-data-management-api-openapi.yml#/components/schemas/DeleteTimeRangeResponse",
+  "type": "object",
+  "properties": {
+    "frames_deleted": {
+      "type": "integer"
+    },
+    "ocr_deleted": {
+      "type": "integer"
+    },
+    "audio_transcriptions_deleted": {
+      "type": "integer"
+    },
+    "audio_chunks_deleted": {
+      "type": "integer"
+    },
+    "video_chunks_deleted": {
+      "type": "integer"
+    },
+    "accessibility_deleted": {
+      "type": "integer"
+    },
+    "ui_events_deleted": {
+      "type": "integer"
+    },
+    "video_files_deleted": {
+      "type": "integer"
+    },
+    "audio_files_deleted": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "frames_deleted",
+    "ocr_deleted",
+    "audio_transcriptions_deleted",
+    "audio_chunks_deleted",
+    "video_chunks_deleted",
+    "accessibility_deleted",
+    "ui_events_deleted",
+    "video_files_deleted",
+    "audio_files_deleted"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-reassign-speaker-response-schema.json",
+  "title": "ReassignSpeakerResponse",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-speakers-api-openapi.yml#/components/schemas/ReassignSpeakerResponse",
+  "type": "object",
+  "properties": {
+    "new_speaker_id": {
+      "type": "integer"
+    },
+    "new_speaker_name": {
+      "type": "string"
+    },
+    "transcriptions_updated": {
+      "type": "integer"
+    },
+    "embeddings_moved": {
+      "type": "integer"
+    },
+    "old_assignments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SpeakerOldAssignment"
+      }
+    }
+  },
+  "required": [
+    "new_speaker_id",
+    "new_speaker_name",
+    "transcriptions_updated",
+    "embeddings_moved",
+    "old_assignments"
+  ],
+  "$defs": {
+    "SpeakerOldAssignment": {
+      "type": "object",
+      "properties": {
+        "transcription_id": {
+          "type": "integer"
+        },
+        "old_speaker_id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "transcription_id",
+        "old_speaker_id"
+      ]
+    }
+  }
+}

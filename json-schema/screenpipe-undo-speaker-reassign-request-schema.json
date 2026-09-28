@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-undo-speaker-reassign-request-schema.json",
+  "title": "UndoSpeakerReassignRequest",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-speakers-api-openapi.yml#/components/schemas/UndoSpeakerReassignRequest",
+  "type": "object",
+  "properties": {
+    "old_assignments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SpeakerOldAssignment"
+      }
+    }
+  },
+  "required": [
+    "old_assignments"
+  ],
+  "$defs": {
+    "SpeakerOldAssignment": {
+      "type": "object",
+      "properties": {
+        "transcription_id": {
+          "type": "integer"
+        },
+        "old_speaker_id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "transcription_id",
+        "old_speaker_id"
+      ]
+    }
+  }
+}

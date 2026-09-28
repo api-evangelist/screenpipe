@@ -1,5 +1,5 @@
 ---
-name: Retrieve and clean up meeting transcripts
+name: retrieve-and-clean-up-meeting-transcripts
 description: >-
   List detected meetings in screenpipe, pull a meeting's transcript, and tidy up
   speaker identities (name the unnamed speakers).

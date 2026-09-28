@@ -1,0 +1,31 @@
+generated: '2026-09-28'
+method: probed
+source: https://docs.screenpipe.com
+signals:
+  data_residency:
+    evidence:
+      - source: https://docs.screenpipe.com/privacy-data-flow.md
+        http_status: 200
+        fetched: "true"
+        quote: "Screenpipe is local-first. Screen, audio, input, browser metadata, meeting transcripts, and connected-app context are stored on your machine unless you explicitly enable a cloud provider, team sync, or external integration."
+        url: https://docs.screenpipe.com/privacy-data-flow.md
+        section: "Privacy data flow"
+        note: Data remains on user device by default, indicating a data residency claim.
+  data_retention:
+    evidence:
+      - source: https://docs.screenpipe.com/storage-and-retention.md
+        http_status: 200
+        fetched: "true"
+        quote: "Storage use depends on what you capture and retain. Measure your own representative workdays before choosing a retention window."
+        url: https://docs.screenpipe.com/storage-and-retention.md
+        section: "Plan Screenpipe storage and retention"
+        note: Provides guidance on retention but no fixed policy.
+  ai_transparency:
+    evidence:
+      - source: https://docs.screenpipe.com/privacy-filter.md
+        http_status: 200
+        fetched: "true"
+        quote: "Strip names, emails, phone numbers, addresses, and secrets from Screenpipe data before AI sees it, using local redaction or a confidential enclave."
+        url: https://docs.screenpipe.com/privacy-filter.md
+        section: "Privacy filter - strip personal info before AI sees it"
+        note: Describes transparency of AI data handling via redaction.

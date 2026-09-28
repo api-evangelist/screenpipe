@@ -262,8 +262,108 @@ paths:
       summary: Get frame UI elements
 components:
   schemas:
+    FrameTextResponse:
+      description: Response type for frame OCR data endpoint
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        text_positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextPosition'
+      required:
+      - frame_id
+      - text_positions
     AccessibilityNodeBounds:
       description: Bounding box for an accessibility node (0-1 normalized to monitor)
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height
+    TextPosition:
+      type: object
+      properties:
+        text:
+          type: string
+        confidence:
+          type: number
+        bounds:
+          $ref: '#/components/schemas/TextBounds'
+      required:
+      - text
+      - confidence
+      - bounds
+    FrameContextResponse:
+      description: Response type for frame context endpoint (accessibility-first, OCR fallback)
+      type: object
+      properties:
+        frame_id:
+          type: integer
+        text:
+          type:
+          - string
+          - 'null'
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessibilityNode'
+        urls:
+          type: array
+          items:
+            type: string
+        text_source:
+          type: string
+      required:
+      - frame_id
+      - text
+      - nodes
+      - urls
+      - text_source
+    AccessibilityNode:
+      description: A node from the accessibility tree
+      type: object
+      properties:
+        role:
+          type: string
+        text:
+          type: string
+        depth:
+          type: integer
+        bounds:
+          $ref: '#/components/schemas/AccessibilityNodeBounds'
+        properties:
+          type:
+          - object
+          - 'null'
+      required:
+      - role
+      - text
+      - depth
+    ElementsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElementResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - data
+      - pagination
+    BoundsResponse:
       type: object
       properties:
         left:
@@ -291,71 +391,6 @@ components:
       required:
       - frame_id
       - timestamp
-    BoundsResponse:
-      type: object
-      properties:
-        left:
-          type: number
-        top:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
-      required:
-      - left
-      - top
-      - width
-      - height
-    AccessibilityNode:
-      description: A node from the accessibility tree
-      type: object
-      properties:
-        role:
-          type: string
-        text:
-          type: string
-        depth:
-          type: integer
-        bounds:
-          $ref: '#/components/schemas/AccessibilityNodeBounds'
-        properties:
-          type:
-          - object
-          - 'null'
-      required:
-      - role
-      - text
-      - depth
-    TextBounds:
-      type: object
-      properties:
-        left:
-          type: number
-        top:
-          type: number
-        width:
-          type: number
-        height:
-          type: number
-      required:
-      - left
-      - top
-      - width
-      - height
-    PaginationResponse:
-      type: object
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-      required:
-      - limit
-      - offset
-      - total
     NextValidFrameResponse:
       description: Response for next valid frame endpoint
       type: object
@@ -371,70 +406,19 @@ components:
       - frame_id
       - timestamp
       - skipped_count
-    TextPosition:
+    PaginationResponse:
       type: object
       properties:
-        text:
-          type: string
-        confidence:
-          type: number
-        bounds:
-          $ref: '#/components/schemas/TextBounds'
-      required:
-      - text
-      - confidence
-      - bounds
-    FrameTextResponse:
-      description: Response type for frame OCR data endpoint
-      type: object
-      properties:
-        frame_id:
+        limit:
           type: integer
-        text_positions:
-          type: array
-          items:
-            $ref: '#/components/schemas/TextPosition'
-      required:
-      - frame_id
-      - text_positions
-    ElementsListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ElementResponse'
-        pagination:
-          $ref: '#/components/schemas/PaginationResponse'
-      required:
-      - data
-      - pagination
-    FrameContextResponse:
-      description: Response type for frame context endpoint (accessibility-first, OCR fallback)
-      type: object
-      properties:
-        frame_id:
+        offset:
           type: integer
-        text:
-          type:
-          - string
-          - 'null'
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccessibilityNode'
-        urls:
-          type: array
-          items:
-            type: string
-        text_source:
-          type: string
+        total:
+          type: integer
       required:
-      - frame_id
-      - text
-      - nodes
-      - urls
-      - text_source
+      - limit
+      - offset
+      - total
     ElementResponse:
       type: object
       properties:
@@ -475,3 +459,19 @@ components:
       - bounds
       - confidence
       - sort_order
+    TextBounds:
+      type: object
+      properties:
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+      required:
+      - left
+      - top
+      - width
+      - height

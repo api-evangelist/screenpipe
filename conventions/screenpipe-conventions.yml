@@ -46,6 +46,7 @@ filtering:
   - memory
   time_format: ISO 8601 (start_time / end_time)
 idempotency:
+  coverage: none
   supported: false
   note: >-
     No Idempotency-Key header or idempotent-write contract is documented; writes

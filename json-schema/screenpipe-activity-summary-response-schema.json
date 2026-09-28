@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-activity-summary-response-schema.json",
+  "title": "ActivitySummaryResponse",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-activity-api-openapi.yml#/components/schemas/ActivitySummaryResponse",
+  "type": "object",
+  "properties": {
+    "apps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AppUsage"
+      }
+    },
+    "recent_texts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RecentText"
+      }
+    },
+    "audio_summary": {
+      "$ref": "#/$defs/AudioSummary"
+    },
+    "total_frames": {
+      "type": "integer"
+    },
+    "time_range": {
+      "$ref": "#/$defs/TimeRange"
+    }
+  },
+  "required": [
+    "apps",
+    "recent_texts",
+    "audio_summary",
+    "total_frames",
+    "time_range"
+  ],
+  "$defs": {
+    "AppUsage": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "frame_count": {
+          "type": "integer"
+        },
+        "minutes": {
+          "type": "number"
+        },
+        "first_seen": {
+          "type": "string"
+        },
+        "last_seen": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "frame_count",
+        "minutes",
+        "first_seen",
+        "last_seen"
+      ]
+    },
+    "AudioSummary": {
+      "type": "object",
+      "properties": {
+        "segment_count": {
+          "type": "integer"
+        },
+        "speakers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SpeakerSummary"
+          }
+        }
+      },
+      "required": [
+        "segment_count",
+        "speakers"
+      ]
+    },
+    "RecentText": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "app_name": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "app_name",
+        "timestamp"
+      ]
+    },
+    "SpeakerSummary": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "segment_count": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "segment_count"
+      ]
+    },
+    "TimeRange": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string"
+        },
+        "end": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ]
+    }
+  }
+}

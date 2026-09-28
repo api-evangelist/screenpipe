@@ -80,14 +80,14 @@ paths:
       summary: Set up vault
 components:
   schemas:
-    UnlockRequest:
+    SetupRequest:
       type: object
       properties:
         password:
           type: string
       required:
       - password
-    SetupRequest:
+    UnlockRequest:
       type: object
       properties:
         password:

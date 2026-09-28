@@ -1,0 +1,396 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-health-check-response-schema.json",
+  "title": "HealthCheckResponse",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-system-api-openapi.yml#/components/schemas/HealthCheckResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "status_code": {
+      "type": "integer"
+    },
+    "last_frame_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "last_audio_timestamp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "frame_status": {
+      "type": "string"
+    },
+    "audio_status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "verbose_instructions": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "device_status_details": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "monitors": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "pipeline": {
+      "$ref": "#/$defs/PipelineHealthInfo"
+    },
+    "audio_pipeline": {
+      "$ref": "#/$defs/AudioPipelineHealthInfo"
+    },
+    "accessibility": {
+      "$ref": "#/$defs/TreeWalkerSnapshot"
+    },
+    "pool_stats": {
+      "$ref": "#/$defs/PoolHealthInfo"
+    },
+    "vision_db_write_stalled": {
+      "type": "boolean"
+    },
+    "audio_db_write_stalled": {
+      "type": "boolean"
+    },
+    "drm_content_paused": {
+      "type": "boolean"
+    },
+    "schedule_paused": {
+      "type": "boolean"
+    },
+    "hostname": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "status_code",
+    "last_frame_timestamp",
+    "last_audio_timestamp",
+    "frame_status",
+    "audio_status",
+    "message",
+    "verbose_instructions",
+    "device_status_details",
+    "vision_db_write_stalled",
+    "audio_db_write_stalled",
+    "drm_content_paused",
+    "schedule_paused"
+  ],
+  "$defs": {
+    "AudioPipelineHealthInfo": {
+      "type": "object",
+      "properties": {
+        "uptime_secs": {
+          "type": "number"
+        },
+        "chunks_sent": {
+          "type": "integer"
+        },
+        "chunks_channel_full": {
+          "type": "integer"
+        },
+        "stream_timeouts": {
+          "type": "integer"
+        },
+        "vad_passed": {
+          "type": "integer"
+        },
+        "vad_rejected": {
+          "type": "integer"
+        },
+        "vad_passthrough_rate": {
+          "type": "number"
+        },
+        "avg_speech_ratio": {
+          "type": "number"
+        },
+        "transcriptions_completed": {
+          "type": "integer"
+        },
+        "transcriptions_empty": {
+          "type": "integer"
+        },
+        "transcription_errors": {
+          "type": "integer"
+        },
+        "db_inserted": {
+          "type": "integer"
+        },
+        "total_words": {
+          "type": "integer"
+        },
+        "words_per_minute": {
+          "type": "number"
+        },
+        "chunks_received": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "process_errors": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "audio_level_rms": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "audio_devices": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "transcription_mode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transcription_paused": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "segments_deferred": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "segments_batch_processed": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "batch_paused_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "meeting_detected": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "meeting_app": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "uptime_secs",
+        "chunks_sent",
+        "chunks_channel_full",
+        "stream_timeouts",
+        "vad_passed",
+        "vad_rejected",
+        "vad_passthrough_rate",
+        "avg_speech_ratio",
+        "transcriptions_completed",
+        "transcriptions_empty",
+        "transcription_errors",
+        "db_inserted",
+        "total_words",
+        "words_per_minute"
+      ]
+    },
+    "PipelineHealthInfo": {
+      "type": "object",
+      "properties": {
+        "uptime_secs": {
+          "type": "number"
+        },
+        "frames_captured": {
+          "type": "integer"
+        },
+        "frames_db_written": {
+          "type": "integer"
+        },
+        "frames_dropped": {
+          "type": "integer"
+        },
+        "frame_drop_rate": {
+          "type": "number"
+        },
+        "capture_fps_actual": {
+          "type": "number"
+        },
+        "avg_ocr_latency_ms": {
+          "type": "number"
+        },
+        "avg_db_latency_ms": {
+          "type": "number"
+        },
+        "ocr_queue_depth": {
+          "type": "integer"
+        },
+        "video_queue_depth": {
+          "type": "integer"
+        },
+        "time_to_first_frame_ms": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "pipeline_stall_count": {
+          "type": "integer"
+        },
+        "ocr_cache_hit_rate": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "uptime_secs",
+        "frames_captured",
+        "frames_db_written",
+        "frames_dropped",
+        "frame_drop_rate",
+        "capture_fps_actual",
+        "avg_ocr_latency_ms",
+        "avg_db_latency_ms",
+        "ocr_queue_depth",
+        "video_queue_depth",
+        "time_to_first_frame_ms",
+        "pipeline_stall_count",
+        "ocr_cache_hit_rate"
+      ]
+    },
+    "PoolHealthInfo": {
+      "type": "object",
+      "properties": {
+        "read_pool_size": {
+          "type": "integer"
+        },
+        "read_pool_idle": {
+          "type": "integer"
+        },
+        "write_pool_size": {
+          "type": "integer"
+        },
+        "write_pool_idle": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "read_pool_size",
+        "read_pool_idle",
+        "write_pool_size",
+        "write_pool_idle"
+      ]
+    },
+    "TreeWalkerSnapshot": {
+      "description": "Point-in-time snapshot of tree walker health metrics (no private data).",
+      "type": "object",
+      "properties": {
+        "walks_total": {
+          "type": "integer"
+        },
+        "walks_stored": {
+          "type": "integer"
+        },
+        "walks_deduped": {
+          "type": "integer"
+        },
+        "walks_empty": {
+          "type": "integer"
+        },
+        "walks_error": {
+          "type": "integer"
+        },
+        "walks_truncated": {
+          "type": "integer"
+        },
+        "walks_truncated_timeout": {
+          "type": "integer"
+        },
+        "walks_truncated_max_nodes": {
+          "type": "integer"
+        },
+        "truncation_rate": {
+          "type": "number"
+        },
+        "avg_walk_duration_ms": {
+          "type": "integer"
+        },
+        "max_walk_duration_ms": {
+          "type": "integer"
+        },
+        "avg_nodes_per_walk": {
+          "type": "integer"
+        },
+        "max_depth_reached": {
+          "type": "integer"
+        },
+        "total_text_chars": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "walks_total",
+        "walks_stored",
+        "walks_deduped",
+        "walks_empty",
+        "walks_error",
+        "walks_truncated",
+        "walks_truncated_timeout",
+        "walks_truncated_max_nodes",
+        "truncation_rate",
+        "avg_walk_duration_ms",
+        "max_walk_duration_ms",
+        "avg_nodes_per_walk",
+        "max_depth_reached",
+        "total_text_chars"
+      ]
+    }
+  }
+}

@@ -68,18 +68,13 @@ paths:
       summary: Get device storage usage
 components:
   schemas:
-    DeleteTimeRangeRequest:
+    DeleteDeviceDataRequest:
       type: object
       properties:
-        start:
+        machine_id:
           type: string
-          format: date-time
-        end:
-          type: string
-          format: date-time
       required:
-      - start
-      - end
+      - machine_id
     DeviceStorageEntry:
       type: object
       properties:
@@ -93,6 +88,18 @@ components:
       - machine_id
       - frames
       - audio_chunks
+    DeleteTimeRangeRequest:
+      type: object
+      properties:
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+      required:
+      - start
+      - end
     DeleteTimeRangeResponse:
       type: object
       properties:
@@ -124,10 +131,3 @@ components:
       - ui_events_deleted
       - video_files_deleted
       - audio_files_deleted
-    DeleteDeviceDataRequest:
-      type: object
-      properties:
-        machine_id:
-          type: string
-      required:
-      - machine_id

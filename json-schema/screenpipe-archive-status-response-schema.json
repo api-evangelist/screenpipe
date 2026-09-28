@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-archive-status-response-schema.json",
+  "title": "ArchiveStatusResponse",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-cloud-archive-api-openapi.yml#/components/schemas/ArchiveStatusResponse",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "retention_days": {
+      "type": "integer"
+    },
+    "watermark": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_cleanup": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "storage_used": {
+      "type": "integer"
+    },
+    "storage_limit": {
+      "type": "integer"
+    },
+    "pending_count": {
+      "type": "integer"
+    },
+    "is_uploading": {
+      "type": "boolean"
+    },
+    "chunks_uploaded": {
+      "type": "integer"
+    },
+    "media_files_uploaded": {
+      "type": "integer"
+    },
+    "media_files_pending": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "enabled",
+    "retention_days",
+    "watermark",
+    "last_cleanup",
+    "last_error",
+    "storage_used",
+    "storage_limit",
+    "pending_count",
+    "is_uploading",
+    "chunks_uploaded",
+    "media_files_uploaded",
+    "media_files_pending"
+  ]
+}

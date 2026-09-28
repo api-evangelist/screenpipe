@@ -200,68 +200,6 @@ paths:
       summary: Delete meeting
 components:
   schemas:
-    StartMeetingRequest:
-      type: object
-      properties:
-        app:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        attendees:
-          type:
-          - string
-          - 'null'
-      required:
-      - app
-      - title
-      - attendees
-    BulkDeleteMeetingsRequest:
-      type: object
-      properties:
-        ids:
-          type: array
-          items:
-            type: integer
-      required:
-      - ids
-    UpdateMeetingRequest:
-      type: object
-      properties:
-        meeting_start:
-          type:
-          - string
-          - 'null'
-        meeting_end:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        attendees:
-          type:
-          - string
-          - 'null'
-        note:
-          type:
-          - string
-          - 'null'
-        meeting_app:
-          type:
-          - string
-          - 'null'
-      required:
-      - meeting_start
-      - meeting_end
-      - title
-      - attendees
-      - note
-      - meeting_app
     MeetingRecord:
       type: object
       properties:
@@ -310,3 +248,65 @@ components:
             type: integer
       required:
       - ids
+    UpdateMeetingRequest:
+      type: object
+      properties:
+        meeting_start:
+          type:
+          - string
+          - 'null'
+        meeting_end:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        attendees:
+          type:
+          - string
+          - 'null'
+        note:
+          type:
+          - string
+          - 'null'
+        meeting_app:
+          type:
+          - string
+          - 'null'
+      required:
+      - meeting_start
+      - meeting_end
+      - title
+      - attendees
+      - note
+      - meeting_app
+    BulkDeleteMeetingsRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+      required:
+      - ids
+    StartMeetingRequest:
+      type: object
+      properties:
+        app:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        attendees:
+          type:
+          - string
+          - 'null'
+      required:
+      - app
+      - title
+      - attendees

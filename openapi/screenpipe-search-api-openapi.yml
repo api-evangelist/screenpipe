@@ -231,6 +231,56 @@ paths:
       description: Fast keyword-based search across all content types.
 components:
   schemas:
+    CloudSearchMetadata:
+      description: Metadata about cloud search to include in responses.
+      type: object
+      properties:
+        cloudSearchAvailable:
+          type: boolean
+        cloudHasRelevantData:
+          type: boolean
+        cloudQueryHint:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/CloudStatus'
+      required:
+      - cloudSearchAvailable
+      - cloudHasRelevantData
+      - cloudQueryHint
+      - status
+    Speaker:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        metadata:
+          type: string
+      required:
+      - id
+      - name
+      - metadata
+    PaginationInfo:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      - offset
+      - total
+    Order:
+      type: string
+      enum:
+      - ascending
+      - descending
     ContentItem:
       oneOf:
       - type: object
@@ -515,59 +565,6 @@ components:
         required:
         - type
         - content
-    Speaker:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        metadata:
-          type: string
-      required:
-      - id
-      - name
-      - metadata
-    CloudSearchMetadata:
-      description: Metadata about cloud search to include in responses.
-      type: object
-      properties:
-        cloudSearchAvailable:
-          type: boolean
-        cloudHasRelevantData:
-          type: boolean
-        cloudQueryHint:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/CloudStatus'
-      required:
-      - cloudSearchAvailable
-      - cloudHasRelevantData
-      - cloudQueryHint
-      - status
-    CloudStatus:
-      type: string
-      enum:
-      - available
-      - disabled
-      - not_initialized
-      - error
-    ContentType:
-      type: string
-      enum:
-      - all
-      - ocr
-      - audio
-      - input
-      - accessibility
-      - memory
-    DeviceType:
-      type: string
-      enum:
-      - Input
-      - Output
     SearchResponse:
       type: object
       properties:
@@ -582,21 +579,24 @@ components:
       required:
       - data
       - pagination
-    PaginationInfo:
-      type: object
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-      required:
-      - limit
-      - offset
-      - total
-    Order:
+    DeviceType:
       type: string
       enum:
-      - ascending
-      - descending
+      - Input
+      - Output
+    ContentType:
+      type: string
+      enum:
+      - all
+      - ocr
+      - audio
+      - input
+      - accessibility
+      - memory
+    CloudStatus:
+      type: string
+      enum:
+      - available
+      - disabled
+      - not_initialized
+      - error

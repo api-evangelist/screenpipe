@@ -1,0 +1,418 @@
+generated: '2026-09-28'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/screenpipe-activity-api-openapi.yml
+- openapi/screenpipe-audio-api-openapi.yml
+- openapi/screenpipe-cloud-archive-api-openapi.yml
+- openapi/screenpipe-cloud-sync-api-openapi.yml
+- openapi/screenpipe-data-management-api-openapi.yml
+vocabulary:
+  name: Screenpipe Domain Vocabulary
+  description: 'Terms declared by Screenpipe''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-09-28'
+  terms:
+  - term: Activity
+    definition: Activity summaries and analytics
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-activity-api-openapi.yml
+  - term: Audio
+    definition: Manage audio recording devices
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-audio-api-openapi.yml
+  - term: Cloud Archive
+    definition: Archive old data to cloud storage
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-cloud-archive-api-openapi.yml
+  - term: Cloud Sync
+    definition: Sync data across devices via cloud
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-cloud-sync-api-openapi.yml
+  - term: Data Management
+    definition: Manual data deletion and storage info
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-data-management-api-openapi.yml
+  - term: Data Retention
+    definition: Auto-delete old data locally
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-data-retention-api-openapi.yml
+  - term: Database
+    definition: Direct database access
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-database-api-openapi.yml
+  - term: Elements
+    definition: Query captured UI accessibility tree data
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-elements-api-openapi.yml
+  - term: Experimental
+    definition: Experimental/unstable endpoints
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-experimental-api-openapi.yml
+  - term: Frames
+    definition: Access captured screenshots and their extracted text
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-frames-api-openapi.yml
+  - term: Meetings
+    definition: Detected and manual meeting transcriptions
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-meetings-api-openapi.yml
+  - term: Memories
+    definition: AI-extracted knowledge from screen activity
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-memories-api-openapi.yml
+  - term: Search
+    definition: Search through captured screen and audio content
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-search-api-openapi.yml
+  - term: Speakers
+    definition: Speaker identification and management
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-speakers-api-openapi.yml
+  - term: System
+    definition: Health checks and system status
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-system-api-openapi.yml
+  - term: Tags
+    definition: Tag content items for organization
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-tags-api-openapi.yml
+  - term: Vault
+    definition: Encrypt/decrypt all data at rest
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-vault-api-openapi.yml
+  - term: Vision
+    definition: Manage screen capture monitors
+    tags:
+    - Resource Group
+    source: openapi/screenpipe-vision-api-openapi.yml
+  - term: RecentText
+    definition: 'Object declared by the contract with fields: text, app_name, timestamp.'
+    tags:
+    - Object
+    source: openapi/screenpipe-activity-api-openapi.yml#/components/schemas/RecentText
+  - term: TimeRange
+    definition: 'Object declared by the contract with fields: start, end.'
+    tags:
+    - Object
+    source: openapi/screenpipe-activity-api-openapi.yml#/components/schemas/TimeRange
+  - term: ActivitySummaryResponse
+    definition: 'Object declared by the contract with fields: apps, recent_texts, audio_summary, total_frames, time_range.'
+    tags:
+    - Object
+    source: openapi/screenpipe-activity-api-openapi.yml#/components/schemas/ActivitySummaryResponse
+  - term: AppUsage
+    definition: 'Object declared by the contract with fields: name, frame_count, minutes, first_seen, last_seen.'
+    tags:
+    - Object
+    source: openapi/screenpipe-activity-api-openapi.yml#/components/schemas/AppUsage
+  - term: AudioSummary
+    definition: 'Object declared by the contract with fields: segment_count, speakers.'
+    tags:
+    - Object
+    source: openapi/screenpipe-activity-api-openapi.yml#/components/schemas/AudioSummary
+  - term: SpeakerSummary
+    definition: 'Object declared by the contract with fields: name, segment_count.'
+    tags:
+    - Object
+    source: openapi/screenpipe-activity-api-openapi.yml#/components/schemas/SpeakerSummary
+  - term: AudioDeviceControlRequest
+    definition: 'Object declared by the contract with fields: device_name.'
+    tags:
+    - Object
+    source: openapi/screenpipe-audio-api-openapi.yml#/components/schemas/AudioDeviceControlRequest
+  - term: AudioDeviceControlResponse
+    definition: 'Object declared by the contract with fields: success, message.'
+    tags:
+    - Object
+    source: openapi/screenpipe-audio-api-openapi.yml#/components/schemas/AudioDeviceControlResponse
+  - term: ListDeviceResponse
+    definition: 'Object declared by the contract with fields: name, is_default.'
+    tags:
+    - Object
+    source: openapi/screenpipe-audio-api-openapi.yml#/components/schemas/ListDeviceResponse
+  - term: ArchiveConfigureRequest
+    definition: 'Object declared by the contract with fields: enabled, retention_days.'
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-archive-api-openapi.yml#/components/schemas/ArchiveConfigureRequest
+  - term: ArchiveInitResponse
+    definition: 'Object declared by the contract with fields: success, machine_id.'
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-archive-api-openapi.yml#/components/schemas/ArchiveInitResponse
+  - term: ArchiveStatusResponse
+    definition: 'Object declared by the contract with fields: enabled, retention_days, watermark, last_cleanup, last_error, storage_used, storage_limit,
+      pending_count, is_uploading, chunks_uploaded, media_files_uploaded, media_files_pending.'
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-archive-api-openapi.yml#/components/schemas/ArchiveStatusResponse
+  - term: ArchiveInitRequest
+    definition: 'Object declared by the contract with fields: token, retention_days.'
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-archive-api-openapi.yml#/components/schemas/ArchiveInitRequest
+  - term: SyncStatusResponse
+    definition: Response for sync status.
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-sync-api-openapi.yml#/components/schemas/SyncStatusResponse
+  - term: SyncDownloadResponse
+    definition: Response from download operation.
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-sync-api-openapi.yml#/components/schemas/SyncDownloadResponse
+  - term: SyncInitRequest
+    definition: Request to initialize sync at runtime.
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-sync-api-openapi.yml#/components/schemas/SyncInitRequest
+  - term: PipeSyncResponse
+    definition: Response from pipe sync operations.
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-sync-api-openapi.yml#/components/schemas/PipeSyncResponse
+  - term: SyncDownloadRequest
+    definition: Request to download data from other devices.
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-sync-api-openapi.yml#/components/schemas/SyncDownloadRequest
+  - term: SyncInitResponse
+    definition: Response from sync initialization.
+    tags:
+    - Object
+    source: openapi/screenpipe-cloud-sync-api-openapi.yml#/components/schemas/SyncInitResponse
+  - term: DeleteTimeRangeRequest
+    definition: 'Object declared by the contract with fields: start, end.'
+    tags:
+    - Object
+    source: openapi/screenpipe-data-management-api-openapi.yml#/components/schemas/DeleteTimeRangeRequest
+  - term: DeviceStorageEntry
+    definition: 'Object declared by the contract with fields: machine_id, frames, audio_chunks.'
+    tags:
+    - Object
+    source: openapi/screenpipe-data-management-api-openapi.yml#/components/schemas/DeviceStorageEntry
+  - term: DeleteTimeRangeResponse
+    definition: 'Object declared by the contract with fields: frames_deleted, ocr_deleted, audio_transcriptions_deleted, audio_chunks_deleted,
+      video_chunks_deleted, accessibility_deleted, ui_events_deleted, video_files_deleted, audio_files_deleted.'
+    tags:
+    - Object
+    source: openapi/screenpipe-data-management-api-openapi.yml#/components/schemas/DeleteTimeRangeResponse
+  - term: DeleteDeviceDataRequest
+    definition: 'Object declared by the contract with fields: machine_id.'
+    tags:
+    - Object
+    source: openapi/screenpipe-data-management-api-openapi.yml#/components/schemas/DeleteDeviceDataRequest
+  - term: RetentionStatusResponse
+    definition: 'Object declared by the contract with fields: enabled, retention_days, last_cleanup, last_error, total_deleted.'
+    tags:
+    - Object
+    source: openapi/screenpipe-data-retention-api-openapi.yml#/components/schemas/RetentionStatusResponse
+  - term: RetentionConfigureRequest
+    definition: 'Object declared by the contract with fields: enabled, retention_days.'
+    tags:
+    - Object
+    source: openapi/screenpipe-data-retention-api-openapi.yml#/components/schemas/RetentionConfigureRequest
+  - term: RawSqlQuery
+    definition: 'Object declared by the contract with fields: query.'
+    tags:
+    - Object
+    source: openapi/screenpipe-database-api-openapi.yml#/components/schemas/RawSqlQuery
+  - term: OCRResult
+    definition: 'Object declared by the contract with fields: text, text_json, ocr_engine, focused.'
+    tags:
+    - Object
+    source: openapi/screenpipe-database-api-openapi.yml#/components/schemas/OCRResult
+  - term: AddContentResponse
+    definition: 'Object declared by the contract with fields: success, message.'
+    tags:
+    - Object
+    source: openapi/screenpipe-database-api-openapi.yml#/components/schemas/AddContentResponse
+  - term: AddContentData
+    definition: 'Object declared by the contract with fields: content_type, data.'
+    tags:
+    - Object
+    source: openapi/screenpipe-database-api-openapi.yml#/components/schemas/AddContentData
+  - term: AddContentRequest
+    definition: 'Object declared by the contract with fields: device_name, content.'
+    tags:
+    - Object
+    source: openapi/screenpipe-database-api-openapi.yml#/components/schemas/AddContentRequest
+  - term: ElementResponse
+    definition: 'Object declared by the contract with fields: id, frame_id, source, role, text, parent_id, depth, bounds, confidence, sort_order.'
+    tags:
+    - Object
+    source: openapi/screenpipe-elements-api-openapi.yml#/components/schemas/ElementResponse
+  - term: BoundsResponse
+    definition: 'Object declared by the contract with fields: left, top, width, height.'
+    tags:
+    - Object
+    source: openapi/screenpipe-elements-api-openapi.yml#/components/schemas/BoundsResponse
+  - term: ElementsListResponse
+    definition: 'Object declared by the contract with fields: data, pagination.'
+    tags:
+    - Object
+    source: openapi/screenpipe-elements-api-openapi.yml#/components/schemas/ElementsListResponse
+  - term: PaginationResponse
+    definition: 'Object declared by the contract with fields: limit, offset, total.'
+    tags:
+    - Object
+    source: openapi/screenpipe-elements-api-openapi.yml#/components/schemas/PaginationResponse
+  - term: MergeVideosResponse
+    definition: 'Object declared by the contract with fields: video_path.'
+    tags:
+    - Object
+    source: openapi/screenpipe-experimental-api-openapi.yml#/components/schemas/MergeVideosResponse
+  - term: MergeVideosRequest
+    definition: 'Object declared by the contract with fields: video_paths.'
+    tags:
+    - Object
+    source: openapi/screenpipe-experimental-api-openapi.yml#/components/schemas/MergeVideosRequest
+  - term: AccessibilityNodeBounds
+    definition: Bounding box for an accessibility node (0-1 normalized to monitor)
+    tags:
+    - Object
+    source: openapi/screenpipe-frames-api-openapi.yml#/components/schemas/AccessibilityNodeBounds
+  - term: FrameMetadataResponse
+    definition: Response type for frame metadata (used by deep link navigation)
+    tags:
+    - Object
+    source: openapi/screenpipe-frames-api-openapi.yml#/components/schemas/FrameMetadataResponse
+  - term: AccessibilityNode
+    definition: A node from the accessibility tree
+    tags:
+    - Object
+    source: openapi/screenpipe-frames-api-openapi.yml#/components/schemas/AccessibilityNode
+  - term: TextBounds
+    definition: 'Object declared by the contract with fields: left, top, width, height.'
+    tags:
+    - Object
+    source: openapi/screenpipe-frames-api-openapi.yml#/components/schemas/TextBounds
+  - term: NextValidFrameResponse
+    definition: Response for next valid frame endpoint
+    tags:
+    - Object
+    source: openapi/screenpipe-frames-api-openapi.yml#/components/schemas/NextValidFrameResponse
+  - term: TextPosition
+    definition: 'Object declared by the contract with fields: text, confidence, bounds.'
+    tags:
+    - Object
+    source: openapi/screenpipe-frames-api-openapi.yml#/components/schemas/TextPosition
+  - term: FrameTextResponse
+    definition: Response type for frame OCR data endpoint
+    tags:
+    - Object
+    source: openapi/screenpipe-frames-api-openapi.yml#/components/schemas/FrameTextResponse
+  - term: FrameContextResponse
+    definition: Response type for frame context endpoint (accessibility-first, OCR fallback)
+    tags:
+    - Object
+    source: openapi/screenpipe-frames-api-openapi.yml#/components/schemas/FrameContextResponse
+  - term: StartMeetingRequest
+    definition: 'Object declared by the contract with fields: app, title, attendees.'
+    tags:
+    - Object
+    source: openapi/screenpipe-meetings-api-openapi.yml#/components/schemas/StartMeetingRequest
+  - term: BulkDeleteMeetingsRequest
+    definition: 'Object declared by the contract with fields: ids.'
+    tags:
+    - Object
+    source: openapi/screenpipe-meetings-api-openapi.yml#/components/schemas/BulkDeleteMeetingsRequest
+  - term: UpdateMeetingRequest
+    definition: 'Object declared by the contract with fields: meeting_start, meeting_end, title, attendees, note, meeting_app.'
+    tags:
+    - Object
+    source: openapi/screenpipe-meetings-api-openapi.yml#/components/schemas/UpdateMeetingRequest
+  - term: MeetingRecord
+    definition: 'Object declared by the contract with fields: id, meeting_start, meeting_end, meeting_app, title, attendees, note, detection_source,
+      created_at.'
+    tags:
+    - Object
+    source: openapi/screenpipe-meetings-api-openapi.yml#/components/schemas/MeetingRecord
+  - term: MergeMeetingsRequest
+    definition: 'Object declared by the contract with fields: ids.'
+    tags:
+    - Object
+    source: openapi/screenpipe-meetings-api-openapi.yml#/components/schemas/MergeMeetingsRequest
+  - term: MemoryResponse
+    definition: 'Object declared by the contract with fields: id, content, source, source_context, tags, importance, frame_id, created_at, updated_at.'
+    tags:
+    - Object
+    source: openapi/screenpipe-memories-api-openapi.yml#/components/schemas/MemoryResponse
+  - term: CreateMemoryRequest
+    definition: 'Object declared by the contract with fields: content, source, source_context, tags, importance, frame_id.'
+    tags:
+    - Object
+    source: openapi/screenpipe-memories-api-openapi.yml#/components/schemas/CreateMemoryRequest
+  - term: UpdateMemoryRequest
+    definition: 'Object declared by the contract with fields: content, tags, importance, source_context.'
+    tags:
+    - Object
+    source: openapi/screenpipe-memories-api-openapi.yml#/components/schemas/UpdateMemoryRequest
+  - term: MemoryListResponse
+    definition: 'Object declared by the contract with fields: data, pagination.'
+    tags:
+    - Object
+    source: openapi/screenpipe-memories-api-openapi.yml#/components/schemas/MemoryListResponse
+  - term: PaginationInfo
+    definition: 'Object declared by the contract with fields: limit, offset, total.'
+    tags:
+    - Object
+    source: openapi/screenpipe-memories-api-openapi.yml#/components/schemas/PaginationInfo
+  - term: MemoryListItem
+    definition: 'Object declared by the contract with fields: id, content, source, tags, importance, frame_id, created_at, updated_at.'
+    tags:
+    - Object
+    source: openapi/screenpipe-memories-api-openapi.yml#/components/schemas/MemoryListItem
+  - term: Speaker
+    definition: 'Object declared by the contract with fields: id, name, metadata.'
+    tags:
+    - Object
+    source: openapi/screenpipe-search-api-openapi.yml#/components/schemas/Speaker
+  - term: CloudSearchMetadata
+    definition: Metadata about cloud search to include in responses.
+    tags:
+    - Object
+    source: openapi/screenpipe-search-api-openapi.yml#/components/schemas/CloudSearchMetadata
+  - term: CloudStatus
+    definition: 'Enumeration declared by the contract with values: available, disabled, not_initialized, error.'
+    tags:
+    - Enumeration
+    source: openapi/screenpipe-search-api-openapi.yml#/components/schemas/CloudStatus
+  - term: ContentType
+    definition: 'Enumeration declared by the contract with values: all, ocr, audio, input, accessibility, memory.'
+    tags:
+    - Enumeration
+    source: openapi/screenpipe-search-api-openapi.yml#/components/schemas/ContentType
+  - term: DeviceType
+    definition: 'Enumeration declared by the contract with values: Input, Output.'
+    tags:
+    - Enumeration
+    source: openapi/screenpipe-search-api-openapi.yml#/components/schemas/DeviceType
+  - term: SearchResponse
+    definition: 'Object declared by the contract with fields: data, pagination, cloud.'
+    tags:
+    - Object
+    source: openapi/screenpipe-search-api-openapi.yml#/components/schemas/SearchResponse
+  - term: Order
+    definition: 'Enumeration declared by the contract with values: ascending, descending.'
+    tags:
+    - Enumeration
+    source: openapi/screenpipe-search-api-openapi.yml#/components/schemas/Order

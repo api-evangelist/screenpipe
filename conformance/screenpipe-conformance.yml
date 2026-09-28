@@ -1,5 +1,5 @@
 generated: '2026-07-21'
-method: derived
+method: searched
 source: openapi/screenpipe-openapi-original.yml
 docs: https://screenpipe.com/security
 standards:
@@ -25,10 +25,39 @@ standards:
   evidence: official screenpipe-mcp Model Context Protocol server (mcp/screenpipe-mcp.yml)
 - id: soc2-type2
   conforms: true
-  evidence: "SOC 2 Type II claimed on https://screenpipe.com/security"
+  evidence: SOC 2 Type II claimed on https://screenpipe.com/security
 - id: hipaa
   conforms: true
-  evidence: "HIPAA compliance claimed on https://screenpipe.com/security"
+  evidence: HIPAA compliance claimed on https://screenpipe.com/security
 - id: gdpr
   conforms: true
-  evidence: "GDPR compliance claimed on https://screenpipe.com/security"
+  evidence: GDPR compliance claimed on https://screenpipe.com/security
+- id: soc2
+  conforms: true
+  evidence: SOC 2 Type 2 Independent Type 2 report, available under NDA during procurement.
+  source: https://screenpipe.com/privacy-filter
+- id: iso-27001
+  conforms: false
+  evidence: ISO 27001 Certification in progress. Not yet certified.
+  source: https://screenpipe.com/privacy-filter
+- id: ccpa
+  conforms: true
+  evidence: GDPR, HIPAA, CCPA Local-first supports data minimization, retention, deletion, and residency.
+  source: https://screenpipe.com/privacy-filter
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: pagination
+  conforms: true
+  evidence: list operations take limit, offset
+sources:
+- https://screenpipe.com/privacy-filter
+- https://screenpipe.com/security
+- https://screenpipe.com/privacy
+- https://screenpipe.com/security/architecture

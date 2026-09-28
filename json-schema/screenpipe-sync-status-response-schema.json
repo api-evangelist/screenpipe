@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-sync-status-response-schema.json",
+  "title": "SyncStatusResponse",
+  "description": "Response for sync status.",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-cloud-sync-api-openapi.yml#/components/schemas/SyncStatusResponse",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "is_syncing": {
+      "type": "boolean"
+    },
+    "last_sync": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "machine_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_download_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "enabled",
+    "is_syncing",
+    "last_sync",
+    "last_error",
+    "machine_id",
+    "last_download_at"
+  ]
+}

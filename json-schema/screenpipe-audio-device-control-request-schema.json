@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-audio-device-control-request-schema.json",
+  "title": "AudioDeviceControlRequest",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-audio-api-openapi.yml#/components/schemas/AudioDeviceControlRequest",
+  "type": "object",
+  "properties": {
+    "device_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "device_name"
+  ]
+}

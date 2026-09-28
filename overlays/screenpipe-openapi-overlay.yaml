@@ -2,7 +2,7 @@ overlay: 1.0.0
 info:
   title: API Evangelist enhancements for Screenpipe Local REST API
   version: 1.0.0
-extends: openapi/screenpipe-openapi-original.yml
+extends: ../openapi/_original/screenpipe-openapi-original.yml
 actions:
 - target: $.info
   update:

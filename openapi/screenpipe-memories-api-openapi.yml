@@ -175,6 +175,73 @@ paths:
       summary: Delete memory
 components:
   schemas:
+    UpdateMemoryRequest:
+      type: object
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        importance:
+          type:
+          - number
+          - 'null'
+        source_context:
+          type:
+          - object
+          - 'null'
+      required:
+      - content
+      - tags
+      - importance
+      - source_context
+    PaginationInfo:
+      type: object
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+      required:
+      - limit
+      - offset
+      - total
+    CreateMemoryRequest:
+      type: object
+      properties:
+        content:
+          type: string
+        source:
+          type: string
+        source_context:
+          type:
+          - object
+          - 'null'
+        tags:
+          type: array
+          items:
+            type: string
+        importance:
+          type: number
+        frame_id:
+          type:
+          - integer
+          - 'null'
+      required:
+      - content
+      - source
+      - source_context
+      - tags
+      - importance
+      - frame_id
     MemoryResponse:
       type: object
       properties:
@@ -212,60 +279,6 @@ components:
       - frame_id
       - created_at
       - updated_at
-    CreateMemoryRequest:
-      type: object
-      properties:
-        content:
-          type: string
-        source:
-          type: string
-        source_context:
-          type:
-          - object
-          - 'null'
-        tags:
-          type: array
-          items:
-            type: string
-        importance:
-          type: number
-        frame_id:
-          type:
-          - integer
-          - 'null'
-      required:
-      - content
-      - source
-      - source_context
-      - tags
-      - importance
-      - frame_id
-    UpdateMemoryRequest:
-      type: object
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        importance:
-          type:
-          - number
-          - 'null'
-        source_context:
-          type:
-          - object
-          - 'null'
-      required:
-      - content
-      - tags
-      - importance
-      - source_context
     MemoryListResponse:
       type: object
       properties:
@@ -278,19 +291,6 @@ components:
       required:
       - data
       - pagination
-    PaginationInfo:
-      type: object
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-      required:
-      - limit
-      - offset
-      - total
     MemoryListItem:
       type: object
       properties:

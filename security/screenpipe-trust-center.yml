@@ -1,15 +1,21 @@
-generated: '2026-07-21'
+generated: '2026-09-28'
 method: searched
 probe: true
-source: https://screenpipe.com/security
-url: https://screenpipe.com/security
+source: https://trust.screenpipe.com/
+url: https://trust.screenpipe.com/
 certifications:
 - SOC 2
+- ISO 27001
+- PCI DSS
 - HIPAA
 - GDPR
 evidence:
-- source: https://screenpipe.com/security
+- source: https://trust.screenpipe.com/
   keywords:
   - soc 2
+  - soc2
+  - iso 27001
+  - pci dss
   - hipaa
+  - trust center
   - gdpr

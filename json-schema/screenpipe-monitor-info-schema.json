@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-monitor-info-schema.json",
+  "title": "MonitorInfo",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-vision-api-openapi.yml#/components/schemas/MonitorInfo",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "stable_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "is_default": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "stable_id",
+    "name",
+    "width",
+    "height",
+    "is_default"
+  ]
+}

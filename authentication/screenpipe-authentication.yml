@@ -13,7 +13,10 @@ summary:
     `screenpipe auth token` and supplied by clients (e.g. the MCP server) when
     the local server is configured to require it. Pipes are additionally scoped
     by an endpoint allowlist (see docs pipe-permissions).
-schemes: []
+schemes:
+  - type: http
+    scheme: bearer
+    description: Optional bearer token for authenticated access
 optional_token:
   mechanism: bearer
   retrieval: screenpipe auth token

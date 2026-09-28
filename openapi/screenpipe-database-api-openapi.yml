@@ -52,6 +52,23 @@ paths:
       description: Manually insert screen or audio content into the database.
 components:
   schemas:
+    RawSqlQuery:
+      type: object
+      properties:
+        query:
+          type: string
+      required:
+      - query
+    AddContentData:
+      type: object
+      properties:
+        content_type:
+          type: string
+        data:
+          $ref: '#/components/schemas/ContentData'
+      required:
+      - content_type
+      - data
     ContentData:
       oneOf:
       - type: array
@@ -101,13 +118,16 @@ components:
         required:
         - transcription
         - transcription_engine
-    RawSqlQuery:
+    AddContentRequest:
       type: object
       properties:
-        query:
+        device_name:
           type: string
+        content:
+          $ref: '#/components/schemas/AddContentData'
       required:
-      - query
+      - device_name
+      - content
     OCRResult:
       type: object
       properties:
@@ -142,23 +162,3 @@ components:
       required:
       - success
       - message
-    AddContentData:
-      type: object
-      properties:
-        content_type:
-          type: string
-        data:
-          $ref: '#/components/schemas/ContentData'
-      required:
-      - content_type
-      - data
-    AddContentRequest:
-      type: object
-      properties:
-        device_name:
-          type: string
-        content:
-          $ref: '#/components/schemas/AddContentData'
-      required:
-      - device_name
-      - content

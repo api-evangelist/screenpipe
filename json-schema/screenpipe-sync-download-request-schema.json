@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-sync-download-request-schema.json",
+  "title": "SyncDownloadRequest",
+  "description": "Request to download data from other devices.",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-cloud-sync-api-openapi.yml#/components/schemas/SyncDownloadRequest",
+  "type": "object",
+  "properties": {
+    "hours": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "hours"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-merge-speakers-request-schema.json",
+  "title": "MergeSpeakersRequest",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-speakers-api-openapi.yml#/components/schemas/MergeSpeakersRequest",
+  "type": "object",
+  "properties": {
+    "speaker_to_keep_id": {
+      "type": "integer"
+    },
+    "speaker_to_merge_id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "speaker_to_keep_id",
+    "speaker_to_merge_id"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-frame-text-response-schema.json",
+  "title": "FrameTextResponse",
+  "description": "Response type for frame OCR data endpoint",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-frames-api-openapi.yml#/components/schemas/FrameTextResponse",
+  "type": "object",
+  "properties": {
+    "frame_id": {
+      "type": "integer"
+    },
+    "text_positions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TextPosition"
+      }
+    }
+  },
+  "required": [
+    "frame_id",
+    "text_positions"
+  ],
+  "$defs": {
+    "TextBounds": {
+      "type": "object",
+      "properties": {
+        "left": {
+          "type": "number"
+        },
+        "top": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "left",
+        "top",
+        "width",
+        "height"
+      ]
+    },
+    "TextPosition": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "bounds": {
+          "$ref": "#/$defs/TextBounds"
+        }
+      },
+      "required": [
+        "text",
+        "confidence",
+        "bounds"
+      ]
+    }
+  }
+}

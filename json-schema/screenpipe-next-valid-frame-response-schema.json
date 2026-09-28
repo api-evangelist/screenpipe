@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/screenpipe/main/json-schema/screenpipe-next-valid-frame-response-schema.json",
+  "title": "NextValidFrameResponse",
+  "description": "Response for next valid frame endpoint",
+  "x-generated": "2026-09-28",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/screenpipe-frames-api-openapi.yml#/components/schemas/NextValidFrameResponse",
+  "type": "object",
+  "properties": {
+    "frame_id": {
+      "type": "integer"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "skipped_count": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "frame_id",
+    "timestamp",
+    "skipped_count"
+  ]
+}

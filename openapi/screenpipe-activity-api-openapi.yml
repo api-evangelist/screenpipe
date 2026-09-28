@@ -48,52 +48,6 @@ paths:
       summary: Get activity summary
 components:
   schemas:
-    RecentText:
-      type: object
-      properties:
-        text:
-          type: string
-        app_name:
-          type: string
-        timestamp:
-          type: string
-      required:
-      - text
-      - app_name
-      - timestamp
-    TimeRange:
-      type: object
-      properties:
-        start:
-          type: string
-        end:
-          type: string
-      required:
-      - start
-      - end
-    ActivitySummaryResponse:
-      type: object
-      properties:
-        apps:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppUsage'
-        recent_texts:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecentText'
-        audio_summary:
-          $ref: '#/components/schemas/AudioSummary'
-        total_frames:
-          type: integer
-        time_range:
-          $ref: '#/components/schemas/TimeRange'
-      required:
-      - apps
-      - recent_texts
-      - audio_summary
-      - total_frames
-      - time_range
     AppUsage:
       type: object
       properties:
@@ -135,3 +89,49 @@ components:
       required:
       - name
       - segment_count
+    TimeRange:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+      required:
+      - start
+      - end
+    RecentText:
+      type: object
+      properties:
+        text:
+          type: string
+        app_name:
+          type: string
+        timestamp:
+          type: string
+      required:
+      - text
+      - app_name
+      - timestamp
+    ActivitySummaryResponse:
+      type: object
+      properties:
+        apps:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppUsage'
+        recent_texts:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecentText'
+        audio_summary:
+          $ref: '#/components/schemas/AudioSummary'
+        total_frames:
+          type: integer
+        time_range:
+          $ref: '#/components/schemas/TimeRange'
+      required:
+      - apps
+      - recent_texts
+      - audio_summary
+      - total_frames
+      - time_range

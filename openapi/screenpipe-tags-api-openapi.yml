@@ -99,15 +99,15 @@ paths:
       description: Remove tags from a specific content item.
 components:
   schemas:
-    AddTagsRequest:
+    GetTagsBatchRequest:
       type: object
       properties:
-        tags:
+        frame_ids:
           type: array
           items:
-            type: string
+            type: integer
       required:
-      - tags
+      - frame_ids
     GetTagsBatchResponse:
       type: object
       properties:
@@ -135,15 +135,6 @@ components:
           type: boolean
       required:
       - success
-    GetTagsBatchRequest:
-      type: object
-      properties:
-        frame_ids:
-          type: array
-          items:
-            type: integer
-      required:
-      - frame_ids
     AddTagsResponse:
       type: object
       properties:
@@ -151,3 +142,12 @@ components:
           type: boolean
       required:
       - success
+    AddTagsRequest:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: string
+      required:
+      - tags

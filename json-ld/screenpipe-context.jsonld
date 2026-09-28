@@ -1,0 +1,891 @@
+{
+  "@context": {
+    "@vocab": "https://screenpi.pe/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "screenpipe": "https://screenpi.pe/schema#",
+    "RecentText": "screenpipe:RecentText",
+    "text": {
+      "@id": "screenpipe:text",
+      "@type": "xsd:string"
+    },
+    "app_name": {
+      "@id": "screenpipe:app_name",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "screenpipe:timestamp",
+      "@type": "xsd:string"
+    },
+    "TimeRange": "screenpipe:TimeRange",
+    "start": {
+      "@id": "screenpipe:start",
+      "@type": "xsd:string"
+    },
+    "end": {
+      "@id": "screenpipe:end",
+      "@type": "xsd:string"
+    },
+    "ActivitySummaryResponse": "screenpipe:ActivitySummaryResponse",
+    "apps": {
+      "@id": "screenpipe:apps",
+      "@container": "@list"
+    },
+    "recent_texts": {
+      "@id": "screenpipe:recent_texts",
+      "@container": "@list"
+    },
+    "audio_summary": {
+      "@id": "screenpipe:audio_summary",
+      "@type": "@id"
+    },
+    "total_frames": {
+      "@id": "screenpipe:total_frames",
+      "@type": "xsd:integer"
+    },
+    "time_range": {
+      "@id": "screenpipe:time_range",
+      "@type": "@id"
+    },
+    "AppUsage": "screenpipe:AppUsage",
+    "name": {
+      "@id": "screenpipe:name",
+      "@type": "xsd:string"
+    },
+    "frame_count": {
+      "@id": "screenpipe:frame_count",
+      "@type": "xsd:integer"
+    },
+    "minutes": {
+      "@id": "screenpipe:minutes",
+      "@type": "xsd:decimal"
+    },
+    "first_seen": {
+      "@id": "screenpipe:first_seen",
+      "@type": "xsd:string"
+    },
+    "last_seen": {
+      "@id": "screenpipe:last_seen",
+      "@type": "xsd:string"
+    },
+    "AudioSummary": "screenpipe:AudioSummary",
+    "segment_count": {
+      "@id": "screenpipe:segment_count",
+      "@type": "xsd:integer"
+    },
+    "speakers": {
+      "@id": "screenpipe:speakers",
+      "@container": "@list"
+    },
+    "SpeakerSummary": "screenpipe:SpeakerSummary",
+    "AudioDeviceControlRequest": "screenpipe:AudioDeviceControlRequest",
+    "device_name": {
+      "@id": "screenpipe:device_name",
+      "@type": "xsd:string"
+    },
+    "AudioDeviceControlResponse": "screenpipe:AudioDeviceControlResponse",
+    "success": {
+      "@id": "screenpipe:success",
+      "@type": "xsd:boolean"
+    },
+    "message": {
+      "@id": "screenpipe:message",
+      "@type": "xsd:string"
+    },
+    "ListDeviceResponse": "screenpipe:ListDeviceResponse",
+    "is_default": {
+      "@id": "screenpipe:is_default",
+      "@type": "xsd:boolean"
+    },
+    "ArchiveConfigureRequest": "screenpipe:ArchiveConfigureRequest",
+    "enabled": {
+      "@id": "screenpipe:enabled",
+      "@type": "xsd:boolean"
+    },
+    "retention_days": {
+      "@id": "screenpipe:retention_days",
+      "@type": "xsd:integer"
+    },
+    "ArchiveInitResponse": "screenpipe:ArchiveInitResponse",
+    "machine_id": {
+      "@id": "screenpipe:machine_id",
+      "@type": "xsd:string"
+    },
+    "ArchiveStatusResponse": "screenpipe:ArchiveStatusResponse",
+    "watermark": {
+      "@id": "screenpipe:watermark",
+      "@type": "xsd:string"
+    },
+    "last_cleanup": {
+      "@id": "screenpipe:last_cleanup",
+      "@type": "xsd:string"
+    },
+    "last_error": {
+      "@id": "screenpipe:last_error",
+      "@type": "xsd:string"
+    },
+    "storage_used": {
+      "@id": "screenpipe:storage_used",
+      "@type": "xsd:integer"
+    },
+    "storage_limit": {
+      "@id": "screenpipe:storage_limit",
+      "@type": "xsd:integer"
+    },
+    "pending_count": {
+      "@id": "screenpipe:pending_count",
+      "@type": "xsd:integer"
+    },
+    "is_uploading": {
+      "@id": "screenpipe:is_uploading",
+      "@type": "xsd:boolean"
+    },
+    "chunks_uploaded": {
+      "@id": "screenpipe:chunks_uploaded",
+      "@type": "xsd:integer"
+    },
+    "media_files_uploaded": {
+      "@id": "screenpipe:media_files_uploaded",
+      "@type": "xsd:integer"
+    },
+    "media_files_pending": {
+      "@id": "screenpipe:media_files_pending",
+      "@type": "xsd:integer"
+    },
+    "ArchiveInitRequest": "screenpipe:ArchiveInitRequest",
+    "token": {
+      "@id": "screenpipe:token",
+      "@type": "xsd:string"
+    },
+    "SyncStatusResponse": "screenpipe:SyncStatusResponse",
+    "is_syncing": {
+      "@id": "screenpipe:is_syncing",
+      "@type": "xsd:boolean"
+    },
+    "last_sync": {
+      "@id": "screenpipe:last_sync",
+      "@type": "xsd:string"
+    },
+    "last_download_at": {
+      "@id": "screenpipe:last_download_at",
+      "@type": "xsd:string"
+    },
+    "SyncDownloadResponse": "screenpipe:SyncDownloadResponse",
+    "blobs_downloaded": {
+      "@id": "screenpipe:blobs_downloaded",
+      "@type": "xsd:integer"
+    },
+    "records_imported": {
+      "@id": "screenpipe:records_imported",
+      "@type": "xsd:integer"
+    },
+    "SyncInitRequest": "screenpipe:SyncInitRequest",
+    "password": {
+      "@id": "screenpipe:password",
+      "@type": "xsd:string"
+    },
+    "sync_interval_secs": {
+      "@id": "screenpipe:sync_interval_secs",
+      "@type": "xsd:integer"
+    },
+    "PipeSyncResponse": "screenpipe:PipeSyncResponse",
+    "actions": {
+      "@id": "screenpipe:actions",
+      "@container": "@list"
+    },
+    "errors": {
+      "@id": "screenpipe:errors",
+      "@container": "@list"
+    },
+    "SyncDownloadRequest": "screenpipe:SyncDownloadRequest",
+    "hours": {
+      "@id": "screenpipe:hours",
+      "@type": "xsd:integer"
+    },
+    "SyncInitResponse": "screenpipe:SyncInitResponse",
+    "is_new_user": {
+      "@id": "screenpipe:is_new_user",
+      "@type": "xsd:boolean"
+    },
+    "DeleteTimeRangeRequest": "screenpipe:DeleteTimeRangeRequest",
+    "DeviceStorageEntry": "screenpipe:DeviceStorageEntry",
+    "frames": {
+      "@id": "screenpipe:frames",
+      "@type": "xsd:integer"
+    },
+    "audio_chunks": {
+      "@id": "screenpipe:audio_chunks",
+      "@type": "xsd:integer"
+    },
+    "DeleteTimeRangeResponse": "screenpipe:DeleteTimeRangeResponse",
+    "frames_deleted": {
+      "@id": "screenpipe:frames_deleted",
+      "@type": "xsd:integer"
+    },
+    "ocr_deleted": {
+      "@id": "screenpipe:ocr_deleted",
+      "@type": "xsd:integer"
+    },
+    "audio_transcriptions_deleted": {
+      "@id": "screenpipe:audio_transcriptions_deleted",
+      "@type": "xsd:integer"
+    },
+    "audio_chunks_deleted": {
+      "@id": "screenpipe:audio_chunks_deleted",
+      "@type": "xsd:integer"
+    },
+    "video_chunks_deleted": {
+      "@id": "screenpipe:video_chunks_deleted",
+      "@type": "xsd:integer"
+    },
+    "accessibility_deleted": {
+      "@id": "screenpipe:accessibility_deleted",
+      "@type": "xsd:integer"
+    },
+    "ui_events_deleted": {
+      "@id": "screenpipe:ui_events_deleted",
+      "@type": "xsd:integer"
+    },
+    "video_files_deleted": {
+      "@id": "screenpipe:video_files_deleted",
+      "@type": "xsd:integer"
+    },
+    "audio_files_deleted": {
+      "@id": "screenpipe:audio_files_deleted",
+      "@type": "xsd:integer"
+    },
+    "DeleteDeviceDataRequest": "screenpipe:DeleteDeviceDataRequest",
+    "RetentionStatusResponse": "screenpipe:RetentionStatusResponse",
+    "total_deleted": {
+      "@id": "screenpipe:total_deleted",
+      "@type": "xsd:integer"
+    },
+    "RetentionConfigureRequest": "screenpipe:RetentionConfigureRequest",
+    "RawSqlQuery": "screenpipe:RawSqlQuery",
+    "query": {
+      "@id": "screenpipe:query",
+      "@type": "xsd:string"
+    },
+    "OCRResult": "screenpipe:OCRResult",
+    "text_json": {
+      "@id": "screenpipe:text_json",
+      "@type": "xsd:string"
+    },
+    "ocr_engine": {
+      "@id": "screenpipe:ocr_engine",
+      "@type": "xsd:string"
+    },
+    "focused": {
+      "@id": "screenpipe:focused",
+      "@type": "xsd:boolean"
+    },
+    "AddContentResponse": "screenpipe:AddContentResponse",
+    "AddContentData": "screenpipe:AddContentData",
+    "content_type": {
+      "@id": "screenpipe:content_type",
+      "@type": "xsd:string"
+    },
+    "data": {
+      "@id": "screenpipe:data",
+      "@type": "@id"
+    },
+    "AddContentRequest": "screenpipe:AddContentRequest",
+    "content": {
+      "@id": "screenpipe:content",
+      "@type": "@id"
+    },
+    "ElementResponse": "screenpipe:ElementResponse",
+    "id": {
+      "@id": "screenpipe:id",
+      "@type": "xsd:integer"
+    },
+    "frame_id": {
+      "@id": "screenpipe:frame_id",
+      "@type": "xsd:integer"
+    },
+    "source": {
+      "@id": "screenpipe:source",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "screenpipe:role",
+      "@type": "xsd:string"
+    },
+    "parent_id": {
+      "@id": "screenpipe:parent_id",
+      "@type": "xsd:integer"
+    },
+    "depth": {
+      "@id": "screenpipe:depth",
+      "@type": "xsd:integer"
+    },
+    "bounds": {
+      "@id": "screenpipe:bounds",
+      "@type": "@id"
+    },
+    "confidence": {
+      "@id": "screenpipe:confidence",
+      "@type": "xsd:decimal"
+    },
+    "sort_order": {
+      "@id": "screenpipe:sort_order",
+      "@type": "xsd:integer"
+    },
+    "BoundsResponse": "screenpipe:BoundsResponse",
+    "left": {
+      "@id": "screenpipe:left",
+      "@type": "xsd:decimal"
+    },
+    "top": {
+      "@id": "screenpipe:top",
+      "@type": "xsd:decimal"
+    },
+    "width": {
+      "@id": "screenpipe:width",
+      "@type": "xsd:decimal"
+    },
+    "height": {
+      "@id": "screenpipe:height",
+      "@type": "xsd:decimal"
+    },
+    "ElementsListResponse": "screenpipe:ElementsListResponse",
+    "pagination": {
+      "@id": "screenpipe:pagination",
+      "@type": "@id"
+    },
+    "PaginationResponse": "screenpipe:PaginationResponse",
+    "limit": {
+      "@id": "screenpipe:limit",
+      "@type": "xsd:integer"
+    },
+    "offset": {
+      "@id": "screenpipe:offset",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "screenpipe:total",
+      "@type": "xsd:integer"
+    },
+    "MergeVideosResponse": "screenpipe:MergeVideosResponse",
+    "video_path": {
+      "@id": "screenpipe:video_path",
+      "@type": "xsd:string"
+    },
+    "MergeVideosRequest": "screenpipe:MergeVideosRequest",
+    "video_paths": {
+      "@id": "screenpipe:video_paths",
+      "@container": "@list"
+    },
+    "AccessibilityNodeBounds": "screenpipe:AccessibilityNodeBounds",
+    "FrameMetadataResponse": "screenpipe:FrameMetadataResponse",
+    "AccessibilityNode": "screenpipe:AccessibilityNode",
+    "properties": {
+      "@id": "screenpipe:properties"
+    },
+    "TextBounds": "screenpipe:TextBounds",
+    "NextValidFrameResponse": "screenpipe:NextValidFrameResponse",
+    "skipped_count": {
+      "@id": "screenpipe:skipped_count",
+      "@type": "xsd:integer"
+    },
+    "TextPosition": "screenpipe:TextPosition",
+    "FrameTextResponse": "screenpipe:FrameTextResponse",
+    "text_positions": {
+      "@id": "screenpipe:text_positions",
+      "@container": "@list"
+    },
+    "FrameContextResponse": "screenpipe:FrameContextResponse",
+    "nodes": {
+      "@id": "screenpipe:nodes",
+      "@container": "@list"
+    },
+    "urls": {
+      "@id": "screenpipe:urls",
+      "@container": "@list"
+    },
+    "text_source": {
+      "@id": "screenpipe:text_source",
+      "@type": "xsd:string"
+    },
+    "StartMeetingRequest": "screenpipe:StartMeetingRequest",
+    "app": {
+      "@id": "screenpipe:app",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "screenpipe:title",
+      "@type": "xsd:string"
+    },
+    "attendees": {
+      "@id": "screenpipe:attendees",
+      "@type": "xsd:string"
+    },
+    "BulkDeleteMeetingsRequest": "screenpipe:BulkDeleteMeetingsRequest",
+    "ids": {
+      "@id": "screenpipe:ids",
+      "@container": "@list"
+    },
+    "UpdateMeetingRequest": "screenpipe:UpdateMeetingRequest",
+    "meeting_start": {
+      "@id": "screenpipe:meeting_start",
+      "@type": "xsd:string"
+    },
+    "meeting_end": {
+      "@id": "screenpipe:meeting_end",
+      "@type": "xsd:string"
+    },
+    "note": {
+      "@id": "screenpipe:note",
+      "@type": "xsd:string"
+    },
+    "meeting_app": {
+      "@id": "screenpipe:meeting_app",
+      "@type": "xsd:string"
+    },
+    "MeetingRecord": "screenpipe:MeetingRecord",
+    "detection_source": {
+      "@id": "screenpipe:detection_source",
+      "@type": "xsd:string"
+    },
+    "created_at": {
+      "@id": "screenpipe:created_at",
+      "@type": "xsd:string"
+    },
+    "MergeMeetingsRequest": "screenpipe:MergeMeetingsRequest",
+    "MemoryResponse": "screenpipe:MemoryResponse",
+    "source_context": {
+      "@id": "screenpipe:source_context"
+    },
+    "tags": {
+      "@id": "screenpipe:tags",
+      "@container": "@list"
+    },
+    "importance": {
+      "@id": "screenpipe:importance",
+      "@type": "xsd:decimal"
+    },
+    "updated_at": {
+      "@id": "screenpipe:updated_at",
+      "@type": "xsd:string"
+    },
+    "CreateMemoryRequest": "screenpipe:CreateMemoryRequest",
+    "UpdateMemoryRequest": "screenpipe:UpdateMemoryRequest",
+    "MemoryListResponse": "screenpipe:MemoryListResponse",
+    "PaginationInfo": "screenpipe:PaginationInfo",
+    "MemoryListItem": "screenpipe:MemoryListItem",
+    "Speaker": "screenpipe:Speaker",
+    "metadata": {
+      "@id": "screenpipe:metadata",
+      "@type": "xsd:string"
+    },
+    "CloudSearchMetadata": "screenpipe:CloudSearchMetadata",
+    "cloudSearchAvailable": {
+      "@id": "screenpipe:cloudSearchAvailable",
+      "@type": "xsd:boolean"
+    },
+    "cloudHasRelevantData": {
+      "@id": "screenpipe:cloudHasRelevantData",
+      "@type": "xsd:boolean"
+    },
+    "cloudQueryHint": {
+      "@id": "screenpipe:cloudQueryHint",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "screenpipe:status",
+      "@type": "@id"
+    },
+    "CloudStatus": "screenpipe:CloudStatus",
+    "ContentType": "screenpipe:ContentType",
+    "DeviceType": "screenpipe:DeviceType",
+    "SearchResponse": "screenpipe:SearchResponse",
+    "cloud": {
+      "@id": "screenpipe:cloud",
+      "@type": "@id"
+    },
+    "Order": "screenpipe:Order",
+    "ReassignSpeakerRequest": "screenpipe:ReassignSpeakerRequest",
+    "audio_chunk_id": {
+      "@id": "screenpipe:audio_chunk_id",
+      "@type": "xsd:integer"
+    },
+    "new_speaker_name": {
+      "@id": "screenpipe:new_speaker_name",
+      "@type": "xsd:string"
+    },
+    "propagate_similar": {
+      "@id": "screenpipe:propagate_similar",
+      "@type": "xsd:boolean"
+    },
+    "MergeSpeakersRequest": "screenpipe:MergeSpeakersRequest",
+    "speaker_to_keep_id": {
+      "@id": "screenpipe:speaker_to_keep_id",
+      "@type": "xsd:integer"
+    },
+    "speaker_to_merge_id": {
+      "@id": "screenpipe:speaker_to_merge_id",
+      "@type": "xsd:integer"
+    },
+    "UpdateSpeakerRequest": "screenpipe:UpdateSpeakerRequest",
+    "ReassignSpeakerResponse": "screenpipe:ReassignSpeakerResponse",
+    "new_speaker_id": {
+      "@id": "screenpipe:new_speaker_id",
+      "@type": "xsd:integer"
+    },
+    "transcriptions_updated": {
+      "@id": "screenpipe:transcriptions_updated",
+      "@type": "xsd:integer"
+    },
+    "embeddings_moved": {
+      "@id": "screenpipe:embeddings_moved",
+      "@type": "xsd:integer"
+    },
+    "old_assignments": {
+      "@id": "screenpipe:old_assignments",
+      "@container": "@list"
+    },
+    "SpeakerOldAssignment": "screenpipe:SpeakerOldAssignment",
+    "transcription_id": {
+      "@id": "screenpipe:transcription_id",
+      "@type": "xsd:integer"
+    },
+    "old_speaker_id": {
+      "@id": "screenpipe:old_speaker_id",
+      "@type": "xsd:integer"
+    },
+    "UndoSpeakerReassignRequest": "screenpipe:UndoSpeakerReassignRequest",
+    "UndoSpeakerReassignResponse": "screenpipe:UndoSpeakerReassignResponse",
+    "restored": {
+      "@id": "screenpipe:restored",
+      "@type": "xsd:integer"
+    },
+    "DeleteSpeakerRequest": "screenpipe:DeleteSpeakerRequest",
+    "MarkAsHallucinationRequest": "screenpipe:MarkAsHallucinationRequest",
+    "speaker_id": {
+      "@id": "screenpipe:speaker_id",
+      "@type": "xsd:integer"
+    },
+    "PoolHealthInfo": "screenpipe:PoolHealthInfo",
+    "read_pool_size": {
+      "@id": "screenpipe:read_pool_size",
+      "@type": "xsd:integer"
+    },
+    "read_pool_idle": {
+      "@id": "screenpipe:read_pool_idle",
+      "@type": "xsd:integer"
+    },
+    "write_pool_size": {
+      "@id": "screenpipe:write_pool_size",
+      "@type": "xsd:integer"
+    },
+    "write_pool_idle": {
+      "@id": "screenpipe:write_pool_idle",
+      "@type": "xsd:integer"
+    },
+    "AudioPipelineHealthInfo": "screenpipe:AudioPipelineHealthInfo",
+    "uptime_secs": {
+      "@id": "screenpipe:uptime_secs",
+      "@type": "xsd:decimal"
+    },
+    "chunks_sent": {
+      "@id": "screenpipe:chunks_sent",
+      "@type": "xsd:integer"
+    },
+    "chunks_channel_full": {
+      "@id": "screenpipe:chunks_channel_full",
+      "@type": "xsd:integer"
+    },
+    "stream_timeouts": {
+      "@id": "screenpipe:stream_timeouts",
+      "@type": "xsd:integer"
+    },
+    "vad_passed": {
+      "@id": "screenpipe:vad_passed",
+      "@type": "xsd:integer"
+    },
+    "vad_rejected": {
+      "@id": "screenpipe:vad_rejected",
+      "@type": "xsd:integer"
+    },
+    "vad_passthrough_rate": {
+      "@id": "screenpipe:vad_passthrough_rate",
+      "@type": "xsd:decimal"
+    },
+    "avg_speech_ratio": {
+      "@id": "screenpipe:avg_speech_ratio",
+      "@type": "xsd:decimal"
+    },
+    "transcriptions_completed": {
+      "@id": "screenpipe:transcriptions_completed",
+      "@type": "xsd:integer"
+    },
+    "transcriptions_empty": {
+      "@id": "screenpipe:transcriptions_empty",
+      "@type": "xsd:integer"
+    },
+    "transcription_errors": {
+      "@id": "screenpipe:transcription_errors",
+      "@type": "xsd:integer"
+    },
+    "db_inserted": {
+      "@id": "screenpipe:db_inserted",
+      "@type": "xsd:integer"
+    },
+    "total_words": {
+      "@id": "screenpipe:total_words",
+      "@type": "xsd:integer"
+    },
+    "words_per_minute": {
+      "@id": "screenpipe:words_per_minute",
+      "@type": "xsd:decimal"
+    },
+    "chunks_received": {
+      "@id": "screenpipe:chunks_received",
+      "@type": "xsd:integer"
+    },
+    "process_errors": {
+      "@id": "screenpipe:process_errors",
+      "@type": "xsd:integer"
+    },
+    "audio_level_rms": {
+      "@id": "screenpipe:audio_level_rms",
+      "@type": "xsd:decimal"
+    },
+    "audio_devices": {
+      "@id": "screenpipe:audio_devices",
+      "@container": "@list"
+    },
+    "transcription_mode": {
+      "@id": "screenpipe:transcription_mode",
+      "@type": "xsd:string"
+    },
+    "transcription_paused": {
+      "@id": "screenpipe:transcription_paused",
+      "@type": "xsd:boolean"
+    },
+    "segments_deferred": {
+      "@id": "screenpipe:segments_deferred",
+      "@type": "xsd:integer"
+    },
+    "segments_batch_processed": {
+      "@id": "screenpipe:segments_batch_processed",
+      "@type": "xsd:integer"
+    },
+    "batch_paused_reason": {
+      "@id": "screenpipe:batch_paused_reason",
+      "@type": "xsd:string"
+    },
+    "meeting_detected": {
+      "@id": "screenpipe:meeting_detected",
+      "@type": "xsd:boolean"
+    },
+    "HealthCheckResponse": "screenpipe:HealthCheckResponse",
+    "status_code": {
+      "@id": "screenpipe:status_code",
+      "@type": "xsd:integer"
+    },
+    "last_frame_timestamp": {
+      "@id": "screenpipe:last_frame_timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "last_audio_timestamp": {
+      "@id": "screenpipe:last_audio_timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "frame_status": {
+      "@id": "screenpipe:frame_status",
+      "@type": "xsd:string"
+    },
+    "audio_status": {
+      "@id": "screenpipe:audio_status",
+      "@type": "xsd:string"
+    },
+    "verbose_instructions": {
+      "@id": "screenpipe:verbose_instructions",
+      "@type": "xsd:string"
+    },
+    "device_status_details": {
+      "@id": "screenpipe:device_status_details",
+      "@type": "xsd:string"
+    },
+    "monitors": {
+      "@id": "screenpipe:monitors",
+      "@container": "@list"
+    },
+    "pipeline": {
+      "@id": "screenpipe:pipeline",
+      "@type": "@id"
+    },
+    "audio_pipeline": {
+      "@id": "screenpipe:audio_pipeline",
+      "@type": "@id"
+    },
+    "accessibility": {
+      "@id": "screenpipe:accessibility",
+      "@type": "@id"
+    },
+    "pool_stats": {
+      "@id": "screenpipe:pool_stats",
+      "@type": "@id"
+    },
+    "vision_db_write_stalled": {
+      "@id": "screenpipe:vision_db_write_stalled",
+      "@type": "xsd:boolean"
+    },
+    "audio_db_write_stalled": {
+      "@id": "screenpipe:audio_db_write_stalled",
+      "@type": "xsd:boolean"
+    },
+    "drm_content_paused": {
+      "@id": "screenpipe:drm_content_paused",
+      "@type": "xsd:boolean"
+    },
+    "schedule_paused": {
+      "@id": "screenpipe:schedule_paused",
+      "@type": "xsd:boolean"
+    },
+    "hostname": {
+      "@id": "screenpipe:hostname",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "screenpipe:version",
+      "@type": "xsd:string"
+    },
+    "PipelineHealthInfo": "screenpipe:PipelineHealthInfo",
+    "frames_captured": {
+      "@id": "screenpipe:frames_captured",
+      "@type": "xsd:integer"
+    },
+    "frames_db_written": {
+      "@id": "screenpipe:frames_db_written",
+      "@type": "xsd:integer"
+    },
+    "frames_dropped": {
+      "@id": "screenpipe:frames_dropped",
+      "@type": "xsd:integer"
+    },
+    "frame_drop_rate": {
+      "@id": "screenpipe:frame_drop_rate",
+      "@type": "xsd:decimal"
+    },
+    "capture_fps_actual": {
+      "@id": "screenpipe:capture_fps_actual",
+      "@type": "xsd:decimal"
+    },
+    "avg_ocr_latency_ms": {
+      "@id": "screenpipe:avg_ocr_latency_ms",
+      "@type": "xsd:decimal"
+    },
+    "avg_db_latency_ms": {
+      "@id": "screenpipe:avg_db_latency_ms",
+      "@type": "xsd:decimal"
+    },
+    "ocr_queue_depth": {
+      "@id": "screenpipe:ocr_queue_depth",
+      "@type": "xsd:integer"
+    },
+    "video_queue_depth": {
+      "@id": "screenpipe:video_queue_depth",
+      "@type": "xsd:integer"
+    },
+    "time_to_first_frame_ms": {
+      "@id": "screenpipe:time_to_first_frame_ms",
+      "@type": "xsd:decimal"
+    },
+    "pipeline_stall_count": {
+      "@id": "screenpipe:pipeline_stall_count",
+      "@type": "xsd:integer"
+    },
+    "ocr_cache_hit_rate": {
+      "@id": "screenpipe:ocr_cache_hit_rate",
+      "@type": "xsd:decimal"
+    },
+    "TreeWalkerSnapshot": "screenpipe:TreeWalkerSnapshot",
+    "walks_total": {
+      "@id": "screenpipe:walks_total",
+      "@type": "xsd:integer"
+    },
+    "walks_stored": {
+      "@id": "screenpipe:walks_stored",
+      "@type": "xsd:integer"
+    },
+    "walks_deduped": {
+      "@id": "screenpipe:walks_deduped",
+      "@type": "xsd:integer"
+    },
+    "walks_empty": {
+      "@id": "screenpipe:walks_empty",
+      "@type": "xsd:integer"
+    },
+    "walks_error": {
+      "@id": "screenpipe:walks_error",
+      "@type": "xsd:integer"
+    },
+    "walks_truncated": {
+      "@id": "screenpipe:walks_truncated",
+      "@type": "xsd:integer"
+    },
+    "walks_truncated_timeout": {
+      "@id": "screenpipe:walks_truncated_timeout",
+      "@type": "xsd:integer"
+    },
+    "walks_truncated_max_nodes": {
+      "@id": "screenpipe:walks_truncated_max_nodes",
+      "@type": "xsd:integer"
+    },
+    "truncation_rate": {
+      "@id": "screenpipe:truncation_rate",
+      "@type": "xsd:decimal"
+    },
+    "avg_walk_duration_ms": {
+      "@id": "screenpipe:avg_walk_duration_ms",
+      "@type": "xsd:integer"
+    },
+    "max_walk_duration_ms": {
+      "@id": "screenpipe:max_walk_duration_ms",
+      "@type": "xsd:integer"
+    },
+    "avg_nodes_per_walk": {
+      "@id": "screenpipe:avg_nodes_per_walk",
+      "@type": "xsd:integer"
+    },
+    "max_depth_reached": {
+      "@id": "screenpipe:max_depth_reached",
+      "@type": "xsd:integer"
+    },
+    "total_text_chars": {
+      "@id": "screenpipe:total_text_chars",
+      "@type": "xsd:integer"
+    },
+    "AddTagsRequest": "screenpipe:AddTagsRequest",
+    "GetTagsBatchResponse": "screenpipe:GetTagsBatchResponse",
+    "RemoveTagsRequest": "screenpipe:RemoveTagsRequest",
+    "RemoveTagsResponse": "screenpipe:RemoveTagsResponse",
+    "GetTagsBatchRequest": "screenpipe:GetTagsBatchRequest",
+    "frame_ids": {
+      "@id": "screenpipe:frame_ids",
+      "@container": "@list"
+    },
+    "AddTagsResponse": "screenpipe:AddTagsResponse",
+    "UnlockRequest": "screenpipe:UnlockRequest",
+    "SetupRequest": "screenpipe:SetupRequest",
+    "MonitorInfo": "screenpipe:MonitorInfo",
+    "stable_id": {
+      "@id": "screenpipe:stable_id",
+      "@type": "xsd:string"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Screenpipe API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Screenpipe's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-09-28) from openapi/screenpipe-activity-api-openapi.yml, openapi/screenpipe-audio-api-openapi.yml, openapi/screenpipe-cloud-archive-api-openapi.yml.",
+  "dcterms:created": "2026-09-28",
+  "dcterms:source": [
+    "openapi/screenpipe-activity-api-openapi.yml",
+    "openapi/screenpipe-audio-api-openapi.yml",
+    "openapi/screenpipe-cloud-archive-api-openapi.yml",
+    "openapi/screenpipe-cloud-sync-api-openapi.yml",
+    "openapi/screenpipe-data-management-api-openapi.yml"
+  ]
+}
