@@ -38,10 +38,12 @@ name: Screenpipe
 
 description: Screenpipe is a local-first, source-available desktop application (by Mediar AI, Y Combinator S26) that continuously captures everything
   you see, say, and hear on your computer, reads on-screen text through OS accessibility APIs with an OCR fallback, transcribes system and microphone
-  audio locally with Whisper, and stores it all in a local SQLite database as a private, searchable memory. It exposes a full local REST API at
+  audio with local Whisper by default (or, when the user selects one in settings, with a cloud engine such as Deepgram or screenpipe-cloud, or an
+  OpenAI-compatible transcription endpoint; audio leaves the device only when a remote engine is selected), and stores it all in a local SQLite
+  database as a private, searchable memory. It exposes a full local REST API at
   http://localhost:3030 (71 operations across search, frames, audio, meetings, memories, speakers, tags, vault, cloud sync, cloud archive, and
   data retention) and ships as an MCP server so agents like Claude, Cursor, Codex, and Cline can query screen history and meeting transcripts.
-  Automations are built as "pipes" — scheduled AI agents written in plain markdown. It is positioned as an open, local-first alternative to Rewind.ai,
+  Automations are built as "pipes" — scheduled AI agents written in plain markdown. It is positioned as a local-first alternative to Rewind.ai,
   Microsoft Recall, and cloud meeting bots.
 
 url: https://raw.githubusercontent.com/api-evangelist/screenpipe/refs/heads/main/apis.yml
@@ -700,6 +702,12 @@ x-correction-request:
   request: 'Founder correction: remove the Open-Source / Open Source tags (tags and tags_raw); Screenpipe uses the Screenpipe Commercial license
     (source-available). Description: transcription is local Whisper by default with a configurable cloud path -- say both. Verify against the
     repo LICENSE and docs.'
+  applied: '2026-10-03'
+  applied_note: 'Applied by hand 2026-10-03. Description now says transcription is local Whisper by default with a configurable cloud path (Deepgram,
+    screenpipe-cloud, or an OpenAI-compatible endpoint, chosen in settings; audio leaves the device only when a remote engine is selected), verified
+    live against https://docs.screenpipe.com/meeting-transcription.md and https://docs.screenpipe.com/faq.md. Confirmed the Open-Source / Open Source
+    tags are absent from tags and tags_raw (removed in the 2026-09-28 pass); GitHub reports the repo license as Other (NOASSERTION), and the FAQ calls
+    Screenpipe source-available with commercial licensing on the desktop app and cloud features.'
 x-enrichment:
   date: '2026-09-28'
   status: enriched
