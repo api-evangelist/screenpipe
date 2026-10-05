@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.screenpipe.com/openapi.yaml",
+ "requested_url": "https://docs.screenpipe.com/openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml",
+ "bytes": 112552,
+ "sha256": "99268d5c2683634e546e7dcf2ac3b051c9a69ad6c7096a2ef987fd015ef07edd",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.944), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
