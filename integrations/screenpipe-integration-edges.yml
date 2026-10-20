@@ -1,6 +1,6 @@
 edges: []
 generated: '2026-10-15'
-method: searched
+method: none
 source:
 - https://a2aregistry.org/api/agents
 checked:
