@@ -64,6 +64,207 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Screenpipe is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Screenpipe is a local-first, source-available desktop application (by Mediar AI, Y Combinator S26) that continuously captures everything you see, say, and hear on your computer, reads on-screen text through OS accessibility APIs with an OCR fallback, transcribes system and microphone audio with local Whisper by default (or, when the user selects one in settings, with a cloud engine such as Deepgram or screenpipe-cloud, or an OpenAI-compatible transcription endpoint; audio leaves the device only when a remote engine is selected), and stores it all in a local SQLite database as a private, searchable memory. It exposes a full local REST API at http://localhost:3030 (71 operations across search, frames, audio, meetings, memories, speakers, tags, vault, cloud sync, cloud archive, and data retention) and ships as an MCP server so agents like Claude, Cursor, Codex, and Cline can query screen history and meeting transcripts. Automations are built as "pipes" — scheduled AI agents written in plain markdown. It is positioned as a local-first alternative to Rewind.ai, Microsoft Recall, and cloud meeting bots.
 
-Backed by: y-combinator
+**Areas:** Company · Screen Recording · Screen Memory · Audio Transcription · Meeting Intelligence · Local-First · Privacy · AI Agents · MCP · Developer Tools · Productivity
+
+## Screenpipe on APIs.io
+
+Everything profiled for Screenpipe is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/screenpipe/](https://apis.io/providers/screenpipe/)** — or go straight to one of the APIs or properties below.
+
+### APIs (18)
+
+- [Screenpipe Activity API](https://apis.io/apis/screenpipe/screenpipe-activity-api/) — Activity summaries and analytics
+- [Screenpipe Audio API](https://apis.io/apis/screenpipe/screenpipe-audio-api/) — Manage audio recording devices
+- [Screenpipe Cloud Archive API](https://apis.io/apis/screenpipe/screenpipe-cloud-archive-api/) — Archive old data to cloud storage
+- [Screenpipe Cloud Sync API](https://apis.io/apis/screenpipe/screenpipe-cloud-sync-api/) — Sync data across devices via cloud
+- [Screenpipe Data Management API](https://apis.io/apis/screenpipe/screenpipe-data-management-api/) — Manual data deletion and storage info
+- [Screenpipe Data Retention API](https://apis.io/apis/screenpipe/screenpipe-data-retention-api/) — Auto-delete old data locally
+- [Screenpipe Database API](https://apis.io/apis/screenpipe/screenpipe-database-api/) — Direct database access
+- [Screenpipe Elements API](https://apis.io/apis/screenpipe/screenpipe-elements-api/) — Query captured UI accessibility tree data
+- [Screenpipe Experimental API](https://apis.io/apis/screenpipe/screenpipe-experimental-api/) — Experimental/unstable endpoints
+- [Screenpipe Frames API](https://apis.io/apis/screenpipe/screenpipe-frames-api/) — Access captured screenshots and their extracted text
+- [Screenpipe Meetings API](https://apis.io/apis/screenpipe/screenpipe-meetings-api/) — Detected and manual meeting transcriptions
+- [Screenpipe Memories API](https://apis.io/apis/screenpipe/screenpipe-memories-api/) — AI-extracted knowledge from screen activity
+- [Screenpipe Search API](https://apis.io/apis/screenpipe/screenpipe-search-api/) — Search through captured screen and audio content
+- [Screenpipe Speakers API](https://apis.io/apis/screenpipe/screenpipe-speakers-api/) — Speaker identification and management
+- [Screenpipe System API](https://apis.io/apis/screenpipe/screenpipe-system-api/) — Health checks and system status
+- [Screenpipe Tags API](https://apis.io/apis/screenpipe/screenpipe-tags-api/) — Tag content items for organization
+- [Screenpipe Vault API](https://apis.io/apis/screenpipe/screenpipe-vault-api/) — Encrypt/decrypt all data at rest
+- [Screenpipe Vision API](https://apis.io/apis/screenpipe/screenpipe-vision-api/) — Manage screen capture monitors
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [screenpipe](https://apis.io/servers/screenpipe/screenpipe/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Screenpipe Agentic Access](https://apis.io/agentic-access/screenpipe/screenpipe-agentic-access/)
+
+#### JSON Schema (56)
+
+The data models the API reads and writes.
+
+- [ActivitySummaryResponse](https://apis.io/schemas/screenpipe/screenpipe-activity-summary-response/)
+- [AddContentRequest](https://apis.io/schemas/screenpipe/screenpipe-add-content-request/)
+- [AddContentResponse](https://apis.io/schemas/screenpipe/screenpipe-add-content-response/)
+- [AddTagsRequest](https://apis.io/schemas/screenpipe/screenpipe-add-tags-request/)
+- [AddTagsResponse](https://apis.io/schemas/screenpipe/screenpipe-add-tags-response/)
+- [ArchiveConfigureRequest](https://apis.io/schemas/screenpipe/screenpipe-archive-configure-request/)
+- [ArchiveInitRequest](https://apis.io/schemas/screenpipe/screenpipe-archive-init-request/)
+- [ArchiveInitResponse](https://apis.io/schemas/screenpipe/screenpipe-archive-init-response/)
+- [ArchiveStatusResponse](https://apis.io/schemas/screenpipe/screenpipe-archive-status-response/)
+- [AudioDeviceControlRequest](https://apis.io/schemas/screenpipe/screenpipe-audio-device-control-request/)
+- [AudioDeviceControlResponse](https://apis.io/schemas/screenpipe/screenpipe-audio-device-control-response/)
+- [BulkDeleteMeetingsRequest](https://apis.io/schemas/screenpipe/screenpipe-bulk-delete-meetings-request/)
+- [CreateMemoryRequest](https://apis.io/schemas/screenpipe/screenpipe-create-memory-request/)
+- [DeleteDeviceDataRequest](https://apis.io/schemas/screenpipe/screenpipe-delete-device-data-request/)
+- [DeleteTimeRangeRequest](https://apis.io/schemas/screenpipe/screenpipe-delete-time-range-request/)
+- [DeleteTimeRangeResponse](https://apis.io/schemas/screenpipe/screenpipe-delete-time-range-response/)
+- [DeviceStorageEntry](https://apis.io/schemas/screenpipe/screenpipe-device-storage-entry/)
+- [ElementsListResponse](https://apis.io/schemas/screenpipe/screenpipe-elements-list-response/)
+- [FrameContextResponse](https://apis.io/schemas/screenpipe/screenpipe-frame-context-response/)
+- [FrameMetadataResponse](https://apis.io/schemas/screenpipe/screenpipe-frame-metadata-response/)
+- [FrameTextResponse](https://apis.io/schemas/screenpipe/screenpipe-frame-text-response/)
+- [GetTagsBatchRequest](https://apis.io/schemas/screenpipe/screenpipe-get-tags-batch-request/)
+- [GetTagsBatchResponse](https://apis.io/schemas/screenpipe/screenpipe-get-tags-batch-response/)
+- [HealthCheckResponse](https://apis.io/schemas/screenpipe/screenpipe-health-check-response/)
+- [ListDeviceResponse](https://apis.io/schemas/screenpipe/screenpipe-list-device-response/)
+- …and 31 more published on APIs.io
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Screenpipe Context](https://apis.io/jsonld/screenpipe/screenpipe-context/)
+
+#### Collections (18)
+
+Postman and Open Collection request collections.
+
+- [Screenpipe Activity API](https://apis.io/collections/screenpipe/open-screenpipe-activity-api/)
+- [Screenpipe Activity Audio API](https://apis.io/collections/screenpipe/open-screenpipe-audio-api/)
+- [Screenpipe Activity Cloud Archive API](https://apis.io/collections/screenpipe/open-screenpipe-cloud-archive-api/)
+- [Screenpipe Activity Cloud Sync API](https://apis.io/collections/screenpipe/open-screenpipe-cloud-sync-api/)
+- [Screenpipe Activity Data Management API](https://apis.io/collections/screenpipe/open-screenpipe-data-management-api/)
+- [Screenpipe Activity Data Retention API](https://apis.io/collections/screenpipe/open-screenpipe-data-retention-api/)
+- [Screenpipe Activity Database API](https://apis.io/collections/screenpipe/open-screenpipe-database-api/)
+- [Screenpipe Activity Elements API](https://apis.io/collections/screenpipe/open-screenpipe-elements-api/)
+- [Screenpipe Activity Experimental API](https://apis.io/collections/screenpipe/open-screenpipe-experimental-api/)
+- [Screenpipe Activity Frames API](https://apis.io/collections/screenpipe/open-screenpipe-frames-api/)
+- [Screenpipe Activity Meetings API](https://apis.io/collections/screenpipe/open-screenpipe-meetings-api/)
+- [Screenpipe Activity Memories API](https://apis.io/collections/screenpipe/open-screenpipe-memories-api/)
+- [Screenpipe Activity Search API](https://apis.io/collections/screenpipe/open-screenpipe-search-api/)
+- [Screenpipe Activity Speakers API](https://apis.io/collections/screenpipe/open-screenpipe-speakers-api/)
+- [Screenpipe Activity System API](https://apis.io/collections/screenpipe/open-screenpipe-system-api/)
+- [Screenpipe Activity Tags API](https://apis.io/collections/screenpipe/open-screenpipe-tags-api/)
+- [Screenpipe Activity Vault API](https://apis.io/collections/screenpipe/open-screenpipe-vault-api/)
+- [Screenpipe Activity Vision API](https://apis.io/collections/screenpipe/open-screenpipe-vision-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Screenpipe Openapi Overlay](https://apis.io/overlays/screenpipe/screenpipe-openapi-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Screenpipe API Rules](https://apis.io/rules/screenpipe/screenpipe-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Screenpipe Authentication](https://apis.io/security/screenpipe/screenpipe-authentication/)
+- [Screenpipe Domain Security](https://apis.io/security/screenpipe/screenpipe-domain-security/)
+- [Screenpipe Trust Center](https://apis.io/security/screenpipe/screenpipe-trust-center/)
+- [Screenpipe Vulnerability Disclosure](https://apis.io/security/screenpipe/screenpipe-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Screenpipe Plans Pricing](https://apis.io/plans/screenpipe/screenpipe-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://screenpi.pe)
+- [Documentation](https://docs.screenpipe.com)
+- [Getting started](https://docs.screenpipe.com/getting-started)
+- [API reference](https://docs.screenpipe.com/api-reference)
+- [Pricing](https://screenpipe.com/pricing)
+- [Support](https://docs.screenpipe.com/troubleshooting)
+- [Changelog](https://docs.screenpipe.com/changelog)
+- [Blog](https://screenpipe.com/blog)
+- [Security](https://screenpipe.com/security)
+- [Compliance](https://screenpipe.com/security)
+- [Terms of service](https://screenpipe.com/terms)
+- [Privacy policy](https://screenpipe.com/privacy)
+- [GitHub](https://github.com/screenpipe)
+
+## API Evangelist rating
+
+**Kin Score 60.9** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.0 |
+| Contract governance | 35.6 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 78.9 |
+
+**Agent readiness 23.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/screenpipe/](https://apis.io/providers/screenpipe/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Screenpipe: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/screenpipe/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
